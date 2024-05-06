@@ -40,6 +40,11 @@ public class Wheel : MonoBehaviour
 
 			Vector3 force = (springForce + damperForce) * transform.up;
 
+			if(length >= maxLength)
+			{
+				force = Vector3.zero;
+			}
+
 			carRigidBody.AddForceAtPosition(force, transform.position);
 		}
 	}
