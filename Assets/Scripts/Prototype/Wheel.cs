@@ -1,4 +1,6 @@
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Wheel : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class Wheel : MonoBehaviour
 	[SerializeField] private float damper;
 
 	[SerializeField] private float radius;
+
+	[SerializeField, Range(0, 1)] private float grip;
+
+	[SerializeField, Min(0)] private float steerAngle;
 
 	private float length;
 
@@ -35,17 +41,21 @@ public class Wheel : MonoBehaviour
 			length = Mathf.Min(length, maxLength);
 
 			float springForce = strength*(restLength - length);
-			float velocity = Vector3.Dot(carRigidBody.GetPointVelocity(transform.position), transform.up);
-			float damperForce = -damper*velocity;
+			Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
+			float damperForce = -damper*Vector3.Dot(velocity, transform.up);
 
-			Vector3 force = (springForce + damperForce) * transform.up;
+			Vector3 suspensionForce = (springForce + damperForce) * transform.up;
 
 			if(length >= maxLength)
 			{
-				force = Vector3.zero;
+				suspensionForce = Vector3.zero;
 			}
 
-			carRigidBody.AddForceAtPosition(force, transform.position);
+			carRigidBody.AddForceAtPosition(suspensionForce, transform.position);
+
+			Vector3 lateralForce = -Vector3.Dot(velocity, transform.right)*transform.right*grip;
+
+			carRigidBody.AddForceAtPosition(lateralForce, transform.position + transform.up*radius);
 		}
 	}
 
@@ -55,5 +65,20 @@ public class Wheel : MonoBehaviour
 		Gizmos.color = Color.red;
 		Gizmos.DrawRay(transform.position, -transform.up*length);
 		Gizmos.DrawWireSphere(transform.position -length*transform.up, radius);
+
+		Gizmos.color = Color.blue;
+
+		if(carRigidBody != null)
+		{
+
+			Gizmos.DrawRay(transform.position, transform.right*Vector3.Dot(carRigidBody.GetPointVelocity(transform.position), transform.right));
+		}
+	}
+
+	public void Steer(InputAction.CallbackContext context)
+	{
+		float steering = context.ReadValue<float>();
+
+		transform.localEulerAngles = new Vector3(0, steering*steerAngle, 0);
 	}
 }

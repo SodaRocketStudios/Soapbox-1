@@ -1,0 +1,67 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Car",
+            "id": "e156fde8-5702-49f6-88bb-9f41faf3d7ee",
+            "actions": [
+                {
+                    "name": "Steering",
+                    "type": "Value",
+                    "id": "5df018d9-2056-4f52-96c6-c4d5edd5c3b6",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8eda3c7e-89a3-4330-8a59-51de8c87ad26",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "AD",
+                    "id": "17708ce1-8b7b-4ad1-87d1-f8c90c113b49",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "9ed9f336-021b-4c71-ba25-b7dc9dcd4ce1",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3b4115cb-d75e-4728-a05d-a4dea62222bc",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
