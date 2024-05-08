@@ -1,5 +1,5 @@
 {
-    "name": "InputActions",
+    "name": "PrototypeInputActions",
     "maps": [
         {
             "name": "Car",
@@ -19,6 +19,15 @@
                     "type": "Value",
                     "id": "923d4cca-d2cc-4d66-9aa0-0ab9d8c5478e",
                     "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Reset",
+                    "type": "Value",
+                    "id": "89733370-906d-4a08-a3a1-5841bb8cb1c0",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -88,6 +97,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e37b835c-550f-4a47-860e-638dc511f6a6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
