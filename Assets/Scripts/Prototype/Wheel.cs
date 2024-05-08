@@ -98,7 +98,6 @@ public class Wheel : MonoBehaviour
 
 		if(carRigidBody != null)
 		{
-
 			Gizmos.DrawRay(transform.position, transform.right*Vector3.Dot(carRigidBody.GetPointVelocity(transform.position), transform.right));
 		}
 	}
