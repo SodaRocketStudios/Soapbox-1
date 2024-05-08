@@ -1,4 +1,4 @@
-using Unity.Mathematics;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,15 +19,31 @@ public class Wheel : MonoBehaviour
 
 	[SerializeField, Min(0)] private float steerAngle;
 
+	[SerializeField, Min(0)] private float steerSpeed;
+
+	[SerializeField, Min(0)] private float maxBrakeForce;
+
 	private float length;
 
 	private Rigidbody carRigidBody;
+
+	private float brakeInput = 0;
+
+	private float steerInput;
+
+	private float previousSteerAngle;
+
+	private float steerTime;
+
+	private float mass;
 
 	private void Start()
 	{
 		carRigidBody = transform.root.GetComponent<Rigidbody>();
 
 		length = restLength;
+
+		mass = carRigidBody.mass;
 	}
 
 	private void FixedUpdate()
@@ -53,10 +69,22 @@ public class Wheel : MonoBehaviour
 
 			carRigidBody.AddForceAtPosition(suspensionForce, transform.position);
 
-			Vector3 lateralForce = -Vector3.Dot(velocity, transform.right)*transform.right*grip;
+			Vector3 lateralForce = -Vector3.Dot(velocity, transform.right)*transform.right*grip*mass;
 
 			carRigidBody.AddForceAtPosition(lateralForce, transform.position + transform.up*radius);
+
+			float longitudinalVelocity = Vector3.Dot(carRigidBody.GetPointVelocity(transform.position), transform.forward);
+
+			float brakeForce = -brakeInput*grip*maxBrakeForce*Mathf.Sign(longitudinalVelocity);
+
+			brakeForce = Mathf.Min(brakeForce, longitudinalVelocity)*mass;
+
+			carRigidBody.AddForceAtPosition(brakeForce*transform.forward, transform.position);
 		}
+
+		transform.localEulerAngles = Mathf.Lerp(previousSteerAngle, steerInput*steerAngle, Mathf.Clamp01(steerTime*steerSpeed))*Vector3.up;
+
+		steerTime += Time.fixedDeltaTime;
 	}
 
 	private void OnDrawGizmos()
@@ -77,8 +105,18 @@ public class Wheel : MonoBehaviour
 
 	public void Steer(InputAction.CallbackContext context)
 	{
-		float steering = context.ReadValue<float>();
+		previousSteerAngle = transform.localEulerAngles.y;
+		if(previousSteerAngle > 180)
+		{
+			previousSteerAngle -= 360;
+		}
 
-		transform.localEulerAngles = new Vector3(0, steering*steerAngle, 0);
+		steerInput = context.ReadValue<float>();
+		steerTime = 0;
+	}
+
+	public void Brake(InputAction.CallbackContext context)
+	{
+		brakeInput = context.ReadValue<float>();
 	}
 }
