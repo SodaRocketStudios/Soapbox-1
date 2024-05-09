@@ -9,6 +9,6 @@ using UnityEngine;
 
 		private void Update()
 		{
-			speedTextBox.text = Vector3.Dot(carRigidbody.velocity, carRigidbody.transform.forward).ToString();
+			speedTextBox.text = (Vector3.Dot(carRigidbody.velocity, carRigidbody.transform.forward)*3.6).ToString("F2") + "kph";
 		}
 	}
