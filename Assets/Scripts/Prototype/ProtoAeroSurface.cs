@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AeroSurface : MonoBehaviour
+public class ProtoAeroSurface : MonoBehaviour
 {
 	private const float AIR_DENSITY = 1.225f;
 

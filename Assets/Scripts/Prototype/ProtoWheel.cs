@@ -1,8 +1,7 @@
-using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Wheel : MonoBehaviour
+public class ProtoWheel : MonoBehaviour
 {
 
 	[SerializeField] private float restLength;
@@ -75,9 +74,14 @@ public class Wheel : MonoBehaviour
 
 			float longitudinalVelocity = Vector3.Dot(carRigidBody.GetPointVelocity(transform.position), transform.forward);
 
-			float brakeForce = -brakeInput*grip*maxBrakeForce*Mathf.Sign(longitudinalVelocity);
+			float brakeForce = brakeInput*grip*maxBrakeForce*Mathf.Sign(longitudinalVelocity);
 
-			brakeForce = Mathf.Min(brakeForce, longitudinalVelocity)*mass;
+			brakeForce = -Mathf.Min(brakeForce, longitudinalVelocity)*mass;
+
+			if(brakeInput == 0)
+			{
+				brakeForce = 0;
+			}
 
 			carRigidBody.AddForceAtPosition(brakeForce*transform.forward, transform.position);
 		}
