@@ -16,8 +16,6 @@ namespace Soap.Prototype
 
 		[SerializeField, Min(0)] private float maxLength;
 
-		[SerializeField, Min(0)] private float minLength;
-
 		[SerializeField] private TireProfile tireProfile;
 		private float[] a;
 		private float[] b;
@@ -45,8 +43,6 @@ namespace Soap.Prototype
 
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				float verticalVelocity = Vector3.Dot(velocity, transform.up);
-				float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
-				float lateralVelocity = Vector3.Dot(velocity, transform.right);
 				Vector3 planarVelocity = transform.InverseTransformVector(velocity).XZPlane();
 
 				Vector3 planarHeading = transform.forward.XZPlane()*Mathf.Sign(planarVelocity.z);
@@ -58,6 +54,17 @@ namespace Soap.Prototype
 				float camber = 0;
 
 				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
+
+				// if suspension is fully compressed
+				if(length <= 0)
+				{
+					// the load from the body of the car will instantly be transfered to the wheel
+					// load on wheel = load from car instead of suspension force.
+					// length = min length
+					// verticalvelocity = 0;
+					// suspensionForce = verticalVelocity*carRigidBody.mass;
+				}
+
 				float suspensionForceSquared = suspensionForce*suspensionForce;
 
 				// Pacejka Magic Formula
@@ -83,14 +90,6 @@ namespace Soap.Prototype
 
 				Debug.DrawRay(transform.position, lateralForce, Color.red);
 
-				// if target length is less than min length
-				if(length < minLength)
-				{
-					// the load from the body of the car will instantly be transfered to the wheel
-					// load on wheel = load from car instead of suspension force.
-					// length = min length
-					// verticalvelocity = 0;
-				}
 
 				carRigidBody.AddForceAtPosition(suspensionForce*transform.up, transform.position);
 				carRigidBody.AddForceAtPosition(lateralForce, transform.position);
