@@ -53,8 +53,6 @@ namespace Soap.Prototype
 
 				float slipAngle = Vector3.SignedAngle(planarHeading, planarVelocity, transform.up);
 
-				Debug.Log(slipAngle);
-
 				float slipRatio = 0;
 
 				float camber = 0;
@@ -71,7 +69,7 @@ namespace Soap.Prototype
 				float Vlat = a[11]*suspensionForce + a[12] + (a[13]*suspensionForceSquared + a[14]*suspensionForce)*camber;
 				float Elat = (a[6]*suspensionForce + a[7])*(1 - (a[16]*camber + a[17])*Mathf.Sign(slipAngle + Hlat));
 				float Bxlat = Blat*(slipAngle + Hlat);
-				Vector3 lateralForce = (Dlat*Mathf.Sin(Clat*Mathf.Atan(Bxlat - Elat*(Bxlat - Mathf.Atan(Bxlat)))) + Vlat)*transform.right;
+				Vector3 lateralForce = -(Dlat*Mathf.Sin(Clat*Mathf.Atan(Bxlat - Elat*(Bxlat - Mathf.Atan(Bxlat)))) + Vlat)*transform.right;
 
 				// Longitudinal
 				float Clong = b[0];
