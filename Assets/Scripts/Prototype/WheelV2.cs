@@ -20,6 +20,7 @@ namespace Soap.Prototype
 		private float[] a;
 		private float[] b;
 
+
 		// Steering variables
 		[SerializeField, Range(0, 30)] private float steeringAngle = 0;
 		[SerializeField, Min(0)] private float steeringSpeed = 1;
@@ -31,6 +32,10 @@ namespace Soap.Prototype
 		private float brakeInput;
 
 		private Rigidbody carRigidBody;
+
+		private float wheelSpeed = 0;
+
+		private float suspensionLength;
 
 		private void Start()
 		{
@@ -52,14 +57,38 @@ namespace Soap.Prototype
 				float length = hit.distance - wheelRadius;
 
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
-				float verticalVelocity = Vector3.Dot(velocity, transform.up);
 				Vector3 planarVelocity = transform.InverseTransformVector(velocity).XZPlane();
+				float verticalVelocity = Vector3.Dot(velocity, transform.up);
+				float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
 
 				Vector3 planarHeading = transform.forward.XZPlane()*Mathf.Sign(planarVelocity.z);
 
 				float slipAngle = Vector3.SignedAngle(planarHeading, planarVelocity, transform.up);
 
+				float wheelAcceleration = longitudinalVelocity - wheelSpeed;
+
+				wheelAcceleration += -brakeInput*0.2f;
+
+				if(Mathf.Abs(wheelAcceleration) > Mathf.Abs(longitudinalVelocity))
+				{
+					wheelAcceleration = -longitudinalVelocity;
+				}
+
+				wheelSpeed += wheelAcceleration;
+
+				Debug.DrawRay(transform.position, wheelSpeed*transform.forward, Color.blue);
+
 				float slipRatio = 0;
+
+				if(longitudinalVelocity != 0)
+				{
+					slipRatio = (wheelSpeed/longitudinalVelocity) - 1;
+				}
+
+				slipRatio = Mathf.Min(slipRatio, 1);
+				slipRatio = Mathf.Max(slipRatio, -1);
+
+				Debug.Log(slipRatio);
 
 				float camber = 0;
 
@@ -74,6 +103,8 @@ namespace Soap.Prototype
 					// verticalvelocity = 0;
 					// suspensionForce = verticalVelocity*carRigidBody.mass;
 				}
+
+				suspensionLength = length;
 
 				float suspensionForceSquared = suspensionForce*suspensionForce;
 
@@ -99,11 +130,13 @@ namespace Soap.Prototype
 				Vector3 longitudinalForce = (Dlong*Mathf.Sin(Clong*Mathf.Atan(Bxlong - Elong*(Bxlong - Mathf.Atan(Bxlong)))) + Vlong)*transform.forward;
 
 				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
+				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
 
 				HandleSteering();
 
 				carRigidBody.AddForceAtPosition(suspensionForce*transform.up, transform.position);
 				carRigidBody.AddForceAtPosition(lateralForce, transform.position);
+				carRigidBody.AddForceAtPosition(longitudinalForce, transform.position);
 			}
 
 			// if the suspension cannot reach the ground, the load on the tire is zero.
@@ -148,5 +181,13 @@ namespace Soap.Prototype
 		{
 
 		}
+
+		private void OnDrawGizmos()
+	{
+		Gizmos.DrawRay(transform.position, -transform.up*restLength);
+		Gizmos.color = Color.red;
+		Gizmos.DrawRay(transform.position, -transform.up*suspensionLength);
+		Gizmos.DrawWireSphere(transform.position -suspensionLength*transform.up, wheelRadius);
+	}
 	}
 }

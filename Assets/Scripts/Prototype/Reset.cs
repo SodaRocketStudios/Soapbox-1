@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,5 +23,13 @@ public class Reset : MonoBehaviour
 				carRigidbody.velocity = Vector3.zero;
 				carRigidbody.angularVelocity = Vector3.zero;
 			}
-		}	
+		}
+
+		public void ResetTimeScale(InputAction.CallbackContext context)
+		{
+			if(context.performed)
+			{
+				Time.timeScale = 1;
+			}
+		}
 	}
