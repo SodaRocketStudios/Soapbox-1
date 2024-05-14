@@ -35,6 +35,7 @@ namespace Soap.Prototype
 		private void Start()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
+
 			a = tireProfile.LateralParameters;
 			b = tireProfile.LongitudinalParameters;
 		}
@@ -141,6 +142,11 @@ namespace Soap.Prototype
 		private Vector3 MagicFormula()
 		{
 			return new Vector3();
+		}
+
+		private void ShowTelemetry()
+		{
+
 		}
 	}
 }
