@@ -2186,6 +2186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 835326600}
+  - component: {fileID: 835326604}
   - component: {fileID: 835326603}
   - component: {fileID: 835326599}
   - component: {fileID: 835326598}
@@ -2346,32 +2347,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wheel, Assembly-CSharp
-        m_MethodName: Steer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wheel, Assembly-CSharp
-        m_MethodName: Steer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ProtoCar, Assembly-CSharp
+      - m_Target: {fileID: 835326604}
+        m_TargetAssemblyTypeName: Soap.Prototype.CarController, Prototype
         m_MethodName: Steer
         m_Mode: 0
         m_Arguments:
@@ -2386,54 +2363,6 @@ MonoBehaviour:
     m_ActionName: Car/Steering[/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wheel, Assembly-CSharp
-        m_MethodName: Brake
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wheel, Assembly-CSharp
-        m_MethodName: Brake
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wheel, Assembly-CSharp
-        m_MethodName: Brake
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Wheel, Assembly-CSharp
-        m_MethodName: Brake
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ProtoCar, Assembly-CSharp
         m_MethodName: Brake
@@ -2483,6 +2412,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carTransform: {fileID: 4167280743394806330, guid: f5a18a93202482448b9ac4a1a342c0dd,
     type: 3}
+--- !u!114 &835326604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835326596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f215a3b37585df14cbedc6a77ddda940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &855160623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,6 +2631,8 @@ MonoBehaviour:
   restLength: 0.25
   maxLength: 0.375
   tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  steeringAngle: 15
+  steeringSpeed: 5
 --- !u!1 &930388475
 GameObject:
   m_ObjectHideFlags: 3
@@ -2994,6 +2937,8 @@ MonoBehaviour:
   restLength: 0.25
   maxLength: 0.375
   tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  steeringAngle: 0
+  steeringSpeed: 1
 --- !u!1 &1010259269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,6 +3462,8 @@ MonoBehaviour:
   restLength: 0.25
   maxLength: 0.375
   tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  steeringAngle: 0
+  steeringSpeed: 1
 --- !u!1 &1272377725
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,6 +4120,8 @@ MonoBehaviour:
   restLength: 0.25
   maxLength: 0.375
   tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  steeringAngle: 15
+  steeringSpeed: 5
 --- !u!1 &1443485677
 GameObject:
   m_ObjectHideFlags: 0

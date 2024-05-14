@@ -20,6 +20,15 @@ namespace Soap.Prototype
 		private float[] a;
 		private float[] b;
 
+		// Steering variables
+		[SerializeField, Range(0, 30)] private float steeringAngle = 0;
+		[SerializeField, Min(0)] private float steeringSpeed = 1;
+		private float previousSteerAngle;
+		private float steerInput;
+		private float steerTime;
+
+		// Braking Inputs
+		private float brakeInput;
 
 		private Rigidbody carRigidBody;
 
@@ -88,8 +97,9 @@ namespace Soap.Prototype
 				float Bxlong = Blong*(slipRatio + Hlong);
 				Vector3 longitudinalForce = (Dlong*Mathf.Sin(Clong*Mathf.Atan(Bxlong - Elong*(Bxlong - Mathf.Atan(Bxlong)))) + Vlong)*transform.forward;
 
-				Debug.DrawRay(transform.position, lateralForce, Color.red);
+				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
 
+				HandleSteering();
 
 				carRigidBody.AddForceAtPosition(suspensionForce*transform.up, transform.position);
 				carRigidBody.AddForceAtPosition(lateralForce, transform.position);
@@ -99,6 +109,38 @@ namespace Soap.Prototype
 			// suspension force is applied to wheel instead of car body.
 		}
 
-		// private float Get
+		public void Steer(float inputValue)
+		{
+			previousSteerAngle = transform.localEulerAngles.y;
+			if(previousSteerAngle > 180)
+			{
+				previousSteerAngle -= 360;
+			}
+
+			steerInput = inputValue;
+			steerTime = 0;
+		}
+
+		private void HandleSteering()
+		{
+			transform.localEulerAngles = Mathf.Lerp(previousSteerAngle, steerInput*steeringAngle, Mathf.Clamp01(steerTime*steeringSpeed))*Vector3.up;
+
+			steerTime += Time.fixedDeltaTime;
+		}
+
+		public void Brake(float inputValue)
+		{
+			brakeInput = inputValue;
+		}
+
+		private void HandleBraking()
+		{
+
+		}
+
+		private Vector3 MagicFormula()
+		{
+			return new Vector3();
+		}
 	}
 }
