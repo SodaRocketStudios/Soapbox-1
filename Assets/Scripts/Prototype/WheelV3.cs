@@ -1,10 +1,10 @@
 using UnityEngine;
-using SRS.Extensions.Vector;
 using Soap.Physics;
+using SRS.Extensions.Vector;
 
 namespace Soap.Prototype
 {
-	public class WheelV2 : MonoBehaviour
+	public class WheelV3 : MonoBehaviour
 	{
 		[SerializeField, Min(0)] private float wheelRadius = 0.457f;
 
@@ -16,9 +16,7 @@ namespace Soap.Prototype
 
 		[SerializeField, Min(0)] private float maxLength;
 
-		[SerializeField] private PacejkaTireProfile tireProfile;
-		private float[] a;
-		private float[] b;
+		[SerializeField] private CurveTireProfile tireProfile;
 
 
 		// Steering variables
@@ -42,9 +40,6 @@ namespace Soap.Prototype
 		private void Start()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
-
-			a = tireProfile.LateralParameters;
-			b = tireProfile.LongitudinalParameters;
 		}
 
 		private void FixedUpdate()
@@ -140,31 +135,7 @@ namespace Soap.Prototype
 
 				suspensionLength = length;
 
-				// if(longitudinalVelocity < physicsOverrideSpeed)
-				// {
-				// 	float longitudinalAcceleration = wheelSpeed - longitudinalVelocity;
-
-				// 	if(longitudinalAcceleration != 0)
-				// 	{
-				// 		Debug.Log(longitudinalAcceleration*transform.forward);
-				// 		carRigidBody.AddForceAtPosition(transform.position, longitudinalAcceleration*transform.forward, ForceMode.VelocityChange);
-				// 	}
-					
-				// 	return;
-				// }
-
-				float suspensionForceSquared = suspensionForce*suspensionForce;
-
-				// Pacejka Magic Formula
 				// Lateral
-				// float Clat = a[0];
-				// float Dlat = (a[1]*suspensionForceSquared + a[2]*suspensionForce)*(1 - a[15]*camber*camber);
-				// float Blat = a[3]*Mathf.Sin(Mathf.Atan(suspensionForce/a[4])*2)*(1-a[5]*Mathf.Abs(camber))/(Clat*Dlat);
-				// float Hlat = a[8]*suspensionForce + a[9] + a[10]*camber;
-				// float Vlat = a[11]*suspensionForce + a[12] + (a[13]*suspensionForceSquared + a[14]*suspensionForce)*camber;
-				// float Elat = (a[6]*suspensionForce + a[7])*(1 - (a[16]*camber + a[17])*Mathf.Sign(slipAngle + Hlat));
-				// float Bxlat = Blat*(slipAngle + Hlat);
-				// Vector3 lateralForce = -(Dlat*Mathf.Sin(Clat*Mathf.Atan(Bxlat - Elat*(Bxlat - Mathf.Atan(Bxlat)))) + Vlat)*transform.right;
 				float A = 1.5f;
 				float B = 4;
 				float P = 1.2f;
@@ -174,14 +145,6 @@ namespace Soap.Prototype
 				lateralForce = lateralVelocity < lateralOverrideSpeed?lateralForce*Mathf.Abs(lateralVelocity) : lateralForce;
 
 				// Longitudinal
-				// float Clong = b[0];
-				// float Dlong = b[1]*suspensionForceSquared + b[2]*suspensionForce;
-				// float Blong = (b[3]*suspensionForceSquared + b[4]*suspensionForce)*Mathf.Exp(-b[5]*suspensionForce)/(Clong*Dlong);
-				// float Hlong = b[9]*suspensionForce + b[10];
-				// float Vlong = b[11]*suspensionForce + b[12];
-				// float Elong = (b[6]*suspensionForceSquared + b[7]*suspensionForce + b[8])*(1 - b[13]*Mathf.Sign(slipRatio + Hlong));
-				// float Bxlong = Blong*(slipRatio + Hlong);
-				// Vector3 longitudinalForce = (Dlong*Mathf.Sin(Clong*Mathf.Atan(Bxlong - Elong*(Bxlong - Mathf.Atan(Bxlong)))) + Vlong)*transform.forward;
 				A = 25;
 				B = 85;
 				P = 1.5f;

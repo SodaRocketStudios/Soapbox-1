@@ -12,8 +12,6 @@ namespace Soap.Prototype
 
 		private void OnValidate()
 		{
-			Debug.Log("Validate");
-
 			curve.ClearKeys();
 			curve.AddKey(0, 0);
 			curve.AddKey(peak.x, peak.y);

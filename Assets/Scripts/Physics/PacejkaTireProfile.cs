@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Soap.Physics
 {
-	[CreateAssetMenu(fileName = "New Tire Profile", menuName = "Physics/Tire Profile")]
+	[CreateAssetMenu(fileName = "New Tire Profile", menuName = "Physics/PacejkaTire Profile")]
 	[HelpURL("https://www.edy.es/dev/docs/pacejka-94-parameters-explained-a-comprehensive-guide/")]
-	public class TireProfile : ScriptableObject
+	public class PacejkaTireProfile : ScriptableObject
 	{
 		// Lateral
 		[Header("Lateral parameters")]
