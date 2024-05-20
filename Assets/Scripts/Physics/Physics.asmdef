@@ -1,7 +1,9 @@
 {
     "name": "Physics",
     "rootNamespace": "Soap.Physics",
-    "references": [],
+    "references": [
+        "GUID:96345d493f6586a4296bdf871d25abdc"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

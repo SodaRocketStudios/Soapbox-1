@@ -1,6 +1,6 @@
 {
-    "name": "Editors",
-    "rootNamespace": "Soap.Editors",
+    "name": "EditorExtensions",
+    "rootNamespace": "SRS.Extensions.EditorExtensions",
     "references": [],
     "includePlatforms": [
         "Editor"

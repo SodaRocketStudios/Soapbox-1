@@ -169,7 +169,6 @@ namespace Soap.Prototype
 				float B = 4;
 				float P = 1.2f;
 				Vector3 lateralForce =  B*slipAngle*suspensionForce/(1 + Mathf.Pow(Mathf.Abs(A*slipAngle), P))*transform.right;
-				Debug.Log(lateralVelocity);
 
 				lateralForce = lateralVelocity < lateralOverrideSpeed?lateralForce*Mathf.Abs(lateralVelocity) : lateralForce;
 
