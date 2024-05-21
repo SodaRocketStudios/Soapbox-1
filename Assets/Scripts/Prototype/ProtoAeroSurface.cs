@@ -10,7 +10,7 @@ namespace Soap.Prototype
 
 		[SerializeField] private float dragCoefficient;
 
-		[SerializeField] private float liftCoefficient;
+		[SerializeField] private float liftToDragRatio;
 
 		private Rigidbody carRigidBody;
 
@@ -21,11 +21,12 @@ namespace Soap.Prototype
 
 		private void FixedUpdate()
 		{
-			float longitudinalVelocitySquared = Mathf.Pow(Vector3.Dot(carRigidBody.velocity, transform.forward), 2);
+			float longitudinalVelocity = Vector3.Dot(carRigidBody.velocity, transform.forward);
+			float longitudinalVelocitySquared = longitudinalVelocity * longitudinalVelocity;
 
 			float dragForce = longitudinalVelocitySquared*frontalArea*dragCoefficient*AIR_DENSITY/2;
 
-			float liftForce = longitudinalVelocitySquared*frontalArea*liftCoefficient*AIR_DENSITY/2;
+			float liftForce = longitudinalVelocitySquared*frontalArea*dragCoefficient*liftToDragRatio*AIR_DENSITY/2;
 
 			carRigidBody.AddForceAtPosition(-dragForce*transform.forward, transform.position);
 			carRigidBody.AddForceAtPosition(-liftForce*transform.up, transform.position);
