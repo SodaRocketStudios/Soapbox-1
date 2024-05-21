@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Soap.Prototype
+namespace SRS.Soap.Prototype
 {
 	public interface IShowForceTelemetry
 	{

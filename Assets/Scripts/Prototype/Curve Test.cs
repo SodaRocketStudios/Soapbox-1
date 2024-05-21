@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Soap.Prototype
+namespace SRS.Soap.Prototype
 {
 	public class CurveTest : MonoBehaviour
 	{

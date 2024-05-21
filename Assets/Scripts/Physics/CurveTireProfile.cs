@@ -1,9 +1,9 @@
 using System;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 using SRS.Extensions.EditorExtensions;
 
-namespace Soap.Physics
+namespace SRS.Soap.Physics
 {
 	[CreateAssetMenu(fileName = "New Tire Profile", menuName = "Physics/Curve Tire Profile")]
 	public class CurveTireProfile : ScriptableObject
@@ -12,23 +12,23 @@ namespace Soap.Physics
 		[SerializeField, Range(1, 3)] private float peakLongitudinalFriction = 1.75f;
 		[SerializeField, Range(0.01f, 0.99f)] private float peakSlipRatio = 0.1f;
 		[SerializeField, Range(1, 3)] private float longitudinalSlipFriction = 1.5f;
+		#if UNITY_EDITOR
+		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 longitudinalShapingKey;
+		#endif
 		[SerializeField] private AnimationCurve longitudinalCurve = new AnimationCurve();
 
-		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 longitudinalShapingKey;
 
 		[Header("Lateral Parameters")]
 		[SerializeField, Range(1, 3)] private float peakLateralFriction = 1.65f;
 		[SerializeField, Range(0.1f, 40)] private float peakSlipAngle = 7.5f;
 		[SerializeField, Range(1, 3)] private float lateralSlipFriction = 1.35f;
 		[SerializeField, Range(0, 45)] private float maxSlipAngle = 25;
-		[SerializeField] private AnimationCurve lateralCurve = new AnimationCurve();
+		#if UNITY_EDITOR
 		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 lateralShapingKey;
+		#endif
+		[SerializeField] private AnimationCurve lateralCurve = new AnimationCurve();
 
-		private void Awake()
-		{
-			OnValidate();
-		}
-
+		#if UNITY_EDITOR
 		private void OnValidate()
 		{
 			Keyframe tempKey;
@@ -79,17 +79,22 @@ namespace Soap.Physics
 			tempKey.outTangent = 0;
 			lateralCurve.MoveKey(peakKeyIndex, tempKey);
 		}
+		#endif
 
 		public float EvaluateLongitudinal(float slipRatio)
 		{
-			slipRatio = Mathf.Clamp(slipRatio, -1, 1);
-			return longitudinalCurve.Evaluate(slipRatio);
+			float sign = Mathf.Sign(slipRatio);
+			slipRatio = Mathf.Abs(slipRatio);
+			slipRatio = Mathf.Clamp01(slipRatio);
+			return sign*longitudinalCurve.Evaluate(slipRatio);
 		}
 
 		public float EvaluateLateral(float slipAngle)
 		{
-			slipAngle = Mathf.Clamp(slipAngle, -maxSlipAngle, maxSlipAngle);
-			return lateralCurve.Evaluate(slipAngle);
+			float sign = Mathf.Sign(slipAngle);
+			slipAngle = Mathf.Abs(slipAngle);
+			slipAngle = Mathf.Clamp(slipAngle, 0, maxSlipAngle);
+			return sign*lateralCurve.Evaluate(slipAngle);
 		}
 	}
 }

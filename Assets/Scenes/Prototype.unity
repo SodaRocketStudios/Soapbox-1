@@ -2472,8 +2472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323db592450319a448da9415dc92d67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carTransform: {fileID: 4167280743394806330, guid: f5a18a93202482448b9ac4a1a342c0dd,
-    type: 3}
+  carTransform: {fileID: 835326600}
 --- !u!114 &835326604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2684,18 +2683,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 880991365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efe764f362d9954ea0758634406fd27, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.4
+  wheelRadius: 0.457
   springStrength: 16000
-  damperStrength: 1600
+  damperStrength: 8000
   restLength: 0.1
   maxLength: 0.2
-  tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 15
   steeringSpeed: 2
-  lateralOverrideSpeed: 0.1
+  lateralOverrideSpeed: 0
 --- !u!1 &930388475
 GameObject:
   m_ObjectHideFlags: 3
@@ -2991,18 +2990,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 947854135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efe764f362d9954ea0758634406fd27, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.4
+  wheelRadius: 0.457
   springStrength: 16000
-  damperStrength: 1600
+  damperStrength: 8000
   restLength: 0.1
   maxLength: 0.2
-  tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 0
   steeringSpeed: 1
-  lateralOverrideSpeed: 0.1
+  lateralOverrideSpeed: 0
 --- !u!1 &1010259269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,18 +3516,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1214490846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efe764f362d9954ea0758634406fd27, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.4
+  wheelRadius: 0.457
   springStrength: 16000
-  damperStrength: 1600
+  damperStrength: 8000
   restLength: 0.1
   maxLength: 0.2
-  tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 0
   steeringSpeed: 1
-  lateralOverrideSpeed: 0.1
+  lateralOverrideSpeed: 0
 --- !u!1 &1272377725
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,18 +4175,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1430107811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efe764f362d9954ea0758634406fd27, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.4
+  wheelRadius: 0.457
   springStrength: 16000
-  damperStrength: 1600
+  damperStrength: 8000
   restLength: 0.1
   maxLength: 0.2
-  tireProfile: {fileID: 11400000, guid: d4cfefeab6234914dac43521f8030d84, type: 2}
+  tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 15
   steeringSpeed: 2
-  lateralOverrideSpeed: 0.1
+  lateralOverrideSpeed: 0
 --- !u!1 &1443485677
 GameObject:
   m_ObjectHideFlags: 0

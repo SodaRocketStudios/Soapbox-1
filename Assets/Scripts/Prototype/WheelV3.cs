@@ -1,8 +1,8 @@
 using UnityEngine;
-using Soap.Physics;
+using SRS.Soap.Physics;
 using SRS.Extensions.Vector;
 
-namespace Soap.Prototype
+namespace SRS.Soap.Prototype
 {
 	public class WheelV3 : MonoBehaviour
 	{
@@ -73,29 +73,9 @@ namespace Soap.Prototype
 				}
 
 				wheelAcceleration += brakeAcceleration; // apply braking force.
-
-				// Not moving
-				// if(longitudinalVelocity == 0)
-				// {
-				// 	// There is no reverse, so make sure wheel speed stays >= 0.
-				// 	wheelAcceleration = Mathf.Max(wheelAcceleration, 0);
-				// }
-				// // Moving forward
-				// else if(longitudinalVelocity > 0)
-				// {
-				// 	wheelAcceleration = Mathf.Max(wheelAcceleration, -wheelSpeed);
-				// }
-				// // Moving backwards
-				// else if(longitudinalVelocity < 0)
-				// {
-				// 	wheelAcceleration = Mathf.Min(wheelAcceleration, -wheelSpeed);
-				// }
-
-				// Debug.Log($"{gameObject.name} -- Wheel Acceleration: {wheelAcceleration}, Wheel Speed: {wheelSpeed}, Wheel Speed after Accel: {wheelSpeed+wheelAcceleration}, Speed: {longitudinalVelocity}");
 				
 				wheelSpeed += wheelAcceleration;
 
-				// Debug.Log($"Speed: {longitudinalVelocity}, wheelVelocity: {wheelSpeed}");
 
 				Debug.DrawRay(transform.position, wheelSpeed*transform.forward, Color.blue);
 
@@ -109,17 +89,6 @@ namespace Soap.Prototype
 				{
 					slipRatio = (wheelSpeed - longitudinalVelocity)/Mathf.Abs(longitudinalVelocity);
 				}
-
-				// slipRatio = Mathf.Clamp(slipRatio, -1, 1);
-
-				// if(longitudinalVelocity < 0)
-				// {
-				// 	Debug.Log($"Speed: {longitudinalVelocity}");
-				// 	Debug.Log($"wheelVelocity: {wheelSpeed}");
-				// 	Time.timeScale = 0;
-				// }
-
-				// float camber = 0;
 
 				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
 
@@ -136,19 +105,12 @@ namespace Soap.Prototype
 				suspensionLength = length;
 
 				// Lateral
-				float A = 1.5f;
-				float B = 4;
-				float P = 1.2f;
-				Vector3 lateralForce =  B*slipAngle*suspensionForce/(1 + Mathf.Pow(Mathf.Abs(A*slipAngle), P))*transform.right;
-				Debug.Log(lateralVelocity);
+				Vector3 lateralForce = tireProfile.EvaluateLateral(slipAngle)*suspensionForce*transform.right;
 
-				lateralForce = lateralVelocity < lateralOverrideSpeed?lateralForce*Mathf.Abs(lateralVelocity) : lateralForce;
+				// lateralForce = lateralVelocity < lateralOverrideSpeed?lateralForce*Mathf.Abs(lateralVelocity) : lateralForce;
 
 				// Longitudinal
-				A = 25;
-				B = 85;
-				P = 1.5f;
-				Vector3 longitudinalForce = B*slipRatio*suspensionForce/(1 + Mathf.Pow(Mathf.Abs(A*slipRatio), P))*transform.forward;
+				Vector3 longitudinalForce = tireProfile.EvaluateLongitudinal(slipRatio)*suspensionForce*transform.forward;
 
 				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
 				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);

@@ -1,13 +1,12 @@
 {
     "name": "Prototype",
-    "rootNamespace": "Soap.Prototype",
+    "rootNamespace": "SRS.Soap.Prototype",
     "references": [
-        "GUID:42709827411ac4c4e975f1a390587e0b",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:825a9f5b8651d6c4dbb84b6fda3a9a42",
+        "GUID:42709827411ac4c4e975f1a390587e0b",
         "GUID:d258764cd20aead4eaf5456d15c6e5de",
-        "GUID:c267c71ae2bebb14ba45e15b1e7dc261"
+        "GUID:825a9f5b8651d6c4dbb84b6fda3a9a42"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Reset : MonoBehaviour
+namespace Soap.Prototype
+{
+	public class Reset : MonoBehaviour
 	{
 		[SerializeField] private Transform carTransform;
 		private Rigidbody carRigidbody;
@@ -33,3 +35,4 @@ public class Reset : MonoBehaviour
 			}
 		}
 	}
+}
