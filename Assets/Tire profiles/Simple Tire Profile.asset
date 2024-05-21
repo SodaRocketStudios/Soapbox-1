@@ -23,7 +23,7 @@ MonoBehaviour:
       value: 0
       inSlope: 17.5
       outSlope: 17.5
-      tangentMode: 65
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
@@ -32,15 +32,24 @@ MonoBehaviour:
       value: 1.75
       inSlope: 0
       outSlope: 0
-      tangentMode: 129
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2323
+      value: 1.5605
+      inSlope: -0.268889
+      outSlope: -0.268889
+      tangentMode: 9
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1.5
-      inSlope: -0.2777778
-      outSlope: -0.2777778
+      inSlope: -0.078806855
+      outSlope: -0.078806855
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -48,6 +57,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  shapingKeyLocation: {x: 0.147, y: 0.242}
   peakLateralFriction: 1.65
   peakSlipAngle: 7.5
   lateralSlipFriction: 1.35

@@ -6,13 +6,13 @@ namespace SRS.Extensions.EditorExtensions
 	[CustomPropertyDrawer(typeof(Vector2RangeAttribute))]
 	public class Vector2RangePropertyDrawer : PropertyDrawer
 	{
-		private const float SPACE = 2;
+		private const float LINE_SPACE = 2;
 
 		private float lineHeight
 		{
 			get
 			{
-				return EditorGUIUtility.singleLineHeight + SPACE;
+				return EditorGUIUtility.singleLineHeight + LINE_SPACE;
 			}
 		}
 
@@ -36,17 +36,17 @@ namespace SRS.Extensions.EditorExtensions
 
 			Vector2 value = property.vector2Value;
 
-			position.width -= 30;
+			position.width -= 15;
 
-			EditorGUI.LabelField(position, "X: ");
-			position.x += 30;
+			EditorGUI.LabelField(position, "X");
+			position.x += 15;
 			value.x = EditorGUI.Slider(position, value.x, range.XMin, range.XMax);
 
-			position.x -= 30;
-			position.y += EditorGUIUtility.singleLineHeight + SPACE;
+			position.x -= 15;
+			position.y += EditorGUIUtility.singleLineHeight + LINE_SPACE;
 
-			EditorGUI.LabelField(position, "Y: ");
-			position.x += 30;
+			EditorGUI.LabelField(position, "Y");
+			position.x += 15;
 			value.y = EditorGUI.Slider(position, value.y, range.YMin, range.YMax);
 
 			if(EditorGUI.EndChangeCheck())
@@ -59,7 +59,7 @@ namespace SRS.Extensions.EditorExtensions
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
-			return EditorGUIUtility.singleLineHeight * 3 + SPACE;
+			return EditorGUIUtility.singleLineHeight * 3 + LINE_SPACE;
 		}
 	}
 }
