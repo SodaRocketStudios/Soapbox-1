@@ -2,7 +2,7 @@ using UnityEngine;
 using SRS.Extensions.Vector;
 using Soap.Physics;
 
-namespace SRS.Soap.Prototype
+namespace Soap.Prototype
 {
 	public class WheelV2 : MonoBehaviour
 	{

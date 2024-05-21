@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SRS.Extensions.EditorExtensions
+namespace SRS.Extensions.Vector.Editor
 {
 	[CustomPropertyDrawer(typeof(Vector2RangeAttribute))]
 	public class Vector2RangePropertyDrawer : PropertyDrawer

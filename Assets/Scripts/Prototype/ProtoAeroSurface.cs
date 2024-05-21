@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SRS.Soap.Prototype
+namespace Soap.Prototype
 {
 	public class ProtoAeroSurface : MonoBehaviour
 	{

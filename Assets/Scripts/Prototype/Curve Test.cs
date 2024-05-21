@@ -1,7 +1,6 @@
-using UnityEditor;
 using UnityEngine;
 
-namespace SRS.Soap.Prototype
+namespace Soap.Prototype
 {
 	public class CurveTest : MonoBehaviour
 	{
@@ -10,6 +9,7 @@ namespace SRS.Soap.Prototype
 		[SerializeField] private Vector2 shapingKey;
 		[SerializeField] private AnimationCurve curve;
 
+		#if Unity_Editor
 		private void OnValidate()
 		{
 			curve.ClearKeys();
@@ -22,5 +22,6 @@ namespace SRS.Soap.Prototype
 			AnimationUtility.SetKeyLeftTangentMode(curve, 2, AnimationUtility.TangentMode.Free);
 			AnimationUtility.SetKeyLeftTangentMode(curve, 3, AnimationUtility.TangentMode.ClampedAuto);
 		}
+		#endif
 	}
 }

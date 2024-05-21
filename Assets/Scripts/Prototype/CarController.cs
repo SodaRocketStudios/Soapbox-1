@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace SRS.Soap.Prototype
+namespace Soap.Prototype
 {
 	public class CarController : MonoBehaviour
 	{

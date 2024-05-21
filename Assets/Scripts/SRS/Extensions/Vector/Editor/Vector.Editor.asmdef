@@ -1,7 +1,9 @@
 {
-    "name": "EditorExtensions",
-    "rootNamespace": "SRS.Extensions.EditorExtensions",
-    "references": [],
+    "name": "Vector.Editor",
+    "rootNamespace": "SRS.Extensions.Vector.Editor",
+    "references": [
+        "GUID:42709827411ac4c4e975f1a390587e0b"
+    ],
     "includePlatforms": [
         "Editor"
     ],

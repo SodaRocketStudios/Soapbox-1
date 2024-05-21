@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace SRS.Extensions.EditorExtensions
+namespace SRS.Extensions.Vector
 {
-	[AttributeUsage(AttributeTargets.Field)]
+	[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
 	public class Vector2RangeAttribute : PropertyAttribute
 	{
 		public float XMin;

@@ -1,8 +1,8 @@
 using UnityEngine;
-using SRS.Soap.Physics;
+using Soap.Physics;
 using SRS.Extensions.Vector;
 
-namespace SRS.Soap.Prototype
+namespace Soap.Prototype
 {
 	public class WheelV3 : MonoBehaviour
 	{
@@ -26,7 +26,8 @@ namespace SRS.Soap.Prototype
 		private float steerInput;
 		private float steerTime;
 
-		[SerializeField] private float lateralOverrideSpeed = 0;
+		[SerializeField] private float overrideSpeed = 0;
+		private float overrideSpeedSquared;
 
 		// Braking Inputs
 		private float brakeInput;
@@ -40,6 +41,7 @@ namespace SRS.Soap.Prototype
 		private void Start()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
+			overrideSpeedSquared = overrideSpeed*overrideSpeed;
 		}
 
 		private void FixedUpdate()
@@ -65,7 +67,7 @@ namespace SRS.Soap.Prototype
 
 				float wheelAcceleration = longitudinalVelocity - wheelSpeed; // try to match wheel speed to velocity.
 
-				float brakeAcceleration = -Time.deltaTime*brakeInput*0.5f*wheelSpeed;
+				float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed;
 
 				if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(wheelSpeed))
 				{
@@ -76,6 +78,16 @@ namespace SRS.Soap.Prototype
 				
 				wheelSpeed += wheelAcceleration;
 
+				if(longitudinalVelocity < 0.1f && brakeInput > 0)
+				{
+					carRigidBody.useGravity = false;
+					carRigidBody.velocity = Vector3.zero;
+					carRigidBody.angularVelocity = Vector3.zero;
+				}
+				else
+				{
+					carRigidBody.useGravity = true;
+				}
 
 				Debug.DrawRay(transform.position, wheelSpeed*transform.forward, Color.blue);
 
@@ -107,19 +119,33 @@ namespace SRS.Soap.Prototype
 				// Lateral
 				Vector3 lateralForce = tireProfile.EvaluateLateral(slipAngle)*suspensionForce*transform.right;
 
-				// lateralForce = lateralVelocity < lateralOverrideSpeed?lateralForce*Mathf.Abs(lateralVelocity) : lateralForce;
+				if(Mathf.Abs(velocity.sqrMagnitude) < overrideSpeedSquared) // TODO -- This should probably the total velocity in case of spins.
+				{
+					lateralForce *= velocity.magnitude;
+				}
+
+				// lateralForce = Mathf.Abs(lateralVelocity) < lateralOverrideSpeed?lateralForce*Mathf.Abs(lateralVelocity) : lateralForce;
 
 				// Longitudinal
 				Vector3 longitudinalForce = tireProfile.EvaluateLongitudinal(slipRatio)*suspensionForce*transform.forward;
+
+				// if(longitudinalVelocity < 0.25f && brakeInput > 0)
+				// {
+				// 	longitudinalForce = Vector3.zero;
+				// 	carRigidBody.velocity = Vector3.zero;
+				// }
 
 				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
 				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
 
 				HandleSteering();
 
-				carRigidBody.AddForceAtPosition(suspensionForce*transform.up, transform.position);
-				carRigidBody.AddForceAtPosition(lateralForce, transform.position);
-				carRigidBody.AddForceAtPosition(longitudinalForce, transform.position);
+				if(carRigidBody.useGravity)
+				{
+					carRigidBody.AddForceAtPosition(suspensionForce*transform.up, transform.position);
+					carRigidBody.AddForceAtPosition(lateralForce, transform.position);
+					carRigidBody.AddForceAtPosition(longitudinalForce, transform.position);
+				}
 			}
 
 			// if the suspension cannot reach the ground, the load on the tire is zero.

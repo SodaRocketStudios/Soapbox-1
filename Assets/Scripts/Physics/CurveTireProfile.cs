@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
-using UnityEditor;
-using SRS.Extensions.EditorExtensions;
+using SRS.Extensions.Vector;
 
-namespace SRS.Soap.Physics
+namespace Soap.Physics
 {
 	[CreateAssetMenu(fileName = "New Tire Profile", menuName = "Physics/Curve Tire Profile")]
 	public class CurveTireProfile : ScriptableObject
@@ -12,23 +11,19 @@ namespace SRS.Soap.Physics
 		[SerializeField, Range(1, 3)] private float peakLongitudinalFriction = 1.75f;
 		[SerializeField, Range(0.01f, 0.99f)] private float peakSlipRatio = 0.1f;
 		[SerializeField, Range(1, 3)] private float longitudinalSlipFriction = 1.5f;
-		#if UNITY_EDITOR
 		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 longitudinalShapingKey;
-		#endif
 		[SerializeField] private AnimationCurve longitudinalCurve = new AnimationCurve();
 
-
+		
 		[Header("Lateral Parameters")]
 		[SerializeField, Range(1, 3)] private float peakLateralFriction = 1.65f;
 		[SerializeField, Range(0.1f, 40)] private float peakSlipAngle = 7.5f;
 		[SerializeField, Range(1, 3)] private float lateralSlipFriction = 1.35f;
 		[SerializeField, Range(0, 45)] private float maxSlipAngle = 25;
-		#if UNITY_EDITOR
 		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 lateralShapingKey;
-		#endif
 		[SerializeField] private AnimationCurve lateralCurve = new AnimationCurve();
 
-		#if UNITY_EDITOR
+		#if Unity_Editor
 		private void OnValidate()
 		{
 			Keyframe tempKey;
