@@ -123,13 +123,13 @@ namespace Soap.Prototype
 				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
 
 				// if suspension is fully compressed
-				if(length <= 0)
+				if(length < 0)
 				{
 					// the load from the body of the car will instantly be transfered to the wheel
 					// load on wheel = load from car instead of suspension force.
 					// length = min length
-					// verticalvelocity = 0;
-					// suspensionForce = verticalVelocity*carRigidBody.mass;
+					suspensionForce = -verticalVelocity*carRigidBody.mass;
+					// verticalVelocity = 0;
 				}
 
 				suspensionLength = length;
