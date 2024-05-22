@@ -71,8 +71,6 @@ namespace Soap.Prototype
 					slipAngle -= 180*Mathf.Sign(slipAngle);
 				}
 
-				Debug.Log(slipAngle);
-
 				if(planarVelocity.sqrMagnitude == 0)
 				{
 					slipAngle = 0;
@@ -128,11 +126,13 @@ namespace Soap.Prototype
 					// the load from the body of the car will instantly be transfered to the wheel
 					// load on wheel = load from car instead of suspension force.
 					// length = min length
-					suspensionForce = -verticalVelocity*carRigidBody.mass;
+					// suspensionForce = verticalVelocity*carRigidBody.mass;
 					// verticalVelocity = 0;
 				}
 
 				suspensionLength = length;
+
+				Debug.Log(length);
 
 				float load = Mathf.Abs(suspensionForce);  // TODO -- Double check this logic.
 
