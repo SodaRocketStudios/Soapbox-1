@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEditor;
 using SRS.Extensions.Vector;
-using SRS.Extensions.AnimationCurves;
+using SRS.Extensions.Curves;
 
 namespace Soap.Physics
 {
@@ -28,7 +28,6 @@ namespace Soap.Physics
 		#if UNITY_EDITOR
 		private void OnValidate()
 		{
-			Debug.Log("Validating");
 			Keyframe tempKey;
 			int peakKeyIndex;
 			int shapingKeyIndex;

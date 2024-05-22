@@ -1,6 +1,6 @@
 {
     "name": "AnimationCurves.Editor",
-    "rootNamespace": "SRS.Extensions.AnimationCurve.Editor",
+    "rootNamespace": "SRS.Extensions.Curves.Editor",
     "references": [
         "GUID:1271bda3985b5974aaed383a4ef7b696",
         "GUID:86b602c727e80054fb39da977abca3a6"

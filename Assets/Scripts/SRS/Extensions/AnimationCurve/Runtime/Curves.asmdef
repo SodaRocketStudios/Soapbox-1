@@ -1,6 +1,6 @@
 {
     "name": "AnimationCurves",
-    "rootNamespace": "SRS.Extensions.AnimationCurve",
+    "rootNamespace": "SRS.Extensions.Curves",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

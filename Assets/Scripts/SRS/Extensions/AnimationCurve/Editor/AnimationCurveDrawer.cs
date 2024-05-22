@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace SRS.Extensions.AnimationCurves.Editor
+namespace SRS.Extensions.Curves.Editor
 {
 	[CustomPropertyDrawer(typeof(CurveAttribute))]
 	public class AnimationCurveDrawer: PropertyDrawer
