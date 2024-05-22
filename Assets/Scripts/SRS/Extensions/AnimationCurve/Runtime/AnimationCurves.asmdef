@@ -1,10 +1,7 @@
 {
-    "name": "Physics",
-    "rootNamespace": "Soap.Physics",
-    "references": [
-        "GUID:1271bda3985b5974aaed383a4ef7b696",
-        "GUID:42709827411ac4c4e975f1a390587e0b"
-    ],
+    "name": "AnimationCurves",
+    "rootNamespace": "SRS.Extensions.AnimationCurve",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

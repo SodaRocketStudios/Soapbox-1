@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEditor;
 using SRS.Extensions.Vector;
+using SRS.Extensions.AnimationCurves;
 
 namespace Soap.Physics
 {
@@ -12,7 +14,7 @@ namespace Soap.Physics
 		[SerializeField, Range(0.01f, 0.99f)] private float peakSlipRatio = 0.1f;
 		[SerializeField, Range(1, 3)] private float longitudinalSlipFriction = 1.5f;
 		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 longitudinalShapingKey;
-		[SerializeField] private AnimationCurve longitudinalCurve = new AnimationCurve();
+		[SerializeField, Curve(5)] private AnimationCurve longitudinalCurve = new AnimationCurve();
 
 		
 		[Header("Lateral Parameters")]
@@ -21,11 +23,12 @@ namespace Soap.Physics
 		[SerializeField, Range(1, 3)] private float lateralSlipFriction = 1.35f;
 		[SerializeField, Range(0, 45)] private float maxSlipAngle = 25;
 		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 lateralShapingKey;
-		[SerializeField] private AnimationCurve lateralCurve = new AnimationCurve();
+		[SerializeField, Curve(5)] private AnimationCurve lateralCurve = new AnimationCurve();
 
-		#if Unity_Editor
+		#if UNITY_EDITOR
 		private void OnValidate()
 		{
+			Debug.Log("Validating");
 			Keyframe tempKey;
 			int peakKeyIndex;
 			int shapingKeyIndex;

@@ -1,17 +1,21 @@
 {
-    "name": "Physics",
-    "rootNamespace": "Soap.Physics",
+    "name": "AnimationCurves.Editor",
+    "rootNamespace": "SRS.Extensions.AnimationCurve.Editor",
     "references": [
         "GUID:1271bda3985b5974aaed383a4ef7b696",
-        "GUID:42709827411ac4c4e975f1a390587e0b"
+        "GUID:86b602c727e80054fb39da977abca3a6"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }
