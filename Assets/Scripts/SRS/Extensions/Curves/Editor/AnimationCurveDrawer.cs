@@ -12,7 +12,17 @@ namespace SRS.Extensions.Curves.Editor
 
 			AnimationCurve curve = property.animationCurveValue;
 
-			Rect range = new(0, 0, curve.keys[curve.length-1].time, curve.keys[curve.length-1].value*1.25f);
+			int peakIndex = 0;
+
+			for (int i = 0; i < curve.length; i++)
+			{
+				if(curve[i].value > curve[peakIndex].value)
+				{
+					peakIndex = i;
+				}
+			}
+
+			Rect range = new(0, 0, curve.keys[curve.length-1].time, curve.keys[peakIndex].value*1.1f);
 
 			EditorGUI.indentLevel = 0;
 

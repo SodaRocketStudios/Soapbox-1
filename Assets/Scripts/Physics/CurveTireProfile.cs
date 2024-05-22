@@ -12,6 +12,10 @@ namespace Soap.Physics
 		[Header("Longitudinal Parameters")]
 		[SerializeField, Range(1, 3)] private float peakLongitudinalFriction = 1.75f;
 		[SerializeField, Range(0.01f, 0.99f)] private float peakSlipRatio = 0.1f;
+		public float PeakSlipRatio
+		{
+			get => peakSlipRatio;
+		}
 		[SerializeField, Range(1, 3)] private float longitudinalSlipFriction = 1.5f;
 		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 longitudinalShapingKey;
 		[SerializeField, Curve(5)] private AnimationCurve longitudinalCurve = new AnimationCurve();
@@ -20,6 +24,10 @@ namespace Soap.Physics
 		[Header("Lateral Parameters")]
 		[SerializeField, Range(1, 3)] private float peakLateralFriction = 1.65f;
 		[SerializeField, Range(0.1f, 40)] private float peakSlipAngle = 7.5f;
+		public float PeakSlipAngle
+		{
+			get => peakSlipAngle;
+		}
 		[SerializeField, Range(1, 3)] private float lateralSlipFriction = 1.35f;
 		[SerializeField, Range(0, 45)] private float maxSlipAngle = 25;
 		[SerializeField, Vector2Range(0.01f, 0.99f, 0, 1)] Vector2 lateralShapingKey;

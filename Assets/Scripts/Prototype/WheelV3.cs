@@ -53,7 +53,6 @@ namespace Soap.Prototype
 			{
 				// suspension length
 				float length = hit.distance - wheelRadius;
-				Debug.Log($"{name}: {length}");
 
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				Vector3 planarVelocity = velocity.XZPlane();
@@ -66,6 +65,8 @@ namespace Soap.Prototype
 				Vector3 planarHeading = transform.forward.XZPlane();
 
 				float slipAngle = -Vector3.SignedAngle(planarHeading, planarVelocity, transform.up);
+
+				float combinationSlipAngle = slipAngle/tireProfile.PeakSlipAngle;
 
 				if(Mathf.Abs(slipAngle) > 90)
 				{
@@ -90,7 +91,7 @@ namespace Soap.Prototype
 				
 				wheelSpeed += wheelAcceleration;
 
-				if(longitudinalVelocity < 0.25f && brakeInput > 0)
+				if(longitudinalVelocity < 0.1f && brakeInput > 0)
 				{
 					carRigidBody.useGravity = false;
 					carRigidBody.velocity = Vector3.zero;
@@ -119,8 +120,26 @@ namespace Soap.Prototype
 					slipRatio = (wheelSpeed - longitudinalVelocity)/Mathf.Abs(longitudinalVelocity);
 				}
 
-				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
+				float combinationSlipRatio = slipRatio/tireProfile.PeakSlipRatio;
 
+				float combinationSlip = Mathf.Sqrt(combinationSlipAngle*combinationSlipAngle + combinationSlipRatio*combinationSlipRatio);
+
+				float lateralFactor;
+				float longitudinalFactor;
+
+				if(combinationSlip == 0)
+				{
+					lateralFactor = 1;
+					longitudinalFactor = 1;
+				}
+				else
+				{
+					lateralFactor = combinationSlipAngle/combinationSlip;
+					longitudinalFactor = combinationSlipRatio/combinationSlip;
+				}
+
+				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
+				
 				// if suspension is fully compressed
 				if(length < 0)
 				{
@@ -136,19 +155,22 @@ namespace Soap.Prototype
 				float load = Mathf.Abs(suspensionForce);  // TODO -- Double check this logic.
 
 				// Lateral
-				Vector3 lateralForce = tireProfile.EvaluateLateral(slipAngle)*load*transform.right;
+				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinationSlip)*load*transform.right;
 
 				if(velocity.sqrMagnitude <= overrideSpeedSquared)
 				{
 					lateralForce = -lateralVelocity*load*Vector3.right;
 				}
 
-				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
+				Debug.DrawRay(transform.position, lateralVelocity*transform.right, Color.red);
 
 				// Longitudinal
-				Vector3 longitudinalForce = tireProfile.EvaluateLongitudinal(slipRatio)*load*transform.forward;
+				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinationSlip)*load*transform.forward;
 				
-				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
+				Debug.DrawRay(transform.position, longitudinalVelocity*transform.forward, Color.blue);
+
+				Debug.DrawRay(transform.position, velocity, Color.green);
+
 
 				HandleSteering();
 
