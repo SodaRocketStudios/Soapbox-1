@@ -171,8 +171,6 @@ namespace Soap.Prototype
 
 				Debug.DrawRay(transform.position, velocity, Color.green);
 
-				Debug.Log(combinationSlipAngle);
-
 				HandleSteering();
 
 				if(carRigidBody.useGravity)
