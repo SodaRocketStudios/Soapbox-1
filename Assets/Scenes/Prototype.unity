@@ -737,7 +737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 0, y: 438.6, z: -2466.37}
+  m_LocalPosition: {x: 50, y: 438.6, z: -2465.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2460,7 +2460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835326596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 435.2, z: -2459.37}
+  m_LocalPosition: {x: 50, y: 435.2, z: -2458.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2822,8 +2822,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelRadius: 0.457
-  springStrength: 16000
-  damperStrength: 8000
+  springStrength: 200000
+  damperStrength: 5000
   restLength: 0.1
   maxLength: 0.2
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
@@ -3129,8 +3129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelRadius: 0.457
-  springStrength: 16000
-  damperStrength: 8000
+  springStrength: 200000
+  damperStrength: 5000
   restLength: 0.1
   maxLength: 0.2
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
@@ -3806,8 +3806,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelRadius: 0.457
-  springStrength: 16000
-  damperStrength: 8000
+  springStrength: 200000
+  damperStrength: 5000
   restLength: 0.1
   maxLength: 0.2
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
@@ -4466,8 +4466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelRadius: 0.457
-  springStrength: 16000
-  damperStrength: 8000
+  springStrength: 200000
+  damperStrength: 5000
   restLength: 0.1
   maxLength: 0.2
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
@@ -5273,7 +5273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866265633}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 0, y: 438.6, z: -2466.37}
+  m_LocalPosition: {x: 50, y: 438.6, z: -2465.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

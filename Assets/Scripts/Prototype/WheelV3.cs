@@ -53,6 +53,7 @@ namespace Soap.Prototype
 			{
 				// suspension length
 				float length = hit.distance - wheelRadius;
+				Debug.Log($"{name}: {length}");
 
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				Vector3 planarVelocity = velocity.XZPlane();
@@ -78,7 +79,7 @@ namespace Soap.Prototype
 
 				float wheelAcceleration = longitudinalVelocity - wheelSpeed; // try to match wheel speed to velocity.
 
-				float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed;
+				float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed*10;
 
 				if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(wheelSpeed))
 				{
@@ -131,8 +132,6 @@ namespace Soap.Prototype
 				}
 
 				suspensionLength = length;
-
-				Debug.Log(length);
 
 				float load = Mathf.Abs(suspensionForce);  // TODO -- Double check this logic.
 
