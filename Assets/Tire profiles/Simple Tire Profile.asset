@@ -60,7 +60,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   peakLateralFriction: 1.65
   peakSlipAngle: 7.5
-  lateralSlipFriction: 1
+  lateralSlipFriction: 1.25
   maxSlipAngle: 25
   lateralShapingKey: {x: 0.1, y: 0.9}
   lateralCurve:

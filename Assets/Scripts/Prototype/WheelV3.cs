@@ -6,6 +6,7 @@ namespace Soap.Prototype
 {
 	public class WheelV3 : MonoBehaviour
 	{
+		// Wheel Data
 		[SerializeField, Min(0)] private float wheelRadius = 0.457f;
 
 		[SerializeField, Min(0)] private float springStrength;
@@ -29,7 +30,6 @@ namespace Soap.Prototype
 		[SerializeField] private float overrideSpeed = 0;
 		private float overrideSpeedSquared;
 
-		// Braking Inputs
 		private float brakeInput;
 
 		private Rigidbody carRigidBody;
@@ -51,19 +51,32 @@ namespace Soap.Prototype
 			// If suspension can reach the ground.
 			if(UnityEngine.Physics.Raycast(transform.position, -transform.up, out hit, maxLength + wheelRadius))
 			{
-
 				// suspension length
 				float length = hit.distance - wheelRadius;
 
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
-				Vector3 planarVelocity = transform.InverseTransformVector(velocity).XZPlane();
+				Vector3 planarVelocity = velocity.XZPlane();
 				float verticalVelocity = Vector3.Dot(velocity, transform.up);
 				float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
 				float lateralVelocity = Vector3.Dot(velocity, transform.right);
 
-				Vector3 planarHeading = transform.forward.XZPlane()*Mathf.Sign(planarVelocity.z);
+				Debug.DrawRay(transform.position, longitudinalVelocity*transform.forward);
+
+				Vector3 planarHeading = transform.forward.XZPlane();
 
 				float slipAngle = -Vector3.SignedAngle(planarHeading, planarVelocity, transform.up);
+
+				if(Mathf.Abs(slipAngle) > 90)
+				{
+					slipAngle -= 180*Mathf.Sign(slipAngle);
+				}
+
+				Debug.Log(slipAngle);
+
+				if(planarVelocity.sqrMagnitude == 0)
+				{
+					slipAngle = 0;
+				}
 
 				float wheelAcceleration = longitudinalVelocity - wheelSpeed; // try to match wheel speed to velocity.
 
@@ -78,7 +91,7 @@ namespace Soap.Prototype
 				
 				wheelSpeed += wheelAcceleration;
 
-				if(longitudinalVelocity < 0.1f && brakeInput > 0)
+				if(longitudinalVelocity < 0.25f && brakeInput > 0)
 				{
 					carRigidBody.useGravity = false;
 					carRigidBody.velocity = Vector3.zero;
@@ -89,13 +102,18 @@ namespace Soap.Prototype
 					carRigidBody.useGravity = true;
 				}
 
-				Debug.DrawRay(transform.position, wheelSpeed*transform.forward, Color.blue);
-
 				float slipRatio;
 
 				if(longitudinalVelocity == 0)
 				{
-					slipRatio = 0.01f*Mathf.Sign(wheelSpeed);
+					if(wheelSpeed == 0)
+					{
+						slipRatio = 0;
+					}
+					else
+					{
+						slipRatio = 0.01f*Mathf.Sign(wheelSpeed);
+					}
 				}
 				else
 				{
@@ -116,26 +134,21 @@ namespace Soap.Prototype
 
 				suspensionLength = length;
 
-				// Lateral
-				Vector3 lateralForce = tireProfile.EvaluateLateral(slipAngle)*suspensionForce*transform.right;
+				float load = Mathf.Abs(suspensionForce);  // TODO -- Double check this logic.
 
-				if(Mathf.Abs(velocity.sqrMagnitude) < overrideSpeedSquared) // TODO -- This should probably the total velocity in case of spins.
+				// Lateral
+				Vector3 lateralForce = tireProfile.EvaluateLateral(slipAngle)*load*transform.right;
+
+				if(velocity.sqrMagnitude <= overrideSpeedSquared)
 				{
-					lateralForce *= velocity.magnitude;
+					lateralForce = -lateralVelocity*load*Vector3.right;
 				}
 
-				// lateralForce = Mathf.Abs(lateralVelocity) < lateralOverrideSpeed?lateralForce*Mathf.Abs(lateralVelocity) : lateralForce;
+				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
 
 				// Longitudinal
-				Vector3 longitudinalForce = tireProfile.EvaluateLongitudinal(slipRatio)*suspensionForce*transform.forward;
-
-				// if(longitudinalVelocity < 0.25f && brakeInput > 0)
-				// {
-				// 	longitudinalForce = Vector3.zero;
-				// 	carRigidBody.velocity = Vector3.zero;
-				// }
-
-				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
+				Vector3 longitudinalForce = tireProfile.EvaluateLongitudinal(slipRatio)*load*transform.forward;
+				
 				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
 
 				HandleSteering();
