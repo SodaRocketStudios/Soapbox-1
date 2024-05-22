@@ -25,8 +25,10 @@ namespace Soap.Prototype
 			float longitudinalVelocitySquared = longitudinalVelocity * longitudinalVelocity;
 
 			float dragForce = longitudinalVelocitySquared*frontalArea*dragCoefficient*AIR_DENSITY/2;
+			Debug.DrawRay(transform.position, transform.forward*dragForce, Color.red);
 
 			float liftForce = longitudinalVelocitySquared*frontalArea*dragCoefficient*liftToDragRatio*AIR_DENSITY/2;
+			Debug.DrawRay(transform.position, transform.up*liftForce, Color.magenta);
 
 			carRigidBody.AddForceAtPosition(-dragForce*transform.forward, transform.position);
 			carRigidBody.AddForceAtPosition(-liftForce*transform.up, transform.position);
