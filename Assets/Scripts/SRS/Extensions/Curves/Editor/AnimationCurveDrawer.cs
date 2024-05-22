@@ -28,7 +28,7 @@ namespace SRS.Extensions.Curves.Editor
 
 			position.height = height*EditorGUIUtility.singleLineHeight;
 
-			EditorGUI.CurveField(position, property, Color.green, range);
+			EditorGUI.CurveField(position, property.animationCurveValue, Color.green, range);
 		}
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

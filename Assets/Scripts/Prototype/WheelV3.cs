@@ -139,7 +139,7 @@ namespace Soap.Prototype
 				}
 
 				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
-				
+
 				// if suspension is fully compressed
 				if(length < 0)
 				{
@@ -155,7 +155,7 @@ namespace Soap.Prototype
 				float load = Mathf.Abs(suspensionForce);  // TODO -- Double check this logic.
 
 				// Lateral
-				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinationSlip)*load*transform.right;
+				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinationSlip*tireProfile.PeakSlipAngle)*load*transform.right;
 
 				if(velocity.sqrMagnitude <= overrideSpeedSquared)
 				{
@@ -165,12 +165,13 @@ namespace Soap.Prototype
 				Debug.DrawRay(transform.position, lateralVelocity*transform.right, Color.red);
 
 				// Longitudinal
-				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinationSlip)*load*transform.forward;
+				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinationSlip*tireProfile.PeakSlipRatio)*load*transform.forward;
 				
 				Debug.DrawRay(transform.position, longitudinalVelocity*transform.forward, Color.blue);
 
 				Debug.DrawRay(transform.position, velocity, Color.green);
 
+				Debug.Log(combinationSlipAngle);
 
 				HandleSteering();
 

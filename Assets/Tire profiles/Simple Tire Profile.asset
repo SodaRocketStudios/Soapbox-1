@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4403fd5d6c1c94d428fc5c5c337db08d, type: 3}
   m_Name: Simple Tire Profile
   m_EditorClassIdentifier: 
-  peakLongitudinalFriction: 1.75
+  peakLongitudinalFriction: 2
   peakSlipRatio: 0.1
-  longitudinalSlipFriction: 1.5
-  longitudinalShapingKey: {x: 0.1, y: 0.5}
+  longitudinalSlipFriction: 1.35
+  longitudinalShapingKey: {x: 0.2, y: 0.345}
   longitudinalCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 17.5
-      outSlope: 17.5
+      inSlope: 20
+      outSlope: 20
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.1
-      value: 1.75
+      value: 2
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -38,19 +38,19 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.19
-      value: 1.625
-      inSlope: -0.2777778
-      outSlope: -0.2777778
+      time: 0.28
+      value: 1.57425
+      inSlope: -0.72222215
+      outSlope: -0.72222215
       tangentMode: 9
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1.5
-      inSlope: -0.15432099
-      outSlope: -0.15432099
+      value: 1.35
+      inSlope: -0.31145826
+      outSlope: -0.31145826
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -58,26 +58,26 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  peakLateralFriction: 1.65
+  peakLateralFriction: 2
   peakSlipAngle: 7.5
-  lateralSlipFriction: 1.25
+  lateralSlipFriction: 1
   maxSlipAngle: 25
-  lateralShapingKey: {x: 0.1, y: 0.9}
+  lateralShapingKey: {x: 0.528, y: 0.5}
   lateralCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.22
-      outSlope: 0.22
+      inSlope: 0.26666668
+      outSlope: 0.26666668
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 7.5
-      value: 1.65
+      value: 2
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -85,19 +85,19 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 9.25
-      value: 1.5849999
-      inSlope: -0.008571427
-      outSlope: -0.008571427
+      time: 16.74
+      value: 1.5
+      inSlope: -0.057142857
+      outSlope: -0.057142857
       tangentMode: 9
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 25
-      value: 1.5
-      inSlope: -0.00539682
-      outSlope: -0.00539682
+      value: 1
+      inSlope: -0.060532685
+      outSlope: -0.060532685
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
