@@ -1,21 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Soap.Physics;
 
 namespace Soap.Prototype
 {
-	public class CarController : MonoBehaviour
+	public class ProtoCarController : MonoBehaviour
 	{
-		private Wheel[] wheels;
+		private WheelV3[] wheels;
 
 		private void Start()
 		{
-			wheels = GetComponentsInChildren<Wheel>();
+			wheels = GetComponentsInChildren<WheelV3>();
 		}
 
 		public void Steer(InputAction.CallbackContext context)
 		{
-			foreach (Wheel wheel in wheels)
+			foreach (WheelV3 wheel in wheels)
 			{
 				wheel.Steer(context.ReadValue<float>());
 			}
@@ -23,7 +22,7 @@ namespace Soap.Prototype
 
 		public void Brake(InputAction.CallbackContext context)
 		{
-			foreach(Wheel wheel in wheels)
+			foreach(WheelV3 wheel in wheels)
 			{
 				wheel.Brake(context.ReadValue<float>());
 			}
