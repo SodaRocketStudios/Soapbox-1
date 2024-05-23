@@ -18,7 +18,7 @@
                     "name": "Brake",
                     "type": "Value",
                     "id": "923d4cca-d2cc-4d66-9aa0-0ab9d8c5478e",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "Digital",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -36,6 +36,15 @@
                     "name": "ResetTimeScale",
                     "type": "Button",
                     "id": "2fb9bd1b-72fb-4007-9066-114f312d6b15",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DRSToggle",
+                    "type": "Button",
+                    "id": "34c13706-de19-407e-8312-72591de417de",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ResetTimeScale",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09c28119-50ef-4ee8-8cae-1ced9eeb66ed",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DRSToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

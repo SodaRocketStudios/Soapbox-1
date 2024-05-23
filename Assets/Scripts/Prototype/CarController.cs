@@ -7,10 +7,12 @@ namespace Soap.Prototype
 	public class CarController : MonoBehaviour
 	{
 		private Wheel[] wheels;
+		private AeroSurface[] aeroSurfaces;
 
 		private void Start()
 		{
 			wheels = GetComponentsInChildren<Wheel>();
+			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
 		}
 
 		public void Steer(InputAction.CallbackContext context)
@@ -26,6 +28,17 @@ namespace Soap.Prototype
 			foreach(Wheel wheel in wheels)
 			{
 				wheel.Brake(context.ReadValue<float>());
+			}
+		}
+
+		public void DRS(InputAction.CallbackContext context)
+		{
+			if(context.performed)
+			{
+				foreach(AeroSurface surface in aeroSurfaces)
+				{
+					surface.ToggleDRS();
+				}
 			}
 		}
 	}

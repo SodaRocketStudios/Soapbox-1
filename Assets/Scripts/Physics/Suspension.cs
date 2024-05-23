@@ -30,8 +30,8 @@ namespace Soap.Physics
 			{
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				float verticalVelocity = Vector3.Dot(velocity, transform.up);
-
 				float length = hit.distance - wheel.Radius;
+
 				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
 
 				// if suspension is fully compressed
@@ -42,14 +42,21 @@ namespace Soap.Physics
 					// length = min length
 					// suspensionForce = verticalVelocity*carRigidBody.mass;
 					// verticalVelocity = 0;
+					length = 0;
 				}
 
-				// wheel.SetLoad(suspensionForce);
+				wheel.SetGrounded(true);
+				wheel.SetLoad(suspensionForce);
+				wheel.SetPosition(transform.position - transform.up*length);
 				if(carRigidBody.useGravity)
 				{
 					carRigidBody.AddForceAtPosition(suspensionForce*transform.up, transform.position);
 				}
+
+				return;
 			}
+
+			wheel.SetGrounded(false);
 
 			// if the suspension cannot reach the ground, the load on the tire is zero.
 			// suspension force is applied to wheel instead of car body.

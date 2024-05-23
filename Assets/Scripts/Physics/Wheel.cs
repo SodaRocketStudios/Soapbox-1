@@ -31,107 +31,94 @@ namespace Soap.Physics
 
 		private float load;
 
+		private bool isGrounded;
+
 		private Rigidbody carRigidBody;
 
 		private void Start()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
+			overrideSpeedSquared = overrideSpeed * overrideSpeed;
 		}
 
 		private void FixedUpdate()
-		{
-			Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
-			Vector3 planarVelocity = velocity.XZPlane();
-			float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
-			float lateralVelocity = Vector3.Dot(velocity, transform.right);
-
-			// Slip Angle ---------------------------------------------------------------------
-
-			Vector3 planarHeading = transform.forward.XZPlane();
-
-			float slipAngle = -Vector3.SignedAngle(planarHeading, planarVelocity, transform.up);
-
-			// Avoid errors when getting the angle to a zero vector.
-			if(planarVelocity.sqrMagnitude == 0)
+        {
+			if(isGrounded)
 			{
-				slipAngle = 0;
-			}
+				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
+				Vector3 planarVelocity = velocity.XZPlane();
+				Vector3 planarHeading = transform.forward.XZPlane();
+				float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
+				float lateralVelocity = Vector3.Dot(velocity, transform.right);
 
-			float normalizedSlipAngle = slipAngle/tireProfile.PeakSlipAngle;
+				wheelSpeed = longitudinalVelocity;
 
-			HandleBraking(longitudinalVelocity);
+				HandleBraking(longitudinalVelocity);
 
-			// Slip Ratio ---------------------------------------------------------------------
+				HandleAcceleration();
 
-			float slipRatio;
+				HandleSteering();
 
-			if(longitudinalVelocity == 0)
-			{
-				if(wheelSpeed == 0)
+				float normalizedSlipAngle = CalculateSlipAngle(planarVelocity, planarHeading) / tireProfile.PeakSlipAngle;
+
+				float normalizedSlipRatio = CalculateSlipRatio(longitudinalVelocity) / tireProfile.PeakSlipRatio;
+
+				// Combined slip ------------------------------------------------------------------
+
+				float combinedSlip = Mathf.Sqrt(normalizedSlipAngle * normalizedSlipAngle + normalizedSlipRatio * normalizedSlipRatio);
+
+				float lateralFactor;
+				float longitudinalFactor;
+
+				if (combinedSlip == 0)
 				{
-					slipRatio = 0;
+					lateralFactor = 0;
+					longitudinalFactor = 0;
 				}
 				else
 				{
-					slipRatio = 0.01f*Mathf.Sign(wheelSpeed);
+					lateralFactor = normalizedSlipAngle / combinedSlip;
+					longitudinalFactor = normalizedSlipRatio / combinedSlip;
+				}
+
+				// Lateral ------------------------------------------------------------------------
+
+				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinedSlip * tireProfile.PeakSlipAngle) * load * transform.right;
+
+				if (planarVelocity.sqrMagnitude <= overrideSpeedSquared)
+				{
+					lateralForce = -lateralVelocity * load * Vector3.right;
+				}
+
+				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
+
+				// Longitudinal -------------------------------------------------------------------
+
+				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinedSlip * tireProfile.PeakSlipRatio) * load * transform.forward;
+
+				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
+
+				if (carRigidBody.useGravity)
+				{
+					carRigidBody.AddForceAtPosition(lateralForce, transform.position);
+					carRigidBody.AddForceAtPosition(longitudinalForce, transform.position);
 				}
 			}
-			else
-			{
-				slipRatio = (wheelSpeed - longitudinalVelocity)/Mathf.Abs(longitudinalVelocity);
-			}
+        }
 
-			float normalizeSlipRatio = slipRatio/tireProfile.PeakSlipRatio;
-
-			// Combined slip ------------------------------------------------------------------
-
-			float combinedSlip = Mathf.Sqrt(normalizedSlipAngle*normalizedSlipAngle + normalizeSlipRatio*normalizeSlipRatio);
-
-			float lateralFactor;
-			float longitudinalFactor;
-
-			if(combinedSlip == 0)
-			{
-				lateralFactor = 1;
-				longitudinalFactor = 1;
-			}
-			else
-			{
-				lateralFactor = normalizedSlipAngle/combinedSlip;
-				longitudinalFactor = normalizeSlipRatio/combinedSlip;
-			}
-
-			// Lateral ------------------------------------------------------------------------
-
-			Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinedSlip*tireProfile.PeakSlipAngle)*load*transform.right;
-
-			if(velocity.sqrMagnitude <= overrideSpeedSquared)
-			{
-				lateralForce = -lateralVelocity*load*Vector3.right;
-			}
-
-			Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
-
-			// Longitudinal -------------------------------------------------------------------
-
-			Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinedSlip*tireProfile.PeakSlipRatio)*load*transform.forward;
-			
-			Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
-
-			Debug.DrawRay(transform.position, velocity.normalized, Color.green);
-
-			HandleSteering();
-
-			if(carRigidBody.useGravity)
-			{
-				carRigidBody.AddForceAtPosition(lateralForce, transform.position);
-				carRigidBody.AddForceAtPosition(longitudinalForce, transform.position);
-			}
-		}
-
-		public void SetLoad(float load)
+        public void SetLoad(float load)
 		{
 			this.load = load + tireProfile.Mass*UnityEngine.Physics.gravity.magnitude;
+		}
+
+		public void SetPosition(Vector3 position)
+		{
+			transform.position = position;
+		}
+
+		public void SetGrounded(bool grounded)
+		{
+			isGrounded = grounded;
 		}
 
 		public void Steer(float inputValue)
@@ -158,10 +145,8 @@ namespace Soap.Physics
 			brakeInput = inputValue;
 		}
 
-		private void HandleBraking(float velocity)
+		private void HandleBraking(float longitudinalVelocity)
 		{
-			float wheelAcceleration = velocity - wheelSpeed; // try to match wheel speed to velocity.
-
 			float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed*10;
 
 			if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(wheelSpeed))
@@ -169,11 +154,9 @@ namespace Soap.Physics
 				brakeAcceleration = -wheelSpeed;
 			}
 
-			wheelAcceleration += brakeAcceleration; // apply braking force.
-			
-			wheelSpeed += wheelAcceleration;
+			wheelSpeed += brakeAcceleration; // apply braking force.
 
-			if(velocity < 0.1f && brakeInput > 0)
+			if(longitudinalVelocity < 0.1f && brakeInput > 0)
 			{
 				carRigidBody.useGravity = false;
 				carRigidBody.velocity = Vector3.zero;
@@ -183,12 +166,49 @@ namespace Soap.Physics
 			{
 				carRigidBody.useGravity = true;
 			}
+			
 		}
 
-		private void OnDrawGizmos()
+		public void Accelerate(float inputValue)
 		{
-			Gizmos.color = Color.red;
-			Gizmos.DrawWireSphere(transform.position, tireProfile.Radius);
+
 		}
+
+		private void HandleAcceleration()
+		{
+
+		}
+
+		private float CalculateSlipAngle(Vector3 planarVelocity, Vector3 planarHeading)
+        {
+            // Avoid errors when getting the angle to a zero vector.
+            if (planarVelocity.sqrMagnitude == 0)
+            {
+                return 0;
+            }
+			else
+			{
+				return -Vector3.SignedAngle(planarHeading, planarVelocity, transform.up);
+			}
+        }
+
+        private float CalculateSlipRatio(float longitudinalVelocity)
+        {
+            if (longitudinalVelocity == 0)
+            {
+                if (wheelSpeed == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return Mathf.Clamp(wheelSpeed, -1, 1);
+                }
+            }
+            else
+            {
+                return (wheelSpeed - longitudinalVelocity) / Mathf.Abs(longitudinalVelocity);
+            }
+        }
 	}
 }
