@@ -131,6 +131,17 @@
                 },
                 {
                     "name": "",
+                    "id": "da1735e4-e8f4-4ead-b68f-e6d469cf5e3e",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "48c6d58e-902c-4f43-a5e2-aa3eac06f495",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -142,8 +153,30 @@
                 },
                 {
                     "name": "",
+                    "id": "de8b1ff5-e47b-4bf7-82c3-a9c5514e316b",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetTimeScale",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "09c28119-50ef-4ee8-8cae-1ced9eeb66ed",
                     "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DRSToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be4e7f6d-2e4d-4cfc-83bc-0856278b513e",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
