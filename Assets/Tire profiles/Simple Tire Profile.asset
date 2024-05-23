@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4403fd5d6c1c94d428fc5c5c337db08d, type: 3}
   m_Name: Simple Tire Profile
   m_EditorClassIdentifier: 
+  radius: 0.457
+  mass: 20
   peakLongitudinalFriction: 2
   peakSlipRatio: 0.1
   longitudinalSlipFriction: 1.35

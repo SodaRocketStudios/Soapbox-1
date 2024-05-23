@@ -9,6 +9,19 @@ namespace Soap.Physics
 	[CreateAssetMenu(fileName = "New Tire Profile", menuName = "Physics/Curve Tire Profile")]
 	public class CurveTireProfile : ScriptableObject
 	{
+		[Header("Basic Parameters")]
+		[SerializeField, Min(0)] private float radius;
+		public float Radius
+		{
+			get => radius;
+		}
+		
+		[SerializeField, Min(0)] private float mass;
+		public float Mass
+		{
+			get => mass;
+		}
+
 		[Header("Longitudinal Parameters")]
 		[SerializeField, Range(0, 3)] private float peakLongitudinalFriction = 1.75f;
 		[SerializeField, Range(0.01f, 0.99f)] private float peakSlipRatio = 0.1f;

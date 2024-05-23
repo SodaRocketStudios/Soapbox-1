@@ -6,9 +6,8 @@ namespace Soap.Prototype
 {
 	public class WheelV3 : MonoBehaviour
 	{
-		// Wheel Data
-		[SerializeField, Min(0)] private float wheelRadius = 0.457f;
-
+		// Suspension Parameters
+		[Header("Suspension")]
 		[SerializeField, Min(0)] private float springStrength;
 
 		[SerializeField, Min(0)] private float damperStrength; 
@@ -17,16 +16,20 @@ namespace Soap.Prototype
 
 		[SerializeField, Min(0)] private float maxLength;
 
+
+		[Header("Tire Profile")]
 		[SerializeField] private CurveTireProfile tireProfile;
 
 
 		// Steering variables
+		[Header("Steering Parameters")]
 		[SerializeField, Range(0, 30)] private float steeringAngle = 0;
 		[SerializeField, Min(0)] private float steeringSpeed = 1;
 		private float previousSteerAngle;
 		private float steerInput;
 		private float steerTime;
 
+		[Header("Other Paramters")]
 		[SerializeField] private float overrideSpeed = 0;
 		private float overrideSpeedSquared;
 
@@ -49,58 +52,50 @@ namespace Soap.Prototype
 			RaycastHit hit;
 
 			// If suspension can reach the ground.
-			if(UnityEngine.Physics.Raycast(transform.position, -transform.up, out hit, maxLength + wheelRadius))
+			if(UnityEngine.Physics.Raycast(transform.position, -transform.up, out hit, maxLength + tireProfile.Radius))
 			{
-				// suspension length
-				float length = hit.distance - wheelRadius;
-
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				Vector3 planarVelocity = velocity.XZPlane();
 				float verticalVelocity = Vector3.Dot(velocity, transform.up);
 				float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
 				float lateralVelocity = Vector3.Dot(velocity, transform.right);
 
-				Debug.DrawRay(transform.position, longitudinalVelocity*transform.forward);
+				// Suspension ---------------------------------------------------------------------
+
+				float length = hit.distance - tireProfile.Radius;
+				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
+
+				// if suspension is fully compressed
+				if(length < 0)
+				{
+					// the load from the body of the car will instantly be transfered to the wheel
+					// load on wheel = load from car instead of suspension force.
+					// length = min length
+					// suspensionForce = verticalVelocity*carRigidBody.mass;
+					// verticalVelocity = 0;
+				}
+
+				suspensionLength = length; // This is only used for gizmos.
+
+				Debug.DrawRay(transform.position, (longitudinalVelocity*transform.forward).normalized);
+
+				// Slip Angle ---------------------------------------------------------------------
 
 				Vector3 planarHeading = transform.forward.XZPlane();
 
 				float slipAngle = -Vector3.SignedAngle(planarHeading, planarVelocity, transform.up);
 
-				float combinationSlipAngle = slipAngle/tireProfile.PeakSlipAngle;
-
-				if(Mathf.Abs(slipAngle) > 90)
-				{
-					slipAngle -= 180*Mathf.Sign(slipAngle);
-				}
-
+				// Avoid errors when getting the angle to a zero vector.
 				if(planarVelocity.sqrMagnitude == 0)
 				{
 					slipAngle = 0;
 				}
 
-				float wheelAcceleration = longitudinalVelocity - wheelSpeed; // try to match wheel speed to velocity.
+				float normalizedSlipAngle = slipAngle/tireProfile.PeakSlipAngle;
 
-				float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed*10;
+				HandleBraking(longitudinalVelocity);
 
-				if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(wheelSpeed))
-				{
-					brakeAcceleration = -wheelSpeed;
-				}
-
-				wheelAcceleration += brakeAcceleration; // apply braking force.
-				
-				wheelSpeed += wheelAcceleration;
-
-				if(longitudinalVelocity < 0.1f && brakeInput > 0)
-				{
-					carRigidBody.useGravity = false;
-					carRigidBody.velocity = Vector3.zero;
-					carRigidBody.angularVelocity = Vector3.zero;
-				}
-				else
-				{
-					carRigidBody.useGravity = true;
-				}
+				// Slip Ratio ---------------------------------------------------------------------
 
 				float slipRatio;
 
@@ -120,56 +115,46 @@ namespace Soap.Prototype
 					slipRatio = (wheelSpeed - longitudinalVelocity)/Mathf.Abs(longitudinalVelocity);
 				}
 
-				float combinationSlipRatio = slipRatio/tireProfile.PeakSlipRatio;
+				float normalizeSlipRatio = slipRatio/tireProfile.PeakSlipRatio;
 
-				float combinationSlip = Mathf.Sqrt(combinationSlipAngle*combinationSlipAngle + combinationSlipRatio*combinationSlipRatio);
+				// Combined slip ------------------------------------------------------------------
+
+				float combinedSlip = Mathf.Sqrt(normalizedSlipAngle*normalizedSlipAngle + normalizeSlipRatio*normalizeSlipRatio);
 
 				float lateralFactor;
 				float longitudinalFactor;
 
-				if(combinationSlip == 0)
+				if(combinedSlip == 0)
 				{
 					lateralFactor = 1;
 					longitudinalFactor = 1;
 				}
 				else
 				{
-					lateralFactor = combinationSlipAngle/combinationSlip;
-					longitudinalFactor = combinationSlipRatio/combinationSlip;
+					lateralFactor = normalizedSlipAngle/combinedSlip;
+					longitudinalFactor = normalizeSlipRatio/combinedSlip;
 				}
 
-				float suspensionForce = springStrength*(restLength - length) - damperStrength*verticalVelocity;
+				float load = suspensionForce + tireProfile.Mass*10;
 
-				// if suspension is fully compressed
-				if(length < 0)
-				{
-					// the load from the body of the car will instantly be transfered to the wheel
-					// load on wheel = load from car instead of suspension force.
-					// length = min length
-					// suspensionForce = verticalVelocity*carRigidBody.mass;
-					// verticalVelocity = 0;
-				}
+				// Lateral ------------------------------------------------------------------------
 
-				suspensionLength = length;
-
-				float load = Mathf.Abs(suspensionForce);  // TODO -- Double check this logic.
-
-				// Lateral
-				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinationSlip*tireProfile.PeakSlipAngle)*load*transform.right;
+				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinedSlip*tireProfile.PeakSlipAngle)*load*transform.right;
 
 				if(velocity.sqrMagnitude <= overrideSpeedSquared)
 				{
 					lateralForce = -lateralVelocity*load*Vector3.right;
 				}
 
-				Debug.DrawRay(transform.position, lateralVelocity*transform.right, Color.red);
+				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
 
-				// Longitudinal
-				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinationSlip*tireProfile.PeakSlipRatio)*load*transform.forward;
+				// Longitudinal -------------------------------------------------------------------
+
+				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinedSlip*tireProfile.PeakSlipRatio)*load*transform.forward;
 				
-				Debug.DrawRay(transform.position, longitudinalVelocity*transform.forward, Color.blue);
+				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
 
-				Debug.DrawRay(transform.position, velocity, Color.green);
+				Debug.DrawRay(transform.position, velocity.normalized, Color.green);
 
 				HandleSteering();
 
@@ -209,28 +194,31 @@ namespace Soap.Prototype
 			brakeInput = inputValue;
 		}
 
-		private void HandleBraking()
+		private void HandleBraking(float velocity)
 		{
+			float wheelAcceleration = velocity - wheelSpeed; // try to match wheel speed to velocity.
 
-		}
+			float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed*10;
 
-		private Vector3 MagicFormula()
-		{
-			return new Vector3();
-		}
+			if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(wheelSpeed))
+			{
+				brakeAcceleration = -wheelSpeed;
+			}
 
-		private float SimplifiedMagicFormula(float alpha)
-		{
-			float A = 25;
-			float B = 85;
-			float P = 1.5f;
+			wheelAcceleration += brakeAcceleration; // apply braking force.
+			
+			wheelSpeed += wheelAcceleration;
 
-			return B*alpha/(1 + Mathf.Pow(Mathf.Abs(A*alpha), P));
-		}
-
-		private void ShowTelemetry()
-		{
-
+			if(velocity < 0.1f && brakeInput > 0)
+			{
+				carRigidBody.useGravity = false;
+				carRigidBody.velocity = Vector3.zero;
+				carRigidBody.angularVelocity = Vector3.zero;
+			}
+			else
+			{
+				carRigidBody.useGravity = true;
+			}
 		}
 
 		private void OnDrawGizmos()
@@ -238,7 +226,7 @@ namespace Soap.Prototype
 			Gizmos.DrawRay(transform.position, -transform.up*restLength);
 			Gizmos.color = Color.red;
 			Gizmos.DrawRay(transform.position, -transform.up*suspensionLength);
-			Gizmos.DrawWireSphere(transform.position -suspensionLength*transform.up, wheelRadius);
+			Gizmos.DrawWireSphere(transform.position -suspensionLength*transform.up, tireProfile.Radius);
 		}
 	}
 }

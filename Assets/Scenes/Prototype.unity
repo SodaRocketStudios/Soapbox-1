@@ -550,7 +550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -35}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &330127438
@@ -737,7 +737,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 100, y: 438.6, z: -2465.56}
+  m_LocalPosition: {x: 50, y: 438.6, z: -2465.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2460,7 +2460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835326596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 435.2, z: -2458.56}
+  m_LocalPosition: {x: 50, y: 435.2, z: -2458.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2821,7 +2821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.457
   springStrength: 200000
   damperStrength: 5000
   restLength: 0.1
@@ -2829,7 +2828,7 @@ MonoBehaviour:
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 15
   steeringSpeed: 2
-  overrideSpeed: 2
+  overrideSpeed: 3
 --- !u!1 &930388475
 GameObject:
   m_ObjectHideFlags: 3
@@ -3128,7 +3127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.457
   springStrength: 200000
   damperStrength: 5000
   restLength: 0.1
@@ -3136,7 +3134,7 @@ MonoBehaviour:
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 0
   steeringSpeed: 0
-  overrideSpeed: 2
+  overrideSpeed: 3
 --- !u!1 &1010259269
 GameObject:
   m_ObjectHideFlags: 0
@@ -3805,7 +3803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.457
   springStrength: 200000
   damperStrength: 5000
   restLength: 0.1
@@ -3813,7 +3810,7 @@ MonoBehaviour:
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 0
   steeringSpeed: 0
-  overrideSpeed: 2
+  overrideSpeed: 3
 --- !u!1 &1272377725
 GameObject:
   m_ObjectHideFlags: 0
@@ -4465,7 +4462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9000c3f88c6a241a7254214e87287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelRadius: 0.457
   springStrength: 200000
   damperStrength: 5000
   restLength: 0.1
@@ -4473,7 +4469,7 @@ MonoBehaviour:
   tireProfile: {fileID: 11400000, guid: 75c092ee7ddb88f428349cb7e6508ed9, type: 2}
   steeringAngle: 15
   steeringSpeed: 2
-  overrideSpeed: 2
+  overrideSpeed: 3
 --- !u!1 &1443485677
 GameObject:
   m_ObjectHideFlags: 0
@@ -5273,7 +5269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866265633}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 100, y: 438.6, z: -2465.56}
+  m_LocalPosition: {x: 50, y: 438.6, z: -2465.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
