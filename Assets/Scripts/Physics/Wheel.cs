@@ -124,6 +124,7 @@ namespace Soap.Physics
 		public void Steer(float inputValue)
 		{
 			previousSteerAngle = transform.localEulerAngles.y;
+
 			if(previousSteerAngle > 180)
 			{
 				previousSteerAngle -= 360;
@@ -135,9 +136,8 @@ namespace Soap.Physics
 
 		private void HandleSteering()
 		{
-			transform.localEulerAngles = Mathf.Lerp(previousSteerAngle, steerInput*steeringAngle, Mathf.Clamp01(steerTime*steeringSpeed))*Vector3.up;
-
 			steerTime += Time.fixedDeltaTime;
+			transform.localEulerAngles = Mathf.Lerp(previousSteerAngle, steerInput*steeringAngle, Mathf.Clamp01(steerTime*steeringSpeed))*Vector3.up;
 		}
 
 		public void Brake(float inputValue)

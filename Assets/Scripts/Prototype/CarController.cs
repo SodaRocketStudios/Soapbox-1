@@ -17,9 +17,11 @@ namespace Soap.Prototype
 
 		public void Steer(InputAction.CallbackContext context)
 		{
+			float steerInput = context.ReadValue<float>();
+			
 			foreach (Wheel wheel in wheels)
 			{
-				wheel.Steer(context.ReadValue<float>());
+				wheel.Steer(steerInput);
 			}
 		}
 

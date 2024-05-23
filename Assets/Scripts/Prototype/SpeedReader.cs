@@ -7,15 +7,12 @@ namespace Soap.Prototype
 	{
 		[SerializeField] private Rigidbody carRigidbody;
 
-		[SerializeField] private TMP_Text longitudinalTextBox;
-		[SerializeField] private TMP_Text lateralTextBox;
+		[SerializeField] private TMP_Text speedTextBox;
 
 		private void Update()
 		{
 			float longitudinalVelocity = Vector3.Dot(carRigidbody.velocity, carRigidbody.transform.forward);
-			float lateralVelocity = Vector3.Dot(carRigidbody.velocity, carRigidbody.transform.right);
-			longitudinalTextBox.text = $"Long: {longitudinalVelocity:F2} m/s";
-			lateralTextBox.text = $"Lat: {lateralVelocity:F2} m/s";
+			speedTextBox.text = $"{longitudinalVelocity*3.6f:F2} kph";
 		}
 	}
 }
