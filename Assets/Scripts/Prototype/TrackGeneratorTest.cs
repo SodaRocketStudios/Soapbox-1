@@ -10,7 +10,7 @@ namespace Soap.Prototype
 		[SerializeField] private SplineContainer splineContainer;
 
 		[Tooltip("The slope of the track in degrees")]
-		[SerializeField] private float slope;
+		[SerializeField] private float slopeDeg;
 
 		[SerializeField] private float resolution;
 
@@ -18,7 +18,7 @@ namespace Soap.Prototype
 
 		private Mesh mesh;
 
-		private void Start()
+		private void OnValidate()
         {
 			mesh = new();
 
@@ -29,15 +29,23 @@ namespace Soap.Prototype
 
         private void SetSlope()
         {
-			slope = Mathf.Sin(slope*Mathf.Deg2Rad);
+			float slope = Mathf.Sin(slopeDeg*Mathf.Deg2Rad);
 
             float lengthSum = 0;
 
+			float[] length = new float[splineContainer.Spline.GetCurveCount()];
+
+			for (int i = 0; i < length.Length; i++)
+			{
+				lengthSum += splineContainer.Spline.GetCurveLength(i);
+				length[i] = lengthSum;
+			}
+
             for (int i = 0; i < splineContainer.Spline.GetCurveCount(); i++)
             {
-                lengthSum += splineContainer.Spline.GetCurveLength(i);
                 BezierKnot knot = splineContainer.Spline[i + 1];
-                knot.Position += new float3(0, -slope * lengthSum, 0);
+				knot.Position.y = 0;
+                knot.Position += new float3(0, -slope * length[i], 0);
                 splineContainer.Spline.SetKnot(i + 1, knot);
             }
         }
@@ -49,8 +57,6 @@ namespace Soap.Prototype
 			float stepSize = 1f/segments;
 			int vertexCount = steps*2;
 			int triangleCount = segments*6;
-
-			Debug.Log(segments);
 
 			Vector3[] verts = new Vector3[vertexCount];
 			int[] triangles = new int[triangleCount];
@@ -81,6 +87,7 @@ namespace Soap.Prototype
 			mesh.SetIndices(triangles, MeshTopology.Triangles, 0);
 
 			GetComponent<MeshFilter>().sharedMesh = mesh;
+			GetComponent<MeshCollider>().sharedMesh = mesh;
 		}
     }
 }
