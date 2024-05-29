@@ -21,7 +21,7 @@ namespace Soap.Physics
 		private float overrideSpeedSquared;
 
 		[SerializeField] private bool isDriveWheel;
-		private float driveInput;
+		private float driveTorque;
 
 		public float Radius
 		{
@@ -168,21 +168,20 @@ namespace Soap.Physics
 			else
 			{
 				carRigidBody.useGravity = true;
-			}
-			
+			}	
 		}
 
-		public void Accelerate(float inputValue)
+		public void Accelerate(float torque)
 		{
 			if(isDriveWheel)
 			{
-				driveInput = inputValue;
+				driveTorque = torque;
 			}
 		}
 
 		private void HandleAcceleration()
 		{
-			float wheelAcceleration = Time.deltaTime*driveInput*5;
+			float wheelAcceleration = driveTorque/Radius/tireProfile.Mass; // TODO -- limit in a way similar to a real engine.
 
 			wheelSpeed += wheelAcceleration;
 		}
