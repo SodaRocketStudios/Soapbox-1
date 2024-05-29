@@ -18,7 +18,16 @@
                     "name": "Brake",
                     "type": "Value",
                     "id": "923d4cca-d2cc-4d66-9aa0-0ab9d8c5478e",
-                    "expectedControlType": "Digital",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Accelerate",
+                    "type": "Value",
+                    "id": "93e81d98-c15a-4c02-9496-99a70642fa2c",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -181,6 +190,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "DRSToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9a85a1b-a280-4065-a0d0-8d95fbb3deeb",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e4b4157-e1e3-4b48-8ecc-e4b43bb68496",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Accelerate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -15,7 +15,7 @@ namespace Soap.Prototype
 			if(charge <= 0)
 			{
 				charge = Mathf.Max(charge, 0);
-				isActive = false;
+				return;
 			}
 
 			if(isActive)
@@ -29,7 +29,7 @@ namespace Soap.Prototype
 		public bool UseERS()
 		{
 			isActive = true;
-			
+
 			if(charge <= 0)
 			{
 				return false;

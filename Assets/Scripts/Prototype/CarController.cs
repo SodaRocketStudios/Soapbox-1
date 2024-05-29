@@ -9,10 +9,13 @@ namespace Soap.Prototype
 		private Wheel[] wheels;
 		private AeroSurface[] aeroSurfaces;
 
+		private ProtoERS ers;
+
 		private void Start()
 		{
 			wheels = GetComponentsInChildren<Wheel>();
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
+			ers = GetComponent<ProtoERS>();
 		}
 
 		public void Steer(InputAction.CallbackContext context)
@@ -40,6 +43,17 @@ namespace Soap.Prototype
 				foreach(AeroSurface surface in aeroSurfaces)
 				{
 					surface.ToggleDRS();
+				}
+			}
+		}
+
+		public void Accelerate(InputAction.CallbackContext context)
+		{
+			if(ers.UseERS())
+			{
+				foreach(Wheel wheel in wheels)
+				{
+					wheel.Accelerate(context.ReadValue<float>());
 				}
 			}
 		}

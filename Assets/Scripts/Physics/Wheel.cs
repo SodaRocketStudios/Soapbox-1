@@ -20,6 +20,9 @@ namespace Soap.Physics
 		[SerializeField] private float overrideSpeed = 0;
 		private float overrideSpeedSquared;
 
+		[SerializeField] private bool isDriveWheel;
+		private float driveInput;
+
 		public float Radius
 		{
 			get => tireProfile.Radius;
@@ -171,12 +174,17 @@ namespace Soap.Physics
 
 		public void Accelerate(float inputValue)
 		{
-
+			if(isDriveWheel)
+			{
+				driveInput = inputValue;
+			}
 		}
 
 		private void HandleAcceleration()
 		{
+			float wheelAcceleration = Time.deltaTime*driveInput*5;
 
+			wheelSpeed += wheelAcceleration;
 		}
 
 		private float CalculateSlipAngle(Vector3 planarVelocity, Vector3 planarHeading)
