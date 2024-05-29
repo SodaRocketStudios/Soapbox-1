@@ -9,10 +9,12 @@ namespace Soap.Prototype
 		private Rigidbody carRigidbody;
 
 		private Vector3 startLocation;
+		private Quaternion startRotation;
 
 		private void Start()
 		{
 			startLocation = carTransform.position;
+			startRotation = carTransform.rotation;
 			carRigidbody = carTransform.GetComponent<Rigidbody>();
 		}
 
@@ -21,7 +23,7 @@ namespace Soap.Prototype
 			if(context.performed)
 			{
 				carTransform.position = startLocation;
-				carTransform.rotation = Quaternion.identity;
+				carTransform.rotation = startRotation;
 				carRigidbody.velocity = Vector3.zero;
 				carRigidbody.angularVelocity = Vector3.zero;
 			}
