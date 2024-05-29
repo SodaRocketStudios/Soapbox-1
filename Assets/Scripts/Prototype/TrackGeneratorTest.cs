@@ -24,6 +24,8 @@ namespace Soap.Prototype
 
 		[SerializeField] private float width = 1;
 
+		[SerializeField] private float roll;
+
 		private Mesh mesh;
 
 		private void OnValidate()
@@ -84,10 +86,12 @@ namespace Soap.Prototype
 
 				Quaternion rotation = knot.Rotation;
 
-				Vector3 direction = rotation*Vector3.forward;
+				Vector3 forward = rotation*Vector3.forward;
+
+				Vector3 direction = forward;
 				direction.y = -slope;
 
-				knot.Rotation = Quaternion.LookRotation(direction);
+				knot.Rotation = Quaternion.LookRotation(direction, Quaternion.AngleAxis(roll, forward)*Vector3.up);
 
                 splineContainer.Spline.SetKnot(i + 1, knot);
             }
