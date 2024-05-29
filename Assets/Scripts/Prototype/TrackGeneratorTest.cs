@@ -1,9 +1,17 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
+using System;
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.Splines;
+#endif
 
 namespace Soap.Prototype
 {
+	[ExecuteInEditMode]
 	[RequireComponent(typeof(SplineContainer), typeof(MeshFilter), typeof(MeshRenderer))]
 	public class TrackGeneratorTest : MonoBehaviour
 	{
@@ -19,13 +27,39 @@ namespace Soap.Prototype
 		private Mesh mesh;
 
 		private void OnValidate()
-        {
+		{
+			if(mesh == null)
+			{
+				mesh = new Mesh();
+			}
+
+			UpdateSpline();
+		}
+
+		private void OnEnable()
+		{
 			mesh = new();
 
-            SetSlope();
+#if UNITY_EDITOR
+			EditorSplineUtility.AfterSplineWasModified += OnSplineModified;
+			Undo.undoRedoPerformed += UpdateSpline;
+#endif
+		}
 
-			GenerateMesh();
-        }
+		private void OnDisable()
+		{
+			if (mesh != null)
+#if  UNITY_EDITOR
+                DestroyImmediate(mesh);
+#else
+                Destroy(mesh);
+#endif
+
+#if UNITY_EDITOR
+			EditorSplineUtility.AfterSplineWasModified -= OnSplineModified;
+			Undo.undoRedoPerformed -= UpdateSpline;
+#endif
+		}
 
         private void SetSlope()
         {
@@ -46,6 +80,15 @@ namespace Soap.Prototype
                 BezierKnot knot = splineContainer.Spline[i + 1];
 				knot.Position.y = 0;
                 knot.Position += new float3(0, -slope * length[i], 0);
+				knot.Rotation *= Quaternion.Euler(slope, 0, 0);
+
+				Quaternion rotation = knot.Rotation;
+
+				Vector3 direction = rotation*Vector3.forward;
+				direction.y = -slope;
+
+				knot.Rotation = Quaternion.LookRotation(direction);
+
                 splineContainer.Spline.SetKnot(i + 1, knot);
             }
         }
@@ -88,6 +131,18 @@ namespace Soap.Prototype
 
 			GetComponent<MeshFilter>().sharedMesh = mesh;
 			GetComponent<MeshCollider>().sharedMesh = mesh;
+		}
+
+		private void OnSplineModified(Spline spline)
+		{
+			UpdateSpline();
+		}
+
+		private void UpdateSpline()
+		{
+			SetSlope();
+
+			GenerateMesh();
 		}
     }
 }
