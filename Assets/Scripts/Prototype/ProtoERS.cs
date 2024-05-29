@@ -6,6 +6,8 @@ namespace Soap.Prototype
 	{
 		[SerializeField] private float dischargeRate;
 
+		[SerializeField] private float torque;
+
 		private float charge = 100;
 
 		private bool isActive = false;
@@ -23,19 +25,19 @@ namespace Soap.Prototype
 				charge -= dischargeRate*Time.deltaTime;
 			}
 
-			charge += 1*Time.deltaTime;
+			charge += 10*Time.deltaTime;
 		}
 
-		public bool UseERS()
+		public float UseERS(float inputValue)
 		{
 			isActive = true;
 
 			if(charge <= 0)
 			{
-				return false;
+				return 0;
 			}
 
-			return true;
+			return torque*inputValue;
 		}
 	}
 }

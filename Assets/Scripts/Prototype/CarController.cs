@@ -49,12 +49,9 @@ namespace Soap.Prototype
 
 		public void Accelerate(InputAction.CallbackContext context)
 		{
-			if(ers.UseERS())
+			foreach(Wheel wheel in wheels)
 			{
-				foreach(Wheel wheel in wheels)
-				{
-					wheel.Accelerate(context.ReadValue<float>());
-				}
+				wheel.Accelerate(ers.UseERS(context.ReadValue<float>()));
 			}
 		}
 	}
