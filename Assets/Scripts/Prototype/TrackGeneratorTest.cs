@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
-using System;
 
 
 #if UNITY_EDITOR
@@ -24,7 +23,9 @@ namespace Soap.Prototype
 
 		[SerializeField] private float width = 1;
 
-		[SerializeField] private float roll;
+		// [SerializeField] private float roll;
+
+		[SerializeField] private SplineData<float> roll;
 
 		private Mesh mesh;
 
@@ -91,7 +92,7 @@ namespace Soap.Prototype
 				Vector3 direction = forward;
 				direction.y = -slope;
 
-				knot.Rotation = Quaternion.LookRotation(direction, Quaternion.AngleAxis(roll, forward)*Vector3.up);
+				knot.Rotation = Quaternion.LookRotation(direction, Quaternion.AngleAxis(roll.Evaluate(splineContainer.Spline, i+1, PathIndexUnit.Knot, InterpolatorUtility.LerpFloat), forward)*Vector3.up);
 
                 splineContainer.Spline.SetKnot(i + 1, knot);
             }
