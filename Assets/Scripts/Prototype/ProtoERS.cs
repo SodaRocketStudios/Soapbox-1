@@ -75,8 +75,6 @@ namespace Soap.Prototype
 				return 0;
 			}
 
-			Debug.Log(velocity);
-
 			return torqueCurve.Evaluate(velocity)*inputValue;
 		}
 	}

@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Splines;
@@ -18,7 +17,7 @@ namespace Soap.Prototype
 		[SerializeField] private SplineContainer splineContainer;
 
 		[Tooltip("The slope of the track in degrees")]
-		[SerializeField] private float slopeDeg;
+		[SerializeField] private float slope;
 
 		[SerializeField] private float resolution;
 
@@ -48,6 +47,8 @@ namespace Soap.Prototype
 			EditorSplineUtility.AfterSplineWasModified += OnSplineModified;
 			Undo.undoRedoPerformed += UpdateSpline;
 #endif
+
+			UpdateSpline();
 		}
 
 		private void OnDisable()
@@ -67,33 +68,24 @@ namespace Soap.Prototype
 
         private void SetSlope()
         {
-			float slope = Mathf.Sin(slopeDeg*Mathf.Deg2Rad);
-
             float lengthSum = 0;
-
-			float[] length = new float[splineContainer.Spline.GetCurveCount()];
-
-			for (int i = 0; i < length.Length; i++)
-			{
-				lengthSum += splineContainer.Spline.GetCurveLength(i);
-				length[i] = lengthSum;
-			}
 
             for (int i = 0; i < splineContainer.Spline.GetCurveCount(); i++)
             {
+				float dropPerUnit = Mathf.Sin(-slope*Mathf.Deg2Rad);
+
+				lengthSum += splineContainer.Spline.GetCurveLength(i);
+
                 BezierKnot knot = splineContainer.Spline[i + 1];
-				knot.Position.y = 0;
-                knot.Position += new float3(0, -slope * length[i], 0);
-				knot.Rotation *= Quaternion.Euler(slope, 0, 0);
+
+				knot.Position.y = lengthSum*dropPerUnit;
 
 				Quaternion rotation = knot.Rotation;
-
-				Vector3 forward = rotation*Vector3.forward;
-
-				Vector3 direction = forward;
-				direction.y = -slope;
-
-				knot.Rotation = Quaternion.LookRotation(direction, Quaternion.AngleAxis(roll.Evaluate(splineContainer.Spline, i+1, PathIndexUnit.Knot, InterpolatorUtility.LerpFloat), forward)*Vector3.up);
+				Vector3 eulerRotation = Vector3.up*rotation.eulerAngles.y;
+				eulerRotation.x = slope;
+				eulerRotation.z = roll.Evaluate(splineContainer.Spline, i+1, PathIndexUnit.Knot, InterpolatorUtility.LerpFloat);
+				rotation.eulerAngles = eulerRotation;
+				knot.Rotation = rotation;
 
                 splineContainer.Spline.SetKnot(i + 1, knot);
             }
