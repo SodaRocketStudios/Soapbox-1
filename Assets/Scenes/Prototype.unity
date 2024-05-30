@@ -437,6 +437,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 34c13706-de19-407e-8312-72591de417de
     m_ActionName: Car/DRSToggle[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 93e81d98-c15a-4c02-9496-99a70642fa2c
+    m_ActionName: Car/Accelerate[/XInputControllerWindows/rightTrigger,/Keyboard/w]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Car
@@ -561,7 +565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107411611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 434.902, z: -2458.56}
+  m_LocalPosition: {x: 0, y: 434.902, z: -2460.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -929,7 +933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 0, y: 438.302, z: -2465.56}
+  m_LocalPosition: {x: 0, y: 438.302, z: -2467.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3734,6 +3738,7 @@ MonoBehaviour:
   steeringAngle: 15
   steeringSpeed: 3
   overrideSpeed: 3
+  isDriveWheel: 0
 --- !u!23 &1081828797
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3939,6 +3944,7 @@ MonoBehaviour:
   steeringAngle: 0
   steeringSpeed: 0
   overrideSpeed: 3
+  isDriveWheel: 0
 --- !u!23 &1085772826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5735,6 +5741,7 @@ MonoBehaviour:
   steeringAngle: 0
   steeringSpeed: 0
   overrideSpeed: 3
+  isDriveWheel: 0
 --- !u!23 &1745928158
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5954,7 +5961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866265633}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 0, y: 438.302, z: -2465.56}
+  m_LocalPosition: {x: 0, y: 438.302, z: -2467.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6217,6 +6224,7 @@ MonoBehaviour:
   steeringAngle: 15
   steeringSpeed: 3
   overrideSpeed: 3
+  isDriveWheel: 0
 --- !u!23 &2020122405
 MeshRenderer:
   m_ObjectHideFlags: 0

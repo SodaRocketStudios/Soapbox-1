@@ -88,9 +88,10 @@ namespace Soap.Physics
 
 				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinedSlip * tireProfile.PeakSlipAngle) * load * transform.right;
 
-				if (planarVelocity.sqrMagnitude <= overrideSpeedSquared)
+				if (planarVelocity.sqrMagnitude < overrideSpeedSquared)
 				{
-					lateralForce = -lateralVelocity * load * Vector3.right;
+					lateralForce *= Mathf.Lerp(0.1f, 1, planarVelocity.sqrMagnitude/overrideSpeedSquared);
+					// lateralForce = -lateralVelocity * load * Vector3.right;
 				}
 
 				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
@@ -111,7 +112,7 @@ namespace Soap.Physics
 
         public void SetLoad(float load)
 		{
-			this.load = load + tireProfile.Mass*UnityEngine.Physics.gravity.magnitude;
+			this.load = Mathf.Max(load + tireProfile.Mass*UnityEngine.Physics.gravity.magnitude, 0);
 		}
 
 		public void SetPosition(Vector3 position)

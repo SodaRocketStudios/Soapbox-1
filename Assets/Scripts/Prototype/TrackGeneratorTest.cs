@@ -11,6 +11,7 @@ using UnityEditor.Splines;
 namespace Soap.Prototype
 {
 	[ExecuteInEditMode]
+	[RequireComponent(typeof(MeshCollider))]
 	[RequireComponent(typeof(SplineContainer), typeof(MeshFilter), typeof(MeshRenderer))]
 	public class TrackGeneratorTest : MonoBehaviour
 	{
