@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
+using SRS.Extensions.Vector;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -68,24 +69,62 @@ namespace Soap.Prototype
 
         private void SetSlope()
         {
-            float lengthSum = 0;
+			int numberOfCurves = splineContainer.Spline.GetCurveCount();
+			float[] lengths = new float[splineContainer.Spline.GetCurveCount()];
 
-            for (int i = 0; i < splineContainer.Spline.GetCurveCount(); i++)
+			for(int i = 0; i < numberOfCurves; i++)
+			{
+				if(i == 0)
+				{
+					lengths[i] = splineContainer.Spline.GetCurveLength(i);
+					continue;
+				}
+
+				lengths[i] = lengths[i-1] + splineContainer.Spline.GetCurveLength(i);
+			}
+
+            for (int i = 0; i < numberOfCurves; i++)
             {
 				float dropPerUnit = Mathf.Sin(-slope*Mathf.Deg2Rad);
 
-				lengthSum += splineContainer.Spline.GetCurveLength(i);
-
                 BezierKnot knot = splineContainer.Spline[i + 1];
+				BezierKnot previousKnot = splineContainer.Spline[i];
+				BezierKnot nextKnot = splineContainer.Spline[i + 1];
 
-				knot.Position.y = lengthSum*dropPerUnit;
+				if(i < numberOfCurves - 2)
+				{
+					nextKnot = splineContainer.Spline[i + 2];
+				}
+
+				// Debug.Log(lengths[i]);
+
+				knot.Position.y = lengths[i]*dropPerUnit;
+
+				// Debug.Log($"{i}: {splineContainer.Spline.EvaluateCurvature(splineContainer.Spline.GetCurveInterpolation(i, 0.5f))}");
+				// Debug.Log($"{i}: {splineContainer.Spline.GetCurveInterpolation(i, 0.5f)}");
 
 				Quaternion rotation = knot.Rotation;
 				Vector3 eulerRotation = Vector3.up*rotation.eulerAngles.y;
 				eulerRotation.x = slope;
 				eulerRotation.z = roll.Evaluate(splineContainer.Spline, i+1, PathIndexUnit.Knot, InterpolatorUtility.LerpFloat);
+
+				float turnAngle = 0;
+
+				if(i < numberOfCurves - 2)
+				{
+					turnAngle = eulerRotation.y - ((Quaternion)nextKnot.Rotation).eulerAngles.y;
+				}
+
+				if(Mathf.Abs(turnAngle) > 180)
+				{
+					turnAngle -= 360*Mathf.Sign(turnAngle);
+				}
+
+				eulerRotation.z = turnAngle*25/90;
+
 				rotation.eulerAngles = eulerRotation;
 				knot.Rotation = rotation;
+
 
                 splineContainer.Spline.SetKnot(i + 1, knot);
             }
