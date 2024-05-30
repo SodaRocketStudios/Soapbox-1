@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 107411619}
   - component: {fileID: 107411620}
   - component: {fileID: 107411617}
+  - component: {fileID: 107411621}
   - component: {fileID: 107411616}
   - component: {fileID: 107411615}
   - component: {fileID: 107411614}
@@ -438,7 +439,19 @@ MonoBehaviour:
     m_ActionId: 34c13706-de19-407e-8312-72591de417de
     m_ActionName: Car/DRSToggle[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 107411620}
+        m_TargetAssemblyTypeName: Soap.Prototype.CarController, Prototype
+        m_MethodName: Accelerate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 93e81d98-c15a-4c02-9496-99a70642fa2c
     m_ActionName: Car/Accelerate[/XInputControllerWindows/rightTrigger,/Keyboard/w]
   m_NeverAutoSwitchControlSchemes: 0
@@ -565,7 +578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107411611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 434.902, z: -2460.16}
+  m_LocalPosition: {x: 50, y: 434.902, z: -2479.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -590,6 +603,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583af743e1cbe8643b55cb6e78560a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &107411621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107411611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2f8b8d6ab994a4dad2c56de2109232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dischargeRate: 0
+  launchTorque: 15
+  peakTorque: 20
+  peakVelocity: 40
+  maxVelocity: 85
+  endTorque: 9
+  torqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 15
+      inSlope: 0.125
+      outSlope: 0.125
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 40
+      value: 20
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 9
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 85
+      value: 9
+      inSlope: -0.24444444
+      outSlope: -0.24444444
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &108459998
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 0, y: 438.302, z: -2467.16}
+  m_LocalPosition: {x: 50, y: 438.302, z: -2486.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3944,7 +4008,7 @@ MonoBehaviour:
   steeringAngle: 0
   steeringSpeed: 0
   overrideSpeed: 3
-  isDriveWheel: 0
+  isDriveWheel: 1
 --- !u!23 &1085772826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5741,7 +5805,7 @@ MonoBehaviour:
   steeringAngle: 0
   steeringSpeed: 0
   overrideSpeed: 3
-  isDriveWheel: 0
+  isDriveWheel: 1
 --- !u!23 &1745928158
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5961,7 +6025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866265633}
   m_LocalRotation: {x: 0.2241557, y: 0, z: 0, w: 0.97455335}
-  m_LocalPosition: {x: 0, y: 438.302, z: -2467.16}
+  m_LocalPosition: {x: 50, y: 438.302, z: -2486.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

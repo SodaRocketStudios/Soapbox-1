@@ -11,11 +11,24 @@ namespace Soap.Prototype
 
 		private ProtoERS ers;
 
+		private float accelerationInput;
+
 		private void Start()
 		{
 			wheels = GetComponentsInChildren<Wheel>();
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
 			ers = GetComponent<ProtoERS>();
+		}
+
+		private void Update()
+		{
+			if(accelerationInput > 0)
+			{
+				foreach(Wheel wheel in wheels)
+			{
+				wheel.Accelerate(ers.UseERS(accelerationInput));
+			}
+			}
 		}
 
 		public void Steer(InputAction.CallbackContext context)
@@ -49,10 +62,7 @@ namespace Soap.Prototype
 
 		public void Accelerate(InputAction.CallbackContext context)
 		{
-			foreach(Wheel wheel in wheels)
-			{
-				wheel.Accelerate(ers.UseERS(context.ReadValue<float>()));
-			}
+			accelerationInput = context.ReadValue<float>();
 		}
 	}
 }
