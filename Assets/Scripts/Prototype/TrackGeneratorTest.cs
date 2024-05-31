@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
-using SRS.Extensions.Vector;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -20,13 +19,11 @@ namespace Soap.Prototype
 		[Tooltip("The slope of the track in degrees")]
 		[SerializeField] private float slope;
 
+		[SerializeField] private float maxRoll = 0;
+
 		[SerializeField] private float resolution;
 
 		[SerializeField] private float width = 1;
-
-		// [SerializeField] private float roll;
-
-		[SerializeField] private SplineData<float> roll;
 
 		private Mesh mesh;
 
@@ -96,31 +93,38 @@ namespace Soap.Prototype
 					nextKnot = splineContainer.Spline[i + 2];
 				}
 
-				// Debug.Log(lengths[i]);
-
 				knot.Position.y = lengths[i]*dropPerUnit;
-
-				// Debug.Log($"{i}: {splineContainer.Spline.EvaluateCurvature(splineContainer.Spline.GetCurveInterpolation(i, 0.5f))}");
-				// Debug.Log($"{i}: {splineContainer.Spline.GetCurveInterpolation(i, 0.5f)}");
 
 				Quaternion rotation = knot.Rotation;
 				Vector3 eulerRotation = Vector3.up*rotation.eulerAngles.y;
 				eulerRotation.x = slope;
-				eulerRotation.z = roll.Evaluate(splineContainer.Spline, i+1, PathIndexUnit.Knot, InterpolatorUtility.LerpFloat);
 
-				float turnAngle = 0;
+				float outAngle = 0;
+				float inAngle = ((Quaternion)previousKnot.Rotation).eulerAngles.y - eulerRotation.y;
 
 				if(i < numberOfCurves - 2)
 				{
-					turnAngle = eulerRotation.y - ((Quaternion)nextKnot.Rotation).eulerAngles.y;
+					outAngle = eulerRotation.y - ((Quaternion)nextKnot.Rotation).eulerAngles.y;
 				}
 
-				if(Mathf.Abs(turnAngle) > 180)
+				if(Mathf.Abs(outAngle) > 180)
 				{
-					turnAngle -= 360*Mathf.Sign(turnAngle);
+					outAngle -= 360*Mathf.Sign(outAngle);
 				}
 
-				eulerRotation.z = turnAngle*25/90;
+				if(Mathf.Abs(inAngle) > 180)
+				{
+					inAngle -= 360*Mathf.Sign(inAngle);
+				}
+
+				if(i < numberOfCurves - 1)
+				{
+					outAngle /= splineContainer.Spline.GetCurveLength(i+1);
+				}
+
+				inAngle /= splineContainer.Spline.GetCurveLength(i);
+
+				eulerRotation.z = (outAngle+inAngle/2)*maxRoll;
 
 				rotation.eulerAngles = eulerRotation;
 				knot.Rotation = rotation;
@@ -151,6 +155,9 @@ namespace Soap.Prototype
 
 				verts[2*i] = position - perpendicular*width/2;
 				verts[2*i + 1] = position + perpendicular*width/2;
+
+				Debug.DrawLine(position, position - perpendicular*width/2, Color.blue, 10);
+				Debug.DrawLine(position, position + perpendicular*width/2, Color.red, 10);
 			}
 
 			for (int i = 0, n = 0; i < triangleCount; i += 6, n += 2)
