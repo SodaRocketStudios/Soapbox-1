@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
+using SRS.Extensions.Vector;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,6 +28,8 @@ namespace Soap.Prototype
 		[SerializeField] private float width = 1;
 
 		private Mesh mesh;
+
+		private float curvatureNormaization;
 
 		private void OnValidate()
 		{
@@ -66,18 +70,38 @@ namespace Soap.Prototype
 
         private void SetSlope()
         {
+			for (int i = 0; i < splineContainer.Spline.Count; i++)
+			{
+				BezierKnot knot = splineContainer.Spline[i];
+				knot.Position.y = 0;
+				Quaternion rotation = knot.Rotation;
+				Vector3 eulerRotation = new Vector3(0, rotation.eulerAngles.y, 0);
+				rotation.eulerAngles = eulerRotation;
+				knot.Rotation = rotation;
+				splineContainer.Spline.SetKnot(i, knot);
+			}
+
 			int numberOfCurves = splineContainer.Spline.GetCurveCount();
-			float[] lengths = new float[splineContainer.Spline.GetCurveCount()];
+
+			float length = splineContainer.Spline.GetLength();
+
+			float[] lengths = new float[numberOfCurves];
+			float[] curvatures = new float[numberOfCurves];
 
 			for(int i = 0; i < numberOfCurves; i++)
 			{
 				if(i == 0)
 				{
 					lengths[i] = splineContainer.Spline.GetCurveLength(i);
+					curvatures[i] = splineContainer.Spline.EvaluateCurvature(lengths[i]/splineContainer.Spline.GetLength());
+					curvatureNormaization = curvatures[i];
 					continue;
 				}
 
 				lengths[i] = lengths[i-1] + splineContainer.Spline.GetCurveLength(i);
+				curvatures[i] = splineContainer.Spline.EvaluateCurvature(lengths[i]/splineContainer.Spline.GetLength());
+
+				curvatureNormaization = Mathf.Max(curvatures[i], curvatureNormaization);
 			}
 
             for (int i = 0; i < numberOfCurves; i++)
@@ -85,50 +109,24 @@ namespace Soap.Prototype
 				float dropPerUnit = Mathf.Sin(-slope*Mathf.Deg2Rad);
 
                 BezierKnot knot = splineContainer.Spline[i + 1];
-				BezierKnot previousKnot = splineContainer.Spline[i];
-				BezierKnot nextKnot = splineContainer.Spline[i + 1];
 
-				if(i < numberOfCurves - 2)
-				{
-					nextKnot = splineContainer.Spline[i + 2];
-				}
+				float t = lengths[i]/length;
+
+				Vector3 curveCenter = splineContainer.Spline.EvaluateCurvatureCenter(t);
 
 				knot.Position.y = lengths[i]*dropPerUnit;
 
 				Quaternion rotation = knot.Rotation;
-				Vector3 eulerRotation = Vector3.up*rotation.eulerAngles.y;
+				Vector3 eulerRotation = rotation.eulerAngles;
+
 				eulerRotation.x = slope;
 
-				float outAngle = 0;
-				float inAngle = ((Quaternion)previousKnot.Rotation).eulerAngles.y - eulerRotation.y;
+				float roll = curvatures[i]*Mathf.Sign(Vector3.Dot((Quaternion)knot.Rotation*Vector3.right, curveCenter))*maxRoll/curvatureNormaization;
 
-				if(i < numberOfCurves - 2)
-				{
-					outAngle = eulerRotation.y - ((Quaternion)nextKnot.Rotation).eulerAngles.y;
-				}
-
-				if(Mathf.Abs(outAngle) > 180)
-				{
-					outAngle -= 360*Mathf.Sign(outAngle);
-				}
-
-				if(Mathf.Abs(inAngle) > 180)
-				{
-					inAngle -= 360*Mathf.Sign(inAngle);
-				}
-
-				if(i < numberOfCurves - 1)
-				{
-					outAngle /= splineContainer.Spline.GetCurveLength(i+1);
-				}
-
-				inAngle /= splineContainer.Spline.GetCurveLength(i);
-
-				eulerRotation.z = (outAngle+inAngle/2)*maxRoll;
+				eulerRotation.z = roll;
 
 				rotation.eulerAngles = eulerRotation;
 				knot.Rotation = rotation;
-
 
                 splineContainer.Spline.SetKnot(i + 1, knot);
             }
@@ -136,9 +134,12 @@ namespace Soap.Prototype
 
 		private void GenerateMesh()
 		{
-			int segments = Mathf.CeilToInt(resolution*splineContainer.Spline.GetLength());
+			mesh.Clear();
+
+			float length = splineContainer.Spline.GetLength();
+			int segments = Mathf.CeilToInt(resolution*length);
 			int steps = segments + 1;
-			float stepSize = 1f/segments;
+			float stepSize = 1f/(resolution*length);
 			int vertexCount = steps*2;
 			int triangleCount = segments*6;
 
@@ -156,8 +157,8 @@ namespace Soap.Prototype
 				verts[2*i] = position - perpendicular*width/2;
 				verts[2*i + 1] = position + perpendicular*width/2;
 
-				Debug.DrawLine(position, position - perpendicular*width/2, Color.blue, 10);
-				Debug.DrawLine(position, position + perpendicular*width/2, Color.red, 10);
+				// Debug.DrawLine(position, position - perpendicular*width/2, Color.blue, 10);
+				// Debug.DrawLine(position, position + perpendicular*width/2, Color.red, 10);
 			}
 
 			for (int i = 0, n = 0; i < triangleCount; i += 6, n += 2)
