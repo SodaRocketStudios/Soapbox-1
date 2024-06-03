@@ -121,7 +121,10 @@ namespace Soap.Prototype
 
 				eulerRotation.x = slope;
 
-				float roll = curvatures[i]*Mathf.Sign(Vector3.Dot((Quaternion)knot.Rotation*Vector3.right, curveCenter))*maxRoll/curvatureNormaization;
+				Vector3 right = rotation*Vector3.right.normalized;
+
+				float roll = -curvatures[i]*Mathf.Sign(Vector3.Dot(right, curveCenter - (Vector3)knot.Position))*maxRoll/curvatureNormaization;
+				Debug.Log($"{i+1}: {roll}, {right}");
 
 				eulerRotation.z = roll;
 
