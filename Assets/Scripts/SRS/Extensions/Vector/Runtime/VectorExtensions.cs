@@ -39,7 +39,7 @@ namespace SRS.Extensions.Vector
 			return Vector3.SqrMagnitude(b - a);
 		}
 
-		public static Vector3 Average(Vector3[] vectors)
+		public static Vector3 Average(this Vector3[] vectors)
 		{
 			if(vectors.Length <= 0)
 			{
@@ -58,7 +58,7 @@ namespace SRS.Extensions.Vector
 			return meanVector;
 		}
 
-		public static Vector3 Average(List<Vector3> vectors)
+		public static Vector3 Average(this List<Vector3> vectors)
 		{
 			if(vectors.Count <= 0)
 			{
