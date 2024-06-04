@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
 using System.Linq;
-using SRS.Extensions.Vector;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -154,40 +153,42 @@ namespace Soap.Prototype
 
 			bool foldCatch = false;
 
-			List<List<Vector3>> folds = new();
-			List<List<int>> foldVerts = new();
-			int foldCount = 0;
+			List<int> foldIndices = new();
 
 			int index = 0;
 
 			int side = 1;
 
+			Vector3 startPosition = new();
+
 			for(int i = 0; i <= steps; i++)
 			{
 				float t = stepSize * i;
 
-				splineContainer.Spline.Evaluate(t, out var position, out var direction, out var normal);
+				splineContainer.Spline.Evaluate(t, out float3 pos, out float3 direction, out float3 normal);
+				Vector3 position = pos;
+
 				float curvature = splineContainer.Spline.EvaluateCurvature(t);
 				Vector3 curveCenter = splineContainer.Spline.EvaluateCurvatureCenter(t);
 
-				float3 right = math.normalizesafe(math.cross(normal, direction));
+				Vector3 right = math.normalizesafe(math.cross(normal, direction));
 
 				if(1/curvature < width)
 				{
 					if(foldCatch == false)
 					{
 						// fold start
+						Debug.Log(right);
+						Debug.DrawRay(position, right*50, Color.green, 20);
 						foldCatch = true;
-						folds.Add(new List<Vector3>());
-						foldVerts.Add(new List<int>());
-						side = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - (Vector3)position));
+						foldIndices.Clear();
+						side = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
+						startPosition = position + side * right * width / 2;
 					}
 
-					verts.Add(position - side*right*width/2);
-					foldVerts[foldCount].Add(index);
+					verts.Add(position - side * right * width / 2);
+					foldIndices.Add(index);
 					index++;
-
-					folds[foldCount].Add(position + side*right*width/2);
 
 					// Debug.DrawLine(position, position + side*right*width, Color.magenta, 20);
 					// Debug.DrawLine(position, position - side*right*width, Color.green, 20);
@@ -199,33 +200,35 @@ namespace Soap.Prototype
 				{
 					// fold end
 					foldCatch = false;
-					Vector3 averagePosition = folds[foldCount].Average();
+					Vector3 averagePosition = (position + side * right * width / 2 + startPosition)/2;
 
 					verts.Add(averagePosition);
-					foldVerts[foldCount].Add(index);
+					foldIndices.Add(index);
 					triangles[triangles.Count - 1] = index;
 					if(side < 0)
 					{
-						triangles[triangles.Count - 1] = foldVerts[foldCount][0];
+						triangles[triangles.Count - 1] = foldIndices[0];
 						triangles[triangles.Count - 2] = index;
 						triangles[triangles.Count - 6] = index;
 					}
 					index++;	
 
-					for(int j = 0; j < foldVerts[foldCount].Count - 2; j++)
+					for(int j = 0; j < foldIndices.Count - 2; j++)
 					{
 						if(side > 0)
 						{
-							triangles.Add(foldVerts[foldCount][j]);
-							triangles.Add(foldVerts[foldCount][j+1]);
-							triangles.Add(foldVerts[foldCount].Last());
+							triangles.Add(foldIndices[j]);
+							triangles.Add(foldIndices[j+1]);
+							triangles.Add(foldIndices.Last());
 						}
 						else
 						{
-							triangles.Add(foldVerts[foldCount][j]);
-							triangles.Add(foldVerts[foldCount].Last());
-							triangles.Add(foldVerts[foldCount][j+1]);
+							triangles.Add(foldIndices[j]);
+							triangles.Add(foldIndices.Last());
+							triangles.Add(foldIndices[j+1]);
 						}
+
+						// Debug.DrawLine(verts[triangles[triangles.Count - 1]], verts[triangles[triangles.Count-2]], Color.red, 20);
 					}
 
 					if(side > 0)
@@ -244,12 +247,15 @@ namespace Soap.Prototype
 					triangles.Add(index - 1);
 					triangles.Add(index);
 					triangles.Add(index + 1);
-
-					foldCount++;
 				}
 
 				verts.Add(position - right*width/2);
 				verts.Add(position + right*width/2);
+				// Debug.DrawLine(verts.Last(), verts[verts.Count - 2], Color.green, 20);
+				if(verts.Count > 2)
+				{
+					// Debug.DrawLine(verts[verts.Count - 2], verts[verts.Count - 3], Color.green, 20);
+				}
 				index += 2;
 
 				if(i < steps)

@@ -72,7 +72,7 @@ namespace SRS.Extensions.Vector
 				meanVector += vector;
 			}
 
-			meanVector/= vectors.Count;
+			meanVector /= vectors.Count;
 
 			return meanVector;
 		}
