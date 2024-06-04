@@ -2,10 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
+using System.Linq;
 using SRS.Extensions.Vector;
-
-
-
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -149,8 +147,7 @@ namespace Soap.Prototype
 			float length = splineContainer.Spline.GetLength();
 			int segments = Mathf.CeilToInt(resolution*length);
 			int steps = segments + 1;
-			float stepSize = 1f/(resolution*length);
-			int triangleCount = segments*6;
+			float stepSize = 1f/steps;
 
 			List<Vector3> verts = new();
 			List<int> triangles = new();
@@ -161,16 +158,19 @@ namespace Soap.Prototype
 			List<List<int>> foldVerts = new();
 			int foldCount = 0;
 
-			for(int i = 0; i < steps; i++)
+			int index = 0;
+
+			int side = 1;
+
+			for(int i = 0; i <= steps; i++)
 			{
-				float t = Mathf.Min(1, stepSize*i);
+				float t = stepSize * i;
 
 				splineContainer.Spline.Evaluate(t, out var position, out var direction, out var normal);
 				float curvature = splineContainer.Spline.EvaluateCurvature(t);
 				Vector3 curveCenter = splineContainer.Spline.EvaluateCurvatureCenter(t);
 
-				float3 perpendicular = math.normalizesafe(math.cross(normal, direction));
-
+				float3 right = math.normalizesafe(math.cross(normal, direction));
 
 				if(1/curvature < width)
 				{
@@ -180,45 +180,91 @@ namespace Soap.Prototype
 						foldCatch = true;
 						folds.Add(new List<Vector3>());
 						foldVerts.Add(new List<int>());
+						side = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - (Vector3)position));
 					}
-					
-					int side = (int)Mathf.Sign(Vector3.Dot(perpendicular, curveCenter - (Vector3)position));
 
-					verts.Add(position - perpendicular*width/2*side);
-					folds[foldCount].Add(position + perpendicular*width/2*side);
+					verts.Add(position - side*right*width/2);
+					foldVerts[foldCount].Add(index);
+					index++;
 
-					foldVerts[foldCount].Add(i);
+					folds[foldCount].Add(position + side*right*width/2);
 
-					Debug.DrawLine(position, position + perpendicular*width/2*side, Color.magenta, 20);
-					// Debug.DrawLine(position, position - perpendicular*width, Color.magenta, 20);
-					
+					// Debug.DrawLine(position, position + side*right*width, Color.magenta, 20);
+					// Debug.DrawLine(position, position - side*right*width, Color.green, 20);
+
+					continue;
 				}
-				else
-				{
-					if(foldCatch == true)
-					{
-						// fold end
-						// Get the average position;
-						Vector3 averagePosition = folds[foldCount].Average();
 
-						verts.Add(averagePosition);
-						i++;
-						
-						// remove all but one vert and set it to the average position
-						foldCatch = false;
-						foldCount++;
+				if(foldCatch == true)
+				{
+					// fold end
+					foldCatch = false;
+					Vector3 averagePosition = folds[foldCount].Average();
+
+					verts.Add(averagePosition);
+					foldVerts[foldCount].Add(index);
+					triangles[triangles.Count - 1] = index;
+					if(side < 0)
+					{
+						triangles[triangles.Count - 1] = foldVerts[foldCount][0];
+						triangles[triangles.Count - 2] = index;
+						triangles[triangles.Count - 6] = index;
+					}
+					index++;	
+
+					for(int j = 0; j < foldVerts[foldCount].Count - 2; j++)
+					{
+						if(side > 0)
+						{
+							triangles.Add(foldVerts[foldCount][j]);
+							triangles.Add(foldVerts[foldCount][j+1]);
+							triangles.Add(foldVerts[foldCount].Last());
+						}
+						else
+						{
+							triangles.Add(foldVerts[foldCount][j]);
+							triangles.Add(foldVerts[foldCount].Last());
+							triangles.Add(foldVerts[foldCount][j+1]);
+						}
+					}
+
+					if(side > 0)
+					{
+						triangles.Add(index);
+						triangles.Add(index - 1);
+						triangles.Add(index - 2);
 					}
 					else
 					{
-						verts.Add(position - perpendicular*width/2);
-						verts.Add(position + perpendicular*width/2);
-						i++;
+						triangles.Add(index - 2);
+						triangles.Add(index - 1);
+						triangles.Add(index + 1);
 					}
 
+					triangles.Add(index - 1);
+					triangles.Add(index);
+					triangles.Add(index + 1);
+
+					foldCount++;
 				}
 
-				// Debug.DrawLine(position, position - perpendicular*width/2, Color.blue, 20);
-				// Debug.DrawLine(position, position + perpendicular*width/2, Color.red, 20);
+				verts.Add(position - right*width/2);
+				verts.Add(position + right*width/2);
+				index += 2;
+
+				if(i < steps)
+				{
+					triangles.Add(index);
+					triangles.Add(index - 1);
+					triangles.Add(index - 2);
+
+					triangles.Add(index - 1);
+					triangles.Add(index);
+					triangles.Add(index + 1);
+				}
+
+				// Debug.DrawLine(position, position - right*width/2, Color.blue, 20);
+				// Debug.DrawLine(position, position + right*width/2, Color.red, 20);
 			}
 
 			// for (int i = 0, n = 0; i < triangleCount; i += 6, n += 2)
@@ -243,6 +289,7 @@ namespace Soap.Prototype
 			UpdateSpline();
 		}
 
+		[ContextMenu("Update Mesh")]
 		private void UpdateSpline()
 		{
 			SetSlope();
