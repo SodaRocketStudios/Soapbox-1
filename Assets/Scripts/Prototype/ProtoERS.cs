@@ -21,6 +21,10 @@ namespace Soap.Prototype
 		private Rigidbody carRigidbody;
 
 		private float charge = 100;
+		public float chargeAmount
+		{
+			get => charge/100;
+		}
 
 		private bool isActive = false;
 
@@ -50,22 +54,30 @@ namespace Soap.Prototype
 
 		private void Update()
 		{
-			if(charge <= 0)
+			if(isActive)
 			{
-				charge = Mathf.Max(charge, 0);
+				if(charge <= 0)
+				{
+					charge = Mathf.Max(charge, 0);
+					return;
+				}
+
+				charge -= dischargeRate*Time.deltaTime;
 				return;
 			}
 
-			if(isActive)
-			{
-				charge -= dischargeRate*Time.deltaTime;
-			}
-
 			charge += 10*Time.deltaTime;
+			charge = Mathf.Min(charge, 100);
 		}
 
 		public float UseERS(float inputValue)
 		{
+			if(inputValue == 0)
+			{
+				isActive = false;
+				return 0;
+			}
+
 			float velocity = Vector3.Dot(carRigidbody.velocity, transform.forward);
 
 			isActive = true;
