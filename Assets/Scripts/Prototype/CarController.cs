@@ -22,12 +22,9 @@ namespace Soap.Prototype
 
 		private void Update()
 		{
-			if(accelerationInput > 0)
-			{
-				foreach(Wheel wheel in wheels)
+			foreach(Wheel wheel in wheels)
 			{
 				wheel.Accelerate(ers.UseERS(accelerationInput));
-			}
 			}
 		}
 
@@ -43,9 +40,10 @@ namespace Soap.Prototype
 
 		public void Brake(InputAction.CallbackContext context)
 		{
+			float brakeInput = context.ReadValue<float>();
 			foreach(Wheel wheel in wheels)
 			{
-				wheel.Brake(context.ReadValue<float>());
+				wheel.Brake(brakeInput);
 			}
 		}
 

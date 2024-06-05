@@ -24,6 +24,7 @@ namespace Soap.Prototype
 		[SerializeField] private float maxRoll = 0;
 
 		[SerializeField] private float resolution;
+		[SerializeField] private int apexSmoothingSteps;
 
 		[SerializeField] private float width = 1;
 
@@ -157,9 +158,13 @@ namespace Soap.Prototype
 
 			int index = 0;
 
-			int side = 1;
+			Vector3 foldStartPosition = new();
+			Vector3 foldAveragePosition = new();
 
-			Vector3 startPosition = new();
+			int smoothCounter = apexSmoothingSteps;
+			bool smoothComplete = true;
+
+			List<int> smoothIndices = new();
 
 			for(int i = 0; i <= steps; i++)
 			{
@@ -173,20 +178,19 @@ namespace Soap.Prototype
 
 				Vector3 right = math.normalizesafe(math.cross(normal, direction));
 
+				int inside = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
+
 				if(1/curvature < width)
 				{
 					if(foldCatch == false)
 					{
 						// fold start
-						Debug.Log(right);
-						Debug.DrawRay(position, right*50, Color.green, 20);
 						foldCatch = true;
 						foldIndices.Clear();
-						side = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
-						startPosition = position + side * right * width / 2;
+						foldStartPosition = position + inside * right * width / 2;
 					}
 
-					verts.Add(position - side * right * width / 2);
+					verts.Add(position - inside * right * width / 2);
 					foldIndices.Add(index);
 					index++;
 
@@ -200,12 +204,17 @@ namespace Soap.Prototype
 				{
 					// fold end
 					foldCatch = false;
-					Vector3 averagePosition = (position + side * right * width / 2 + startPosition)/2;
+					Vector3 foldEndPosition = position + inside * right * width / 2;
+					foldAveragePosition = (foldEndPosition + foldStartPosition)/2;
 
-					verts.Add(averagePosition);
+					smoothCounter = 0;
+					smoothComplete = false;
+					smoothIndices.Clear();
+
+					verts.Add(foldAveragePosition);
 					foldIndices.Add(index);
 					triangles[triangles.Count - 1] = index;
-					if(side < 0)
+					if(inside < 0)
 					{
 						triangles[triangles.Count - 1] = foldIndices[0];
 						triangles[triangles.Count - 2] = index;
@@ -215,7 +224,7 @@ namespace Soap.Prototype
 
 					for(int j = 0; j < foldIndices.Count - 2; j++)
 					{
-						if(side > 0)
+						if(inside > 0)
 						{
 							triangles.Add(foldIndices[j]);
 							triangles.Add(foldIndices[j+1]);
@@ -228,10 +237,10 @@ namespace Soap.Prototype
 							triangles.Add(foldIndices[j+1]);
 						}
 
-						// Debug.DrawLine(verts[triangles[triangles.Count - 1]], verts[triangles[triangles.Count-2]], Color.red, 20);
+						// Debug.DrawLine(verts[triangles[triangles.Count - 1]], verts[foldIndices.Last()], Color.red, 20);
 					}
 
-					if(side > 0)
+					if(inside > 0)
 					{
 						triangles.Add(index);
 						triangles.Add(index - 1);
@@ -247,16 +256,66 @@ namespace Soap.Prototype
 					triangles.Add(index - 1);
 					triangles.Add(index);
 					triangles.Add(index + 1);
+
+					Vector3 smoothStartPosition = new();
+
+					for(int j = apexSmoothingSteps - 1; j >= 0; j--)
+					{
+						int smoothIndex = foldIndices[0] - 2*j - 1;
+						if(Vector3.Distance(verts[smoothIndex], verts[foldIndices.Last()]) > width)
+						{
+							smoothIndex -= 1;
+						}
+
+						Vector3 vert = verts[smoothIndex];
+
+						if(j == apexSmoothingSteps - 1)
+						{
+							smoothStartPosition = vert;
+						}
+
+						vert = Vector3.Lerp(foldAveragePosition, smoothStartPosition, (j + 1.0f)/apexSmoothingSteps);
+
+						verts[smoothIndex] = vert;
+
+						Debug.DrawLine(vert, verts[foldIndices[0]], Color.red, 20);
+					}
 				}
 
 				verts.Add(position - right*width/2);
 				verts.Add(position + right*width/2);
+				index += 2;
 				// Debug.DrawLine(verts.Last(), verts[verts.Count - 2], Color.green, 20);
 				if(verts.Count > 2)
 				{
 					// Debug.DrawLine(verts[verts.Count - 2], verts[verts.Count - 3], Color.green, 20);
 				}
-				index += 2;
+
+				if(smoothCounter < apexSmoothingSteps)
+				{
+					int smoothIndex = index - 1;
+					if(Vector3.Distance(verts[smoothIndex], verts[foldIndices.Last()]) > width)
+					{
+						smoothIndex -= 1;
+					}
+
+					smoothIndices.Add(smoothIndex);
+
+					smoothCounter++;
+				}
+				else if(smoothComplete == false)
+				{
+					Vector3 endPosition = verts[smoothIndices.Last()];
+
+					for(int j = 0; j < apexSmoothingSteps; j++)
+					{
+						Vector3 vert = verts[smoothIndices[j]];
+
+						vert = Vector3.Lerp(foldAveragePosition, endPosition, (j + 1.0f)/apexSmoothingSteps);
+
+						verts[smoothIndices[j]] = vert;
+					}
+				}
 
 				if(i < steps)
 				{
@@ -272,16 +331,6 @@ namespace Soap.Prototype
 				// Debug.DrawLine(position, position - right*width/2, Color.blue, 20);
 				// Debug.DrawLine(position, position + right*width/2, Color.red, 20);
 			}
-
-			// for (int i = 0, n = 0; i < triangleCount; i += 6, n += 2)
-			// {
-			// 	triangles.Add(n);
-			// 	triangles.Add(n+2);
-			// 	triangles.Add(n+1);
-			// 	triangles.Add(n+2);
-			// 	triangles.Add(n+3);
-			// 	triangles.Add(n+1);
-			// }
 
 			mesh.SetVertices(verts);
 			mesh.SetIndices(triangles, MeshTopology.Triangles, 0);
