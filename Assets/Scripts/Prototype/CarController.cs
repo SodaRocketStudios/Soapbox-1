@@ -22,9 +22,10 @@ namespace Soap.Prototype
 
 		private void Update()
 		{
+			float torque = ers.UseERS(accelerationInput);
 			foreach(Wheel wheel in wheels)
 			{
-				wheel.Accelerate(ers.UseERS(accelerationInput));
+				wheel.Accelerate(torque);
 			}
 		}
 

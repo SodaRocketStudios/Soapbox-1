@@ -26,8 +26,6 @@ namespace Soap.Prototype
 			get => charge/100;
 		}
 
-		private bool isActive = false;
-
 		private void Start()
 		{
 			carRigidbody = GetComponent<Rigidbody>();
@@ -36,8 +34,6 @@ namespace Soap.Prototype
 #if UNITY_EDITOR
 		private void OnValidate()
 		{
-			// Keyframe tempKey;
-
 			int peakIndex;
 
 			torqueCurve.ClearKeys();
@@ -52,41 +48,25 @@ namespace Soap.Prototype
 		}
 #endif
 
-		private void Update()
-		{
-			if(isActive)
-			{
-				if(charge <= 0)
-				{
-					charge = Mathf.Max(charge, 0);
-					return;
-				}
-
-				charge -= dischargeRate*Time.deltaTime;
-				return;
-			}
-
-			charge += 10*Time.deltaTime;
-			charge = Mathf.Min(charge, 100);
-		}
-
 		public float UseERS(float inputValue)
 		{
 			if(inputValue == 0)
 			{
-				isActive = false;
+				charge += 5*Time.deltaTime;
+				charge = Mathf.Min(charge, 100);
+				return 0;
+			}
+
+			if(charge <= 0)
+			{
+				charge = Mathf.Max(charge, 0);
 				return 0;
 			}
 
 			float velocity = Vector3.Dot(carRigidbody.velocity, transform.forward);
 
-			isActive = true;
-
-			if(charge <= 0)
-			{
-				return 0;
-			}
-
+			charge -= dischargeRate*Time.deltaTime*inputValue;
+			Debug.Log($"{Time.realtimeSinceStartup}: {charge}");
 			return torqueCurve.Evaluate(velocity)*inputValue;
 		}
 	}
