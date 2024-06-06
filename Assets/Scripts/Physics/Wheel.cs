@@ -182,7 +182,7 @@ namespace Soap.Physics
 
 		private void HandleAcceleration()
 		{
-			float wheelAcceleration = driveTorque/(Radius*tireProfile.Mass); // TODO -- limit in a way similar to a real engine.
+			float wheelAcceleration = driveTorque/(Radius*tireProfile.Mass);
 
 			wheelSpeed += wheelAcceleration;
 		}
