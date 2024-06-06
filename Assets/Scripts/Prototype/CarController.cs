@@ -22,7 +22,7 @@ namespace Soap.Prototype
 
 		private void Update()
 		{
-			float torque = 0;
+			float torque;
 			if(accelerationInput > 0)
 			{
 				torque = mguk.Deploy(accelerationInput);

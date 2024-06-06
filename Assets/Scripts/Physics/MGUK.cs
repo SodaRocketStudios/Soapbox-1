@@ -33,6 +33,8 @@ namespace Soap.Physics
 			get => charge/MAX_CHARGE;
 		}
 
+		private bool depleted = false;
+
 		private Rigidbody carRigidbody;
 
 		private float speed;
@@ -66,8 +68,16 @@ namespace Soap.Physics
 
 		public float Deploy(float inputValue)
 		{
+			if(depleted)
+			{
+				float torque = Recharge();
+				depleted = true;
+				return torque;
+			}
+
 			if(charge <= 0) // TODO -- Think about a way to automatically disable ERS until the player releases entirely. Probably just a bool.
 			{
+				depleted = true;
 				charge = Mathf.Max(charge, 0);
 				return 0;
 			}
@@ -78,6 +88,7 @@ namespace Soap.Physics
 
 		public float Recharge()
 		{
+			depleted = false;
 			float rechargeAmount = maxRechargeRate*speed/maxRechargeSpeed;
 			rechargeAmount = Math.Min(rechargeAmount, maxRechargeRate);
 			charge += rechargeAmount*Time.deltaTime;
