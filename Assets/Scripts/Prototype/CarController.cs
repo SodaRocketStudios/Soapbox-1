@@ -9,7 +9,7 @@ namespace Soap.Prototype
 		private Wheel[] wheels;
 		private AeroSurface[] aeroSurfaces;
 
-		private ProtoERS ers;
+		private MGUK mguk;
 
 		private float accelerationInput;
 
@@ -17,12 +17,21 @@ namespace Soap.Prototype
 		{
 			wheels = GetComponentsInChildren<Wheel>();
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
-			ers = GetComponent<ProtoERS>();
+			mguk = GetComponent<MGUK>();
 		}
 
 		private void Update()
 		{
-			float torque = ers.UseERS(accelerationInput);
+			float torque = 0;
+			if(accelerationInput > 0)
+			{
+				torque = mguk.Deploy(accelerationInput);
+			}
+			else
+			{
+				torque = mguk.Recharge();
+			}
+
 			foreach(Wheel wheel in wheels)
 			{
 				wheel.Accelerate(torque);

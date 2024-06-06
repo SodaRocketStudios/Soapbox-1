@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Soap.Physics;
 
 namespace Soap.Prototype
 {
 	public class ProtoERSGauge : MonoBehaviour
 	{
-		[SerializeField] private ProtoERS ers;
+		[SerializeField] private MGUK mguk;
 		private Slider slider;
 
 		private void Awake()
@@ -15,7 +16,7 @@ namespace Soap.Prototype
 
 		private void Update()
 		{
-			slider.value = ers.chargeAmount;
+			slider.value = mguk.chargeAmount;
 		}
 	}
 }
