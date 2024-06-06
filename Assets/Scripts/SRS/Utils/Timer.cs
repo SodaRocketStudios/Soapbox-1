@@ -19,7 +19,7 @@ namespace SRS.Utils
 			Updater.AddUpdateCallback(Update);
 		}
 
-		public void Update(float deltaTime)
+		private void Update(float deltaTime)
 		{
 			if(IsRunning)
 			{
