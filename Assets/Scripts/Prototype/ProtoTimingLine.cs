@@ -26,8 +26,6 @@ namespace Soap.Prototype
 				recordTime = time;
 			}
 
-			Debug.Log("Timing Line");
-
 			OnEnter.Invoke(time);
 		}
 	}

@@ -8,9 +8,15 @@ namespace SRS.Utils
 		public UnityEvent<float> OnPause;
 		public UnityEvent<float> OnStop;
 
-		public float Time{ get; private set;} = 0;
+		public float Time{get; private set;}
 
-		public bool IsRunning{ get; private set; } = false;
+		public bool IsRunning{get; private set;}
+
+		public Timer()
+		{
+			IsRunning = false;
+			Time = 0;
+		}
 
 		public void Update(float deltaTime)
 		{

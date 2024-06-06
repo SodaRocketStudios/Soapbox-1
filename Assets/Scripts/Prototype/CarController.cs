@@ -20,7 +20,7 @@ namespace Soap.Prototype
 			mguk = GetComponent<MGUK>();
 		}
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			float torque;
 			if(accelerationInput > 0)

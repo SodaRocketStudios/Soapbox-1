@@ -37,8 +37,6 @@ namespace Soap.Physics
 
 		private Rigidbody carRigidbody;
 
-		private float speed;
-
 		private void Start()
 		{
 			carRigidbody = GetComponent<Rigidbody>();
@@ -61,11 +59,6 @@ namespace Soap.Physics
 		}
 #endif
 
-		private void FixedUpdate()
-		{
-			speed = Mathf.Abs(Vector3.Dot(carRigidbody.velocity, transform.forward));
-		}
-
 		public float Deploy(float inputValue)
 		{
 			if(depleted)
@@ -82,24 +75,27 @@ namespace Soap.Physics
 				return 0;
 			}
 
+			float speed = Mathf.Abs(Vector3.Dot(carRigidbody.velocity, transform.forward));
+
 			charge -= dischargeRate*Time.deltaTime*inputValue;
 			return torqueCurve.Evaluate(speed)*inputValue;
 		}
 
 		public float Recharge()
 		{
-			depleted = false;
+			if(charge >= MAX_CHARGE)
+			{
+				return 0;
+			}
+
+			float speed = Mathf.Abs(Vector3.Dot(carRigidbody.velocity, transform.forward));
 			
 			float rechargeAmount = maxRechargeRate*speed/maxRechargeSpeed;
 			rechargeAmount = Math.Min(rechargeAmount, maxRechargeRate);
 
-			charge += rechargeAmount*Time.deltaTime;
+			charge = Mathf.Min(charge + rechargeAmount*Time.deltaTime, MAX_CHARGE);
 
-			if(charge >= MAX_CHARGE)
-			{
-				charge = MAX_CHARGE;
-				return 0;
-			}
+			depleted = false;
 
 			return -rollingResistanceTorque*speed/maxVelocity;
 		}
