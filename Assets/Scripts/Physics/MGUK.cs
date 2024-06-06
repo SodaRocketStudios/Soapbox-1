@@ -75,7 +75,7 @@ namespace Soap.Physics
 				return torque;
 			}
 
-			if(charge <= 0) // TODO -- Think about a way to automatically disable ERS until the player releases entirely. Probably just a bool.
+			if(charge <= 0)
 			{
 				depleted = true;
 				charge = Mathf.Max(charge, 0);
@@ -89,10 +89,18 @@ namespace Soap.Physics
 		public float Recharge()
 		{
 			depleted = false;
+			
 			float rechargeAmount = maxRechargeRate*speed/maxRechargeSpeed;
 			rechargeAmount = Math.Min(rechargeAmount, maxRechargeRate);
+
 			charge += rechargeAmount*Time.deltaTime;
-			charge = Mathf.Min(charge, 100);
+
+			if(charge >= MAX_CHARGE)
+			{
+				charge = MAX_CHARGE;
+				return 0;
+			}
+
 			return -rollingResistanceTorque*speed/maxVelocity;
 		}
 	}
