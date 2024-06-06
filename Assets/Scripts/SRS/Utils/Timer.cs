@@ -19,14 +19,6 @@ namespace SRS.Utils
 			Updater.AddUpdateCallback(Update);
 		}
 
-		private void Update(float deltaTime)
-		{
-			if(IsRunning)
-			{
-				Time += deltaTime;
-			}
-		}
-
 		public void Start()
 		{
 			IsRunning = true;
@@ -44,6 +36,14 @@ namespace SRS.Utils
 			IsRunning = false;
 			Time = 0;
 			OnStop.Invoke(Time);
+		}
+
+		private void Update(float deltaTime)
+		{
+			if(IsRunning)
+			{
+				Time += deltaTime;
+			}
 		}
 	}
 }
