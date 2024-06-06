@@ -16,6 +16,7 @@ namespace SRS.Utils
 		{
 			IsRunning = false;
 			Time = 0;
+			Updater.AddUpdateCallback(Update);
 		}
 
 		public void Update(float deltaTime)
