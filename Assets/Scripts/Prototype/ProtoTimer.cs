@@ -5,6 +5,7 @@ namespace Soap.Prototype
 	public class ProtoTimer
 	{
 		public UnityEvent OnStart;
+		public UnityEvent<float> OnPause;
 		public UnityEvent<float> OnStop;
 
 		private float time;
@@ -31,7 +32,8 @@ namespace Soap.Prototype
 
 		public void Pause()
 		{
-
+			isRunning = false;
+			OnPause.Invoke(time);
 		}
 
 		public void Stop()
