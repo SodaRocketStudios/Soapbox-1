@@ -1,41 +1,42 @@
-using UnityEngine.Events;
+using System;
+using SRS.Utils.Observables;
 
-namespace SRS.Utils
+namespace SRS.Utils.Timing
 {
 	public class Timer
 	{
-		public UnityEvent OnStart;
-		public UnityEvent<float> OnPause;
-		public UnityEvent<float> OnStop;
+		public Action OnStart;
+		public Action<float> OnPause;
+		public Action<float> OnStop;
 
-		public float Time{get; private set;}
+		public ObservableValue<float> Time{get; private set;}
 
 		public bool IsRunning{get; private set;}
 
 		public Timer()
 		{
 			IsRunning = false;
-			Time = 0;
+			Time =  new ObservableValue<float>();
 			Updater.AddUpdateCallback(Update);
 		}
 
 		public void Start()
 		{
 			IsRunning = true;
-			OnStart.Invoke();
+			OnStart?.Invoke();
 		}
 
 		public void Pause()
 		{
 			IsRunning = false;
-			OnPause.Invoke(Time);
+			OnPause?.Invoke(Time);
 		}
 
 		public void Stop()
 		{
 			IsRunning = false;
-			Time = 0;
-			OnStop.Invoke(Time);
+			Time.SetValue(0);
+			OnStop?.Invoke(Time);
 		}
 
 		private void Update(float deltaTime)

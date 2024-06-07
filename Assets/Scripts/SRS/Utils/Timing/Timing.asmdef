@@ -1,0 +1,17 @@
+{
+    "name": "Timing",
+    "rootNamespace": "SRS.Utils.Timing",
+    "references": [
+        "GUID:2c0cf0499af9d4f4d8be37ce10a4d9c3",
+        "GUID:1eea44144df89dd45a9d2d5cca127473"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
