@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SRS.Utils.Observables
 {
-	public class ObservableValue<T> where T : struct
+	public class ObservableValue<T>
 	{
 		public Action<T> OnChange;
 
@@ -17,7 +17,7 @@ namespace SRS.Utils.Observables
 			}
 			set
 			{
-				if(EqualityComparer<T>.Default.Equals(_value, value))
+				if(!EqualityComparer<T>.Default.Equals(_value, value))
 				{
 					_value = value;
 					OnChange?.Invoke(_value);
@@ -36,6 +36,14 @@ namespace SRS.Utils.Observables
 		}
 
 		public static ObservableValue<T> operator +(ObservableValue<T> observable, T value)
+		{
+			dynamic currentValue = observable.Value;
+			dynamic additionValue = value;
+			observable.Value = currentValue + additionValue;
+			return observable;
+		}
+
+		public static ObservableValue<T> operator +(T value, ObservableValue<T> observable)
 		{
 			dynamic currentValue = observable.Value;
 			dynamic additionValue = value;

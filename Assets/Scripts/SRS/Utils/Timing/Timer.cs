@@ -16,7 +16,7 @@ namespace SRS.Utils.Timing
 		public Timer()
 		{
 			IsRunning = false;
-			Time =  new ObservableValue<float>();
+			Time = new();
 			Updater.AddUpdateCallback(Update);
 		}
 
