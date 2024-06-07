@@ -33,7 +33,14 @@ namespace Soap.Prototype
 
 		private void UpdateDisplay(float time)
 		{
-			textBox.text = time.ToString("F3");
+			int minutes = (int)time/60;
+			float seconds = time - minutes*60;
+			if(minutes <= 0)
+			{
+				textBox.text = $"{seconds:F3}";
+				return;
+			}
+			textBox.text = $"{minutes}:{seconds:F3}";
 		}
 	}
 }
