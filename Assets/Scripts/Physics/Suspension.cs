@@ -45,6 +45,8 @@ namespace Soap.Physics
 					length = 0;
 				}
 
+				Debug.DrawLine(transform.position, hit.point, Color.green);
+
 				wheel.SetGrounded(true);
 				wheel.SetLoad(suspensionForce);
 				wheel.SetPosition(transform.position - transform.up*length);
