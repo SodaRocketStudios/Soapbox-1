@@ -36,6 +36,11 @@ namespace Soap.Prototype
 			timer.Pause();
 		}
 
+		public void Reset()
+		{
+			timer.Reset();
+		}
+
 		private void UpdateDisplay(float time)
 		{
 			int minutes = (int)time/60;

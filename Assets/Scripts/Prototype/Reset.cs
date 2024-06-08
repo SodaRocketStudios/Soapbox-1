@@ -1,3 +1,4 @@
+using Soap.Physics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,27 +6,37 @@ namespace Soap.Prototype
 {
 	public class Reset : MonoBehaviour
 	{
-		[SerializeField] private Transform carTransform;
+		[SerializeField] private ProtoTimeDisplay timeDisplay;
+
 		private Rigidbody carRigidbody;
+
+		private MGUK mguk;
 
 		private Vector3 startLocation;
 		private Quaternion startRotation;
 
 		private void Start()
 		{
-			startLocation = carTransform.position;
-			startRotation = carTransform.rotation;
-			carRigidbody = carTransform.GetComponent<Rigidbody>();
+			startLocation = transform.position;
+			startRotation = transform.rotation;
+
+			carRigidbody = transform.GetComponent<Rigidbody>();
+
+			mguk = GetComponent<MGUK>();
 		}
 
-		public void ResetPosition(InputAction.CallbackContext context)
+		public void ResetToStart(InputAction.CallbackContext context)
 		{
 			if(context.performed)
 			{
-				carTransform.position = startLocation;
-				carTransform.rotation = startRotation;
+				transform.position = startLocation;
+				transform.rotation = startRotation;
 				carRigidbody.velocity = Vector3.zero;
 				carRigidbody.angularVelocity = Vector3.zero;
+
+				mguk.Reset();
+
+				timeDisplay.Reset();
 			}
 		}
 

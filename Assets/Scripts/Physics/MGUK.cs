@@ -99,5 +99,10 @@ namespace Soap.Physics
 
 			return -rollingResistanceTorque*speed/maxVelocity;
 		}
+
+		public void Reset()
+		{
+			charge = MAX_CHARGE;
+		}
 	}
 }
