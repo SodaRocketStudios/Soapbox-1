@@ -17,6 +17,7 @@ namespace SRS.Utils.Timing
 		{
 			IsRunning = false;
 			Time = new();
+			Reset();
 			Updater.AddUpdateCallback(Update);
 		}
 
