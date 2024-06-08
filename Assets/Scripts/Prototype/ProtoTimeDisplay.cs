@@ -33,7 +33,7 @@ namespace Soap.Prototype
 
 		public void StopTimer()
 		{
-			timer.Stop();
+			timer.Pause();
 		}
 
 		private void UpdateDisplay(float time)

@@ -34,9 +34,14 @@ namespace SRS.Utils.Timing
 
 		public void Stop()
 		{
+			Reset();
+			OnStop?.Invoke(Time);
+		}
+
+		public void Reset()
+		{
 			IsRunning = false;
 			Time.SetValue(0);
-			OnStop?.Invoke(Time);
 		}
 
 		private void Update(float deltaTime)
