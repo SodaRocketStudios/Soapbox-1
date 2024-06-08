@@ -34,13 +34,13 @@ namespace SRS.Utils.Timing
 
 		public void Stop()
 		{
+			IsRunning = false;
 			Reset();
 			OnStop?.Invoke(Time);
 		}
 
 		public void Reset()
 		{
-			IsRunning = false;
 			Time.SetValue(0);
 		}
 
