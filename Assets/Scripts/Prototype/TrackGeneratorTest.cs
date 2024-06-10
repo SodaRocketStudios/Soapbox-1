@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
-using System.Linq;
+
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -155,18 +157,9 @@ namespace Soap.Prototype
 			bool foldCatch = false;
 
 			List<int> foldIndices = new();
+			List<Vector3> foldPositions = new();
 
-			int index = 0;
-
-			Vector3 foldStartPosition = new();
-			Vector3 foldAveragePosition = new();
-
-			int smoothCounter = apexSmoothingSteps;
-			bool smoothComplete = true;
-
-			List<int> smoothIndices = new();
-
-			for(int i = 0; i <= steps; i++)
+			for(int i = 0, index = 0; i <= steps; i++, index += 2)
 			{
 				float t = stepSize * i;
 
@@ -180,156 +173,76 @@ namespace Soap.Prototype
 
 				int inside = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
 
+				Vector3 leftDirection = -right;
+				Vector3 rightDirection = right;
+
+				if(inside < 0)
+				{
+					// adjust left vert
+					// leftDirection = Quaternion.AngleAxis(-maxRoll*curvature, direction) * leftDirection;
+				}
+				else
+				{
+					// adjust right vert
+					// rightDirection = Quaternion.AngleAxis(maxRoll*curvature, direction) * rightDirection;
+				}
+
+				verts.Add(position + leftDirection * width / 2);
+				verts.Add(position + rightDirection * width / 2);
+
 				if(1/curvature < width)
 				{
 					if(foldCatch == false)
 					{
 						// fold start
+
 						foldCatch = true;
 						foldIndices.Clear();
-						foldStartPosition = position + inside * right * width / 2;
+						foldPositions.Clear();
 					}
 
-					verts.Add(position - inside * right * width / 2);
-					foldIndices.Add(index);
-					index++;
+					foldPositions.Add(pos);
 
-					// Debug.DrawLine(position, position + side*right*width, Color.magenta, 20);
-					// Debug.DrawLine(position, position - side*right*width, Color.green, 20);
-
-					continue;
-				}
-
-				if(foldCatch == true)
-				{
-					// fold end
-					foldCatch = false;
-					Vector3 foldEndPosition = position + inside * right * width / 2;
-					foldAveragePosition = (foldEndPosition + foldStartPosition)/2;
-
-					smoothCounter = 0;
-					smoothComplete = false;
-					smoothIndices.Clear();
-
-					verts.Add(foldAveragePosition);
-					foldIndices.Add(index);
-					triangles[triangles.Count - 1] = index;
 					if(inside < 0)
 					{
-						triangles[triangles.Count - 1] = foldIndices[0];
-						triangles[triangles.Count - 2] = index;
-						triangles[triangles.Count - 6] = index;
-					}
-					index++;	
-
-					for(int j = 0; j < foldIndices.Count - 2; j++)
-					{
-						if(inside > 0)
-						{
-							triangles.Add(foldIndices[j]);
-							triangles.Add(foldIndices[j+1]);
-							triangles.Add(foldIndices.Last());
-						}
-						else
-						{
-							triangles.Add(foldIndices[j]);
-							triangles.Add(foldIndices.Last());
-							triangles.Add(foldIndices[j+1]);
-						}
-
-						// Debug.DrawLine(verts[triangles[triangles.Count - 1]], verts[foldIndices.Last()], Color.red, 20);
-					}
-
-					if(inside > 0)
-					{
-						triangles.Add(index);
-						triangles.Add(index - 1);
-						triangles.Add(index - 2);
+						foldIndices.Add(index);
 					}
 					else
 					{
-						triangles.Add(index - 2);
-						triangles.Add(index - 1);
-						triangles.Add(index + 1);
-					}
-
-					triangles.Add(index - 1);
-					triangles.Add(index);
-					triangles.Add(index + 1);
-
-					Vector3 smoothStartPosition = new();
-
-					for(int j = apexSmoothingSteps - 1; j >= 0; j--)
-					{
-						int smoothIndex = foldIndices[0] - 2*j - 1;
-						if(Vector3.Distance(verts[smoothIndex], verts[foldIndices.Last()]) > width)
-						{
-							smoothIndex -= 1;
-						}
-
-						Vector3 vert = verts[smoothIndex];
-
-						if(j == apexSmoothingSteps - 1)
-						{
-							smoothStartPosition = vert;
-						}
-
-						vert = Vector3.Lerp(foldAveragePosition, smoothStartPosition, (j + 1.0f)/apexSmoothingSteps);
-
-						verts[smoothIndex] = vert;
-
-						Debug.DrawLine(vert, verts[foldIndices[0]], Color.red, 20);
+						foldIndices.Add(index + 1);
 					}
 				}
 
-				verts.Add(position - right*width/2);
-				verts.Add(position + right*width/2);
-				index += 2;
-				// Debug.DrawLine(verts.Last(), verts[verts.Count - 2], Color.green, 20);
-				if(verts.Count > 2)
+				else if(foldCatch == true)
 				{
-					// Debug.DrawLine(verts[verts.Count - 2], verts[verts.Count - 3], Color.green, 20);
-				}
+					// fold end
 
-				if(smoothCounter < apexSmoothingSteps)
-				{
-					int smoothIndex = index - 1;
-					if(Vector3.Distance(verts[smoothIndex], verts[foldIndices.Last()]) > width)
+					foldCatch = false;
+					
+					Vector3 startPosition = verts[foldIndices[0]];
+					Vector3 endPosition = verts[foldIndices.Last()];
+
+					float startHeight = verts[foldIndices[0]].y;
+					float endHeight = verts[foldIndices.Last()].y;
+
+					for(int j = 0; j < foldIndices.Count; j++)
 					{
-						smoothIndex -= 1;
-					}
-
-					smoothIndices.Add(smoothIndex);
-
-					smoothCounter++;
-				}
-				else if(smoothComplete == false)
-				{
-					Vector3 endPosition = verts[smoothIndices.Last()];
-
-					for(int j = 0; j < apexSmoothingSteps; j++)
-					{
-						Vector3 vert = verts[smoothIndices[j]];
-
-						vert = Vector3.Lerp(foldAveragePosition, endPosition, (j + 1.0f)/apexSmoothingSteps);
-
-						verts[smoothIndices[j]] = vert;
+						Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, j*1.0f/foldIndices.Count);
+						// Debug.DrawLine(verts[foldIndices[j]], newPosition, Color.red, 10);
+						verts[foldIndices[j]] = newPosition;
 					}
 				}
 
 				if(i < steps)
 				{
-					triangles.Add(index);
-					triangles.Add(index - 1);
-					triangles.Add(index - 2);
-
-					triangles.Add(index - 1);
-					triangles.Add(index);
+					triangles.Add(index + 2);
 					triangles.Add(index + 1);
-				}
+					triangles.Add(index);
 
-				// Debug.DrawLine(position, position - right*width/2, Color.blue, 20);
-				// Debug.DrawLine(position, position + right*width/2, Color.red, 20);
+					triangles.Add(index + 1);
+					triangles.Add(index + 2);
+					triangles.Add(index + 3);
+				}
 			}
 
 			mesh.SetVertices(verts);
