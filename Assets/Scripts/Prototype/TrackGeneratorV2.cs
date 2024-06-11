@@ -1,77 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Splines;
 using Unity.Mathematics;
-
-
-
-#if UNITY_EDITOR
-using UnityEditor;
-using UnityEditor.Splines;
-#endif
+using UnityEngine.Splines;
 
 namespace Soap.Prototype
 {
-	[ExecuteInEditMode]
-	[RequireComponent(typeof(MeshCollider))]
-	[RequireComponent(typeof(SplineContainer), typeof(MeshFilter), typeof(MeshRenderer))]
-	public class TrackGeneratorTest : MonoBehaviour
+	public class TrackGeneratorV2 : MonoBehaviour
 	{
-		[SerializeField] private SplineContainer splineContainer;
+		[SerializeField, Min(0)] private float slope;
+		[SerializeField, Min(0.1f)] private float width;
+		[SerializeField, Min(0)] private float maxRoll;
+		[SerializeField] private int resolution;
 
-		[Tooltip("The slope of the track in degrees")]
-		[SerializeField] private float slope;
+		private SplineContainer splineContainer;
 
-		[SerializeField] private float maxRoll = 0;
+        private Mesh mesh;
 
-		[SerializeField] private float resolution;
-		[SerializeField] private int apexSmoothingSteps;
+		private float curvatureNormalization;
 
-		[SerializeField] private float width = 1;
-
-		private Mesh mesh;
-
-		private float curvatureNormaization;
-
-		private void OnValidate()
+        private void OnValidate()
 		{
-			if(mesh == null)
-			{
-				mesh = new Mesh();
-			}
-
-			UpdateSpline();
+			splineContainer = GetComponent<SplineContainer>();
 		}
 
-		private void OnEnable()
-		{
-			mesh = new();
-
-#if UNITY_EDITOR
-			EditorSplineUtility.AfterSplineWasModified += OnSplineModified;
-			Undo.undoRedoPerformed += UpdateSpline;
-#endif
-
-			UpdateSpline();
-		}
-
-		private void OnDisable()
-		{
-			if (mesh != null)
-#if  UNITY_EDITOR
-                DestroyImmediate(mesh);
-#else
-                Destroy(mesh);
-#endif
-
-#if UNITY_EDITOR
-			EditorSplineUtility.AfterSplineWasModified -= OnSplineModified;
-			Undo.undoRedoPerformed -= UpdateSpline;
-#endif
-		}
-
-        private void SetSlope()
+		[ContextMenu("Set Slope")]
+		private void SetSlope()
         {
 			int numberOfCurves = splineContainer.Spline.GetCurveCount();
 
@@ -109,7 +63,7 @@ namespace Soap.Prototype
 				curvatures[i] = splineContainer.Spline.EvaluateCurvature(t);
 				curveCenters[i] = (Vector3)splineContainer.Spline.EvaluateCurvatureCenter(t);
 
-				curvatureNormaization = Mathf.Max(curvatures[i], curvatureNormaization);
+				curvatureNormalization = Mathf.Max(curvatures[i], curvatureNormalization);
 			}
 
             for (int i = 0; i < numberOfCurves; i++)
@@ -131,7 +85,7 @@ namespace Soap.Prototype
 
 				Vector3 right = rotation*Vector3.right.normalized;
 
-				float roll = -curvatures[i] * Mathf.Sign(Vector3.Dot(right, curveCenters[i] - (Vector3)knot.Position)) * maxRoll / curvatureNormaization;
+				float roll = -curvatures[i] * Mathf.Sign(Vector3.Dot(right, curveCenters[i] - (Vector3)knot.Position)) * maxRoll / curvatureNormalization;
 
 				// eulerRotation.z = roll;
 
@@ -173,22 +127,8 @@ namespace Soap.Prototype
 
 				int inside = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
 
-				Vector3 leftDirection = -right;
-				Vector3 rightDirection = right;
-
-				if(inside < 0)
-				{
-					// adjust left vert
-					leftDirection = Quaternion.AngleAxis(-maxRoll*curvature*2f, direction) * leftDirection;
-				}
-				else
-				{
-					// adjust right vert
-					rightDirection = Quaternion.AngleAxis(maxRoll*curvature*2f, direction) * rightDirection;
-				}
-
-				verts.Add(position + leftDirection * width / 2);
-				verts.Add(position + rightDirection * width / 2);
+				verts.Add(position  -right * width / 2);
+				verts.Add(position + right * width / 2);
 
 				if(1/curvature < width)
 				{
@@ -242,30 +182,6 @@ namespace Soap.Prototype
 					triangles.Add(index + 3);
 				}
 			}
-
-			for(int i = 0; i < verts.Count; i += 2)
-			{
-				Debug.DrawLine(verts[i], verts[i + 1], Color.green, 10);
-			}
-
-			mesh.SetVertices(verts);
-			mesh.SetIndices(triangles, MeshTopology.Triangles, 0);
-
-			GetComponent<MeshFilter>().sharedMesh = mesh;
-			GetComponent<MeshCollider>().sharedMesh = mesh;
 		}
-
-		private void OnSplineModified(Spline spline)
-		{
-			UpdateSpline();
-		}
-
-		[ContextMenu("Update Mesh")]
-		private void UpdateSpline()
-		{
-			SetSlope();
-
-			GenerateMesh();
-		}
-    }
+	}
 }
