@@ -243,10 +243,10 @@ namespace Soap.Prototype
 				}
 			}
 
-			for(int i = 0; i < verts.Count; i += 2)
-			{
-				Debug.DrawLine(verts[i], verts[i + 1], Color.green, 10);
-			}
+			// for(int i = 0; i < verts.Count; i += 2)
+			// {
+			// 	Debug.DrawLine(verts[i], verts[i + 1], Color.green, 10);
+			// }
 
 			mesh.SetVertices(verts);
 			mesh.SetIndices(triangles, MeshTopology.Triangles, 0);

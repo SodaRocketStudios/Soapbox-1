@@ -12,6 +12,7 @@ namespace Soap.Prototype
 		[SerializeField, Min(0.1f)] private float width;
 		[SerializeField, Min(0)] private float maxRoll;
 		[SerializeField] private int resolution;
+		[SerializeField] private SplineData<float> heightData;
 
 		private SplineContainer splineContainer;
 
@@ -22,6 +23,24 @@ namespace Soap.Prototype
         private void OnValidate()
 		{
 			splineContainer = GetComponent<SplineContainer>();
+		}
+
+		[ContextMenu("Flatten")]
+		private void Flatten()
+		{
+			foreach(Spline spline in splineContainer.Splines)
+			{
+				for (int i = 1; i < spline.Count; i++)
+				{
+					BezierKnot knot = spline[i];
+					knot.Position.y = 0;
+					Quaternion rotation = knot.Rotation;
+					Vector3 eulerRotation = new Vector3(0, rotation.eulerAngles.y, 0);
+					rotation.eulerAngles = eulerRotation;
+					knot.Rotation = rotation;
+					spline.SetKnot(i, knot);
+				}
+			}
 		}
 
 		[ContextMenu("Set Slope")]
@@ -96,79 +115,34 @@ namespace Soap.Prototype
             }
         }
 
+		[ContextMenu("Generate Mesh")]
 		private void GenerateMesh()
 		{
+			mesh = new();
 			mesh.Clear();
 
-			float length = splineContainer.Spline.GetLength();
+			Spline leftSpline = splineContainer.Splines[0];
+			Spline rightSpline = splineContainer.Splines[1];
+
+			float length = Mathf.Max(leftSpline.GetLength(), rightSpline.GetLength());
 			int segments = Mathf.CeilToInt(resolution*length);
 			int steps = segments + 1;
 			float stepSize = 1f/steps;
+			
 
 			List<Vector3> verts = new();
 			List<int> triangles = new();
-
-			bool foldCatch = false;
-
-			List<int> foldIndices = new();
-			List<Vector3> foldPositions = new();
 
 			for(int i = 0, index = 0; i <= steps; i++, index += 2)
 			{
 				float t = stepSize * i;
 
-				splineContainer.Spline.Evaluate(t, out float3 pos, out float3 direction, out float3 normal);
-				Vector3 position = pos;
+				leftSpline.Evaluate(t, out float3 leftPosition, out float3 leftDirection, out float3 leftNormal);
+				rightSpline.Evaluate(t, out float3 rightPosition, out float3 rightDirection, out float3 rightNormal);
 
-				float curvature = splineContainer.Spline.EvaluateCurvature(t);
-				Vector3 curveCenter = splineContainer.Spline.EvaluateCurvatureCenter(t);
-
-				Vector3 right = math.normalizesafe(math.cross(normal, direction));
-
-				int inside = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
-
-				verts.Add(position  -right * width / 2);
-				verts.Add(position + right * width / 2);
-
-				if(1/curvature < width)
-				{
-					// On fold start
-					if(foldCatch == false)
-					{
-						foldCatch = true;
-						foldIndices.Clear();
-						foldPositions.Clear();
-					}
-
-					foldPositions.Add(pos);
-
-					if(inside < 0)
-					{
-						foldIndices.Add(index);
-					}
-					else
-					{
-						foldIndices.Add(index + 1);
-					}
-				}
-				// On fold end
-				else if(foldCatch == true)
-				{
-					foldCatch = false;
-					
-					Vector3 startPosition = verts[foldIndices[0]];
-					Vector3 endPosition = verts[foldIndices.Last()];
-
-					float startHeight = verts[foldIndices[0]].y;
-					float endHeight = verts[foldIndices.Last()].y;
-
-					for(int j = 0; j < foldIndices.Count; j++)
-					{
-						Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, j*1.0f/foldIndices.Count);
-						// Debug.DrawLine(verts[foldIndices[j]], newPosition, Color.red, 10);
-						verts[foldIndices[j]] = newPosition;
-					}
-				}
+				verts.Add(leftPosition);
+				verts.Add(rightPosition);
+				Debug.DrawLine(leftPosition, rightPosition, Color.green, 60);
 
 				// Build triangles
 				if(i < steps)
@@ -182,6 +156,12 @@ namespace Soap.Prototype
 					triangles.Add(index + 3);
 				}
 			}
+
+			mesh.SetVertices(verts);
+			mesh.SetIndices(triangles, MeshTopology.Triangles, 0);
+
+			GetComponent<MeshFilter>().sharedMesh = mesh;
+			GetComponent<MeshCollider>().sharedMesh = mesh;
 		}
 	}
 }
