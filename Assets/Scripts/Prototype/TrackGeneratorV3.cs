@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
 using Unity.Mathematics;
+using SRS.Extensions.Vector;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -78,87 +79,74 @@ namespace Soap.Prototype
 
 			List<Vector3> verts = new();
 			List<int> triangles = new();
-
-			float drop = -Mathf.Sin(slope*Mathf.Deg2Rad);
 			
-			bool foldCatch = false;
+			float drop = -Mathf.Sin(slope*Mathf.Deg2Rad);
 
-			List<int> foldIndices = new();
-			List<Vector3> foldPositions = new();
+			bool foldCatch = false;
+			
+			int foldStartIndex = 0;
+			int foldEndIndex = 0;
+
+			bool correctingCorner = false;
+
+			Spline spline = splineContainer.Spline;
 
 			for(int i = 0, index = 0; i <= steps; i++, index += 2)
 			{
 				float t = stepSize * i;
 
-				splineContainer.Spline.Evaluate(t, out float3 pos, out float3 direction, out float3 normal);
+				spline.Evaluate(t, out float3 pos, out float3 direction, out float3 normal);
 				Vector3 position = pos;
 				Vector3 right = math.normalizesafe(math.cross(normal, direction));
 
-				float curvature = splineContainer.Spline.EvaluateCurvature(t);
-				Vector3 curveCenter = splineContainer.Spline.EvaluateCurvatureCenter(t);
+				float curvature = spline.EvaluateCurvature(t);
+				Vector3 curveCenter = spline.EvaluateCurvatureCenter(t);
 
 				Vector3 leftPosition = position - right * width / 2;
 				Vector3 rightPosition = position + right * width / 2;
 
 				int inside = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
 
-				if(index >= 2)
-				{
-					leftPosition.y = verts[index - 2].y;
-					rightPosition.y = verts[index - 1].y;
-					float distance = Mathf.Min(Vector3.Distance(leftPosition, verts[index - 2]), Vector3.Distance(rightPosition, verts[index - 1]));
-					leftPosition.y += distance*drop;
-					rightPosition.y += distance*drop;
-				}
-				
-				if(1/curvature < width)
+				if(1/curvature <= width / 2)
 				{
 					// On fold start
 					if(foldCatch == false)
 					{
 						foldCatch = true;
-						foldIndices.Clear();
-						foldPositions.Clear();
-					}
-
-					if(inside < 0)
-					{
-						foldIndices.Add(index);
-						foldPositions.Add(leftPosition);
-					}
-					else
-					{
-						foldIndices.Add(index + 1);
-						foldPositions.Add(rightPosition);
+						foldStartIndex = inside < 0? index - 2: index - 1;
 					}
 				}
 				// // On fold end
 				else if(foldCatch == true)
 				{
 					foldCatch = false;
-					
-					Vector3 startPosition = foldPositions[0];
-					Vector3 endPosition = foldPositions.Last();
-					endPosition.y = startPosition.y;
-
-					for(int j = 0; j < foldIndices.Count; j++)
-					{
-						Vector3 newPosition = Vector3.Lerp(startPosition, endPosition, j*1.0f/foldIndices.Count);
-						if(j > 0)
-						{
-							newPosition.y = foldPositions[j-1].y;
-							newPosition.y += Vector3.Distance(foldPositions[j - 1], newPosition)*drop;
-							Debug.DrawLine(newPosition, foldPositions[j - 1], Color.red, 10);
-						}
-						verts[foldIndices[j]] = newPosition;
-					}
+					foldEndIndex = inside < 0? index: index + 1;
+					correctingCorner = true;
 				}
-
 
 				verts.Add(leftPosition);
 				verts.Add(rightPosition);
 
-				// Debug.DrawLine(verts[index + 1], verts[index], Color.green, 10);
+				if(correctingCorner == true)
+				{
+					Vector3 stepDirection = verts[foldEndIndex] - verts[foldStartIndex];
+
+					if(Vector3.Dot(stepDirection, direction) > 0)
+					{
+						correctingCorner = false;
+						Vector3 startPosition = verts[foldStartIndex];
+						Vector3 endPosition = verts[foldEndIndex];
+
+						for(int j = foldStartIndex; j <= foldEndIndex; j += 2)
+						{
+							float step = (j - foldStartIndex)*1.0f / (foldEndIndex - foldStartIndex);
+							verts[j] = Vector3.Lerp(startPosition, endPosition, step);
+						}
+					}
+
+					foldStartIndex -= 2;
+					foldEndIndex += 2;
+				}
 
 				if(i < steps)
 				{
@@ -170,6 +158,24 @@ namespace Soap.Prototype
 					triangles.Add(index + 2);
 					triangles.Add(index + 3);
 				}
+			}
+
+			verts[0] = verts[0].XZPlane();
+			verts[1] = verts[1].XZPlane();
+
+			float distance = 0;
+
+			for(int i = 2; i < verts.Count; i += 2)
+			{
+				Vector3 leftPosition = verts[i];
+				Vector3 rightPosition = verts[i+1];
+				distance += Mathf.Min(Vector3.Distance(verts[i-2].XZPlane(), leftPosition.XZPlane()), Vector3.Distance(verts[i-1].XZPlane(), rightPosition.XZPlane()));
+
+				leftPosition.y += distance*drop;
+				rightPosition.y += distance*drop;
+
+				verts[i] = leftPosition;
+				verts[i + 1] = rightPosition;
 			}
 
 			mesh.SetVertices(verts);
