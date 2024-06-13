@@ -15,7 +15,7 @@ namespace Soap.Prototype
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(MeshCollider))]
 	[RequireComponent(typeof(SplineContainer), typeof(MeshFilter), typeof(MeshRenderer))]
-	public class TrackGeneratorV3 : MonoBehaviour
+	public class TrackGenerator : MonoBehaviour
 	{
 
 		[Tooltip("The slope of the track in degrees")]

@@ -6,6 +6,5 @@ namespace SRS.Utils.Observables
 		{
 			return observableValue.Value;
 		}
-
 	}
 }
