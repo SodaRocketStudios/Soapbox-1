@@ -6,7 +6,10 @@ namespace Soap.Prototype
 {
 	public class CarController : MonoBehaviour
 	{
+		[SerializeField, Range(0.5f, 1f)] private float brakeBias;
+
 		private Wheel[] wheels;
+
 		private AeroSurface[] aeroSurfaces;
 
 		private MGUK mguk;
@@ -53,7 +56,7 @@ namespace Soap.Prototype
 			float brakeInput = context.ReadValue<float>();
 			foreach(Wheel wheel in wheels)
 			{
-				wheel.Brake(brakeInput);
+				wheel.Brake(brakeInput, brakeBias);
 			}
 		}
 

@@ -144,9 +144,16 @@ namespace Soap.Physics
 			transform.localEulerAngles = Mathf.Lerp(previousSteerAngle, steerInput*steeringAngle, Mathf.Clamp01(steerTime*steeringSpeed))*Vector3.up;
 		}
 
-		public void Brake(float inputValue)
+		public void Brake(float inputValue, float brakeBias)
 		{
-			brakeInput = inputValue;
+			if(isDriveWheel)
+			{
+				brakeInput = inputValue * (1 - brakeBias);
+			}
+			else
+			{
+				brakeInput = inputValue * brakeBias;
+			}
 		}
 
 		private void HandleBraking(float longitudinalVelocity)

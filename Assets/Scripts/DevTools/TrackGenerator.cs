@@ -10,7 +10,7 @@ using UnityEditor;
 using UnityEditor.Splines;
 #endif
 
-namespace Soap.Prototype
+namespace Soap.DevTools
 {
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(MeshCollider))]
