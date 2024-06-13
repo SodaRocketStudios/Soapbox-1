@@ -30,6 +30,11 @@ namespace SRS.Utils.Observables
 			Value = newValue;
 		}
 
+		public void SetWithoutNotify(T newvalue)
+		{
+			_value = newvalue;
+		}
+
 		public static implicit operator T(ObservableValue<T> observableValue)
 		{
 			return observableValue.Value;
