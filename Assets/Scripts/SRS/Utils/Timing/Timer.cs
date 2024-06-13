@@ -9,7 +9,7 @@ namespace SRS.Utils.Timing
 		public Action<float> OnPause;
 		public Action<float> OnStop;
 
-		public ObservableValue<float> Time{get; private set;}
+		public ObservableFloat Time{get; private set;}
 
 		public bool IsRunning{get; private set;}
 
