@@ -1,34 +1,7 @@
-using System;
-
 namespace SRS.Utils.Observables
 {
-	public class ObservableFloat
+	public class ObservableFloat : ObservableValue<float>
 	{
-		public Action<float> OnChange;
-
-		private float _value;
-
-		public float Value
-		{
-			get
-			{
-				return _value;
-			}
-			set
-			{
-				if(_value != value)
-				{
-					_value = value;
-					OnChange?.Invoke(_value);
-				}
-			}
-		}
-
-		public void SetValue(float newValue)
-		{
-			Value = newValue;
-		}
-
 		public static implicit operator float(ObservableFloat observableValue)
 		{
 			return observableValue.Value;

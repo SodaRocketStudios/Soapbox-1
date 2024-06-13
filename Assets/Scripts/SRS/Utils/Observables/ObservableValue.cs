@@ -34,37 +34,5 @@ namespace SRS.Utils.Observables
 		{
 			return observableValue.Value;
 		}
-
-		public static ObservableValue<T> operator +(ObservableValue<T> observable, T value)
-		{
-			dynamic currentValue = observable.Value;
-			dynamic additionValue = value;
-			observable.Value = currentValue + additionValue;
-			return observable;
-		}
-
-		public static ObservableValue<T> operator +(T value, ObservableValue<T> observable)
-		{
-			dynamic currentValue = observable.Value;
-			dynamic additionValue = value;
-			observable.Value = currentValue + additionValue;
-			return observable;
-		}
-
-		public static ObservableValue<T> operator -(ObservableValue<T> observable, T value)
-		{
-			dynamic currentValue = observable.Value;
-			dynamic subtractionValue = value;
-			observable.Value = currentValue - subtractionValue;
-			return observable;
-		}
-
-		public static ObservableValue<T> operator -(T value, ObservableValue<T> observable)
-		{
-			dynamic currentValue = observable.Value;
-			dynamic subtractionValue = value;
-			observable.Value = subtractionValue - currentValue;
-			return observable;
-		}
 	}
 }
