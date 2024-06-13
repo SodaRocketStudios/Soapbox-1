@@ -17,6 +17,7 @@ namespace Soap.Physics
 		private float steerTime;
 
 		[Header("Other Paramters")]
+		[SerializeField] private float brakeTorque;
 		[SerializeField] private float overrideSpeed = 0;
 		private float overrideSpeedSquared;
 
@@ -65,6 +66,11 @@ namespace Soap.Physics
 				float normalizedSlipAngle = CalculateSlipAngle(planarVelocity, planarHeading) / tireProfile.PeakSlipAngle;
 
 				float normalizedSlipRatio = CalculateSlipRatio(longitudinalVelocity) / tireProfile.PeakSlipRatio;
+
+				if(normalizedSlipRatio <= -1)
+				{
+					Debug.DrawRay(transform.position, Vector3.up*5, Color.red);
+				}
 
 				// Combined slip ------------------------------------------------------------------
 
@@ -158,7 +164,7 @@ namespace Soap.Physics
 
 		private void HandleBraking(float longitudinalVelocity)
 		{
-			float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed*10;
+			float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed*brakeTorque;
 
 			if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(wheelSpeed))
 			{
