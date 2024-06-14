@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Soap.Physics;
+using System.Linq;
 
 namespace Soap.Prototype
 {
 	public class CarController : MonoBehaviour
 	{
 		[SerializeField, Range(0.5f, 1f)] private float brakeBias;
+		
+		[SerializeField, Range(0.5f, 1f)] private float differential;
 
 		private Wheel[] wheels;
+		private Wheel[] driveWheels = new Wheel[2];
 
 		private AeroSurface[] aeroSurfaces;
 
@@ -19,6 +23,7 @@ namespace Soap.Prototype
 		private void Start()
 		{
 			wheels = GetComponentsInChildren<Wheel>();
+			driveWheels = wheels.Where(wheel => wheel.IsDriveWheel).ToArray();
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
 			mguk = GetComponent<MGUK>();
 		}
@@ -26,6 +31,7 @@ namespace Soap.Prototype
 		private void FixedUpdate()
 		{
 			float torque;
+			
 			if(accelerationInput > 0)
 			{
 				torque = mguk.Deploy(accelerationInput);
@@ -35,10 +41,16 @@ namespace Soap.Prototype
 				torque = mguk.Recharge();
 			}
 
-			foreach(Wheel wheel in wheels)
+			// TODO -- figure out how the diff clutch affects the acceleration torque.
+
+			float clutchTorque = 0;
+
+			foreach(Wheel wheel in driveWheels)
 			{
-				wheel.Accelerate(torque);
+				clutchTorque += wheel.Torque;
 			}
+
+			clutchTorque /= 2;
 		}
 
 		public void Steer(InputAction.CallbackContext context)

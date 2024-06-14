@@ -22,7 +22,13 @@ namespace Soap.Physics
 		private float overrideSpeedSquared;
 
 		[SerializeField] private bool isDriveWheel;
+		public bool IsDriveWheel
+		{
+			get => isDriveWheel;
+		}
 		private float driveTorque;
+
+		public float Torque {get; private set;}
 
 		public float Radius
 		{
@@ -105,6 +111,8 @@ namespace Soap.Physics
 				// Longitudinal -------------------------------------------------------------------
 
 				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinedSlip * tireProfile.PeakSlipRatio) * load * transform.forward;
+
+				Torque = longitudinalForce.magnitude * tireProfile.Radius;
 
 				Debug.DrawRay(transform.position, longitudinalForce.normalized, Color.blue);
 
