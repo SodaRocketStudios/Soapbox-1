@@ -37,7 +37,7 @@ namespace Soap.Physics
 
 		private float brakeInput;
 
-		private float wheelSpeed = 0;
+		public float WheelSpeed {get; private set;} = 0;
 
 		private float load;
 
@@ -61,7 +61,7 @@ namespace Soap.Physics
 				float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
 				float lateralVelocity = Vector3.Dot(velocity, transform.right);
 
-				wheelSpeed = longitudinalVelocity;
+				WheelSpeed = longitudinalVelocity;
 
 				HandleBraking(longitudinalVelocity);
 
@@ -73,9 +73,10 @@ namespace Soap.Physics
 
 				float normalizedSlipRatio = CalculateSlipRatio(longitudinalVelocity) / tireProfile.PeakSlipRatio;
 
+				// Locked in braking
 				if(normalizedSlipRatio <= -1)
 				{
-					Debug.DrawRay(transform.position, Vector3.up*5, Color.red);
+					// Debug.DrawRay(transform.position, Vector3.up*5, Color.red);
 				}
 
 				// Combined slip ------------------------------------------------------------------
@@ -172,14 +173,14 @@ namespace Soap.Physics
 
 		private void HandleBraking(float longitudinalVelocity)
 		{
-			float brakeAcceleration = -Time.deltaTime*brakeInput*wheelSpeed*brakeTorque;
+			float brakeAcceleration = -Time.deltaTime*brakeInput*WheelSpeed*brakeTorque;
 
-			if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(wheelSpeed))
+			if(Mathf.Abs(brakeAcceleration) > Mathf.Abs(WheelSpeed))
 			{
-				brakeAcceleration = -wheelSpeed;
+				brakeAcceleration = -WheelSpeed;
 			}
 
-			wheelSpeed += brakeAcceleration; // apply braking force.
+			WheelSpeed += brakeAcceleration; // apply braking force.
 
 			if(longitudinalVelocity < 0.1f && brakeInput > 0)
 			{
@@ -205,7 +206,7 @@ namespace Soap.Physics
 		{
 			float wheelAcceleration = driveTorque/(Radius*tireProfile.Mass);
 
-			wheelSpeed += wheelAcceleration;
+			WheelSpeed += wheelAcceleration;
 		}
 
 		private float CalculateSlipAngle(Vector3 planarVelocity, Vector3 planarHeading)
@@ -225,18 +226,18 @@ namespace Soap.Physics
         {
             if (longitudinalVelocity == 0)
             {
-                if (wheelSpeed == 0)
+                if (WheelSpeed == 0)
                 {
                     return 0;
                 }
                 else
                 {
-                    return Mathf.Clamp(wheelSpeed, -1, 1);
+                    return Mathf.Clamp(WheelSpeed, -1, 1);
                 }
             }
             else
             {
-                return (wheelSpeed - longitudinalVelocity) / Mathf.Abs(longitudinalVelocity);
+                return (WheelSpeed - longitudinalVelocity) / Mathf.Abs(longitudinalVelocity);
             }
         }
 	}
