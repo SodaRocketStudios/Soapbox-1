@@ -25,20 +25,22 @@ namespace Soap.Prototype
 			float torqueDelta = wheels[0].Torque - wheels[1].Torque;
 			float velocityDelta = wheels[0].WheelSpeed - wheels[1].WheelSpeed;
 
-			if(isLocked == false)
-			{
-				// Velocity delta sign change
-				if(velocityDelta * velocityDeltaSign < 0)
-				{
-					isLocked = true;
-				}
-			}
-			else
+			if(isLocked)
 			{
 				if(Mathf.Abs(torqueDelta) > preloadTorque)
 				{
 					velocityDeltaSign = Mathf.Sign(velocityDelta);
 					isLocked = false;
+					Debug.Log("Unlocked");
+				}
+			}
+			else
+			{
+				// Velocity delta sign change
+				if(velocityDelta * velocityDeltaSign < 0)
+				{
+					isLocked = true;
+					Debug.Log("Locked");
 				}
 			}
 
@@ -51,19 +53,18 @@ namespace Soap.Prototype
 			{
 				wheels[0].Accelerate(torque/2);
 				wheels[1].Accelerate(torque/2);
-				Debug.Log("Locked");
 				return;
 			}
 
-			if(wheels[0].Torque > wheels[1].Torque)
-			{
-				wheels[0].Accelerate(torque/2 + preloadTorque);
-				wheels[1].Accelerate(torque/2 - preloadTorque);
-			}
-			else
+			if(wheels[0].WheelSpeed > wheels[1].WheelSpeed)
 			{
 				wheels[0].Accelerate(torque/2 - preloadTorque);
 				wheels[1].Accelerate(torque/2 + preloadTorque);
+			}
+			else
+			{
+				wheels[0].Accelerate(torque/2 + preloadTorque);
+				wheels[1].Accelerate(torque/2 - preloadTorque);
 			}
 		}
 	}
