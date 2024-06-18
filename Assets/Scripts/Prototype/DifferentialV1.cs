@@ -3,10 +3,11 @@ using Soap.Physics;
 
 namespace Soap.Prototype
 {
-	[System.Serializable]
 	public class DifferentialV1
 	{
-		[SerializeField] private float preloadTorque;
+		private float preloadTorque;
+
+		private float biasRatio;
 
 		private Wheel[] wheels;
 
@@ -14,24 +15,27 @@ namespace Soap.Prototype
 
 		private float velocityDeltaSign;
 
-		public DifferentialV1(Wheel[] wheels, float preloadTorque)
+		private float torqueDelta;
+
+		public DifferentialV1(Wheel[] wheels, float preloadTorque, float biasRatio)
 		{
 			this.wheels = wheels;
 			this.preloadTorque = preloadTorque;
+			this.biasRatio = biasRatio;
 		}
 
 		public void Accelerate(float torque)
 		{
-			float torqueDelta = wheels[0].Torque - wheels[1].Torque;
+			torqueDelta = Mathf.Abs(wheels[0].Torque - wheels[1].Torque);
+			float ratio = Mathf.Max(wheels[0].Torque / wheels[1].Torque, wheels[1].Torque / wheels[0].Torque);
 			float velocityDelta = wheels[0].WheelSpeed - wheels[1].WheelSpeed;
 
 			if(isLocked)
 			{
-				if(Mathf.Abs(torqueDelta) > preloadTorque)
+				if(torqueDelta > preloadTorque && ratio > biasRatio)
 				{
 					velocityDeltaSign = Mathf.Sign(velocityDelta);
 					isLocked = false;
-					Debug.Log("Unlocked");
 				}
 			}
 			else
@@ -40,7 +44,6 @@ namespace Soap.Prototype
 				if(velocityDelta * velocityDeltaSign < 0)
 				{
 					isLocked = true;
-					Debug.Log("Locked");
 				}
 			}
 
@@ -56,15 +59,17 @@ namespace Soap.Prototype
 				return;
 			}
 
+			float correctingTorque = torqueDelta - preloadTorque;
+
 			if(wheels[0].WheelSpeed > wheels[1].WheelSpeed)
 			{
-				wheels[0].Accelerate(torque/2 - preloadTorque);
-				wheels[1].Accelerate(torque/2 + preloadTorque);
+				wheels[0].Accelerate(torque/2 - correctingTorque);
+				wheels[1].Accelerate(torque/2 + correctingTorque);
 			}
 			else
 			{
-				wheels[0].Accelerate(torque/2 + preloadTorque);
-				wheels[1].Accelerate(torque/2 - preloadTorque);
+				wheels[0].Accelerate(torque/2 + correctingTorque);
+				wheels[1].Accelerate(torque/2 - correctingTorque);
 			}
 		}
 	}

@@ -10,6 +10,7 @@ namespace Soap.Prototype
 		[SerializeField, Range(0.5f, 1f)] private float brakeBias;
 
 		[SerializeField] private float preloadTorque;
+		[SerializeField, Range(1, 4)] float torqueBiasRatio;
 
 		private DifferentialV1 diff;
 
@@ -29,7 +30,7 @@ namespace Soap.Prototype
 			driveWheels = wheels.Where(wheel => wheel.IsDriveWheel).ToArray();
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
 			mguk = GetComponent<MGUK>();
-			diff = new(driveWheels, preloadTorque);
+			diff = new(driveWheels, preloadTorque, torqueBiasRatio);
 		}
 
 		private void FixedUpdate()
