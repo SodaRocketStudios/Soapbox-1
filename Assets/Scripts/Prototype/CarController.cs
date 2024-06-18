@@ -10,7 +10,7 @@ namespace Soap.Prototype
 		[SerializeField, Range(0.5f, 1f)] private float brakeBias;
 
 		[SerializeField] private float preloadTorque;
-		[SerializeField, Range(1, 4)] float torqueBiasRatio;
+		[SerializeField, Range(1, 5)] float torqueBiasRatio;
 
 		private DifferentialV1 diff;
 

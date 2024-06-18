@@ -27,7 +27,7 @@ namespace Soap.Prototype
 		public void Accelerate(float torque)
 		{
 			torqueDelta = Mathf.Abs(wheels[0].Torque - wheels[1].Torque);
-			float ratio = Mathf.Max(wheels[0].Torque / wheels[1].Torque, wheels[1].Torque / wheels[0].Torque);
+			float ratio = wheels[0].Torque > wheels[1].Torque ? wheels[0].Torque / wheels[1].Torque : wheels[1].Torque / wheels[0].Torque;
 			float velocityDelta = wheels[0].WheelSpeed - wheels[1].WheelSpeed;
 
 			if(isLocked)
@@ -63,13 +63,17 @@ namespace Soap.Prototype
 
 			if(wheels[0].WheelSpeed > wheels[1].WheelSpeed)
 			{
-				wheels[0].Accelerate(torque/2 - correctingTorque);
-				wheels[1].Accelerate(torque/2 + correctingTorque);
+				// wheels[0].Accelerate(torque/2 - correctingTorque);
+				// wheels[1].Accelerate(torque/2 + correctingTorque);
+				wheels[0].Accelerate(torque*(1/(1 + biasRatio)));
+				wheels[1].Accelerate(torque*(biasRatio/(1 + biasRatio)));
 			}
 			else
 			{
-				wheels[0].Accelerate(torque/2 + correctingTorque);
-				wheels[1].Accelerate(torque/2 - correctingTorque);
+				// wheels[0].Accelerate(torque/2 + correctingTorque);
+				// wheels[1].Accelerate(torque/2 - correctingTorque);
+				wheels[0].Accelerate(torque*(biasRatio/(1 + biasRatio)));
+				wheels[1].Accelerate(torque*(1/(1 + biasRatio)));
 			}
 		}
 	}
