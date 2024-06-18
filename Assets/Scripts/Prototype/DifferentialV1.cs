@@ -24,7 +24,7 @@ namespace Soap.Prototype
 			this.biasRatio = biasRatio;
 		}
 
-		public void Accelerate(float torque)
+		public void Accelerate(float engineTorque)
 		{
 			torqueDelta = Mathf.Abs(wheels[0].Torque - wheels[1].Torque);
 			float ratio = wheels[0].Torque > wheels[1].Torque ? wheels[0].Torque / wheels[1].Torque : wheels[1].Torque / wheels[0].Torque;
@@ -47,33 +47,31 @@ namespace Soap.Prototype
 				}
 			}
 
-			ApplyTorque(torque);
+			ApplyTorque(engineTorque);
 		}
 
-		private void ApplyTorque(float torque)
+		private void ApplyTorque(float engineTorque)
 		{
 			if(isLocked)
 			{
-				wheels[0].Accelerate(torque/2);
-				wheels[1].Accelerate(torque/2);
+				wheels[0].Accelerate(engineTorque/2);
+				wheels[1].Accelerate(engineTorque/2);
 				return;
 			}
-
-			float correctingTorque = torqueDelta - preloadTorque;
 
 			if(wheels[0].WheelSpeed > wheels[1].WheelSpeed)
 			{
 				// wheels[0].Accelerate(torque/2 - correctingTorque);
 				// wheels[1].Accelerate(torque/2 + correctingTorque);
-				wheels[0].Accelerate(torque*(1/(1 + biasRatio)));
-				wheels[1].Accelerate(torque*(biasRatio/(1 + biasRatio)));
+				wheels[0].Accelerate(engineTorque*(1/(1 + biasRatio)));
+				wheels[1].Accelerate(engineTorque*(biasRatio/(1 + biasRatio)));
 			}
 			else
 			{
 				// wheels[0].Accelerate(torque/2 + correctingTorque);
 				// wheels[1].Accelerate(torque/2 - correctingTorque);
-				wheels[0].Accelerate(torque*(biasRatio/(1 + biasRatio)));
-				wheels[1].Accelerate(torque*(1/(1 + biasRatio)));
+				wheels[0].Accelerate(engineTorque*(biasRatio/(1 + biasRatio)));
+				wheels[1].Accelerate(engineTorque*(1/(1 + biasRatio)));
 			}
 		}
 	}
