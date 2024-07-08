@@ -7,15 +7,10 @@ namespace Soap.LapTiming
 	public class LapTime : MonoBehaviour
 	{
 		public Action<int> OnSectorLogged;
-		private Timer timer;
 
-		public float Time
-		{
-			get
-			{
-				return timer.CurrentTime;
-			}
-		}
+		public Action<float> OnTimeChange;
+
+		private Timer timer;
 
 		public float BestLap {get; private set;}
 
@@ -39,6 +34,7 @@ namespace Soap.LapTiming
 		{
 			timer.Reset();
 			timer.Start();
+			timer.Time.OnChange = OnTimeChange;
 			previousSectorTime = 0;
 			sectorIndex = 0;
 		}
