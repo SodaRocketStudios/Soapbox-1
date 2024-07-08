@@ -10,6 +10,13 @@ namespace SRS.Utils.Timing
 		public Action<float> OnStop;
 
 		public ObservableFloat Time{get; private set;}
+		public float CurrentTime
+		{
+			get
+			{
+				return Time.Value;
+			}
+		}
 
 		public bool IsRunning{get; private set;}
 

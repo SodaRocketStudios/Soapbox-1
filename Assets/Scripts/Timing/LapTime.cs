@@ -1,6 +1,5 @@
 using UnityEngine;
 using SRS.Utils.Timing;
-using SRS.Utils.Observables;
 
 namespace Soap.LapTiming
 {
@@ -12,7 +11,7 @@ namespace Soap.LapTiming
 		private float[] bestSectors = new float[3];
 
 		private int sectorIndex;
-		private float lastSectorTime;
+		private float previousSectorTime;
 
 		private void Awake()
 		{
@@ -26,17 +25,19 @@ namespace Soap.LapTiming
 
 		public void StartLapTimer()
 		{
+			timer.Reset();
 			timer.Start();
+			previousSectorTime = 0;
 			sectorIndex = 0;
 		}
 
 		public void LogSectorTime()
 		{
-			float sectorTime = timer.Time.Value - lastSectorTime;
+			float sectorTime = timer.CurrentTime - previousSectorTime;
 
 			bestSectors[sectorIndex] = Mathf.Min(bestSectors[sectorIndex], sectorTime);
 
-			lastSectorTime = sectorTime;
+			previousSectorTime = sectorTime;
 
 			Debug.Log($"Sector {sectorIndex + 1}: {sectorTime}");
 
@@ -45,8 +46,8 @@ namespace Soap.LapTiming
 
 		public void LogLapTime()
 		{
-			bestLap = Mathf.Min(bestLap, timer.Time.Value);
-			Debug.Log(timer.Time.Value);
+			bestLap = Mathf.Min(bestLap, timer.CurrentTime);
+			Debug.Log(timer.CurrentTime);
 		}
 	}
 }
