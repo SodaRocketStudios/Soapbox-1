@@ -1,14 +1,26 @@
 using UnityEngine;
 using SRS.Utils.Timing;
+using System;
 
 namespace Soap.LapTiming
 {
 	public class LapTime : MonoBehaviour
 	{
+		public Action<int> OnSectorLogged;
 		private Timer timer;
 
-		private float bestLap;
-		private float[] bestSectors = new float[3];
+		public float Time
+		{
+			get
+			{
+				return timer.CurrentTime;
+			}
+		}
+
+		public float BestLap {get; private set;}
+
+		public float[] SectorTimes{get; private set;} = new float[3];
+		public float[] BestSectors{get; private set;} = new float[3];
 
 		private int sectorIndex;
 		private float previousSectorTime;
@@ -33,20 +45,22 @@ namespace Soap.LapTiming
 
 		public void LogSectorTime()
 		{
-			float sectorTime = timer.CurrentTime - previousSectorTime;
+			SectorTimes[sectorIndex] = timer.CurrentTime - previousSectorTime;
 
-			bestSectors[sectorIndex] = Mathf.Min(bestSectors[sectorIndex], sectorTime);
+			BestSectors[sectorIndex] = Mathf.Min(BestSectors[sectorIndex], SectorTimes[sectorIndex]);
 
-			previousSectorTime = sectorTime;
+			previousSectorTime = SectorTimes[sectorIndex];
 
-			Debug.Log($"Sector {sectorIndex + 1}: {sectorTime}");
+			OnSectorLogged?.Invoke(sectorIndex);
+
+			Debug.Log($"Sector {sectorIndex + 1}: {SectorTimes[sectorIndex]}");
 
 			sectorIndex++;
 		}
 
 		public void LogLapTime()
 		{
-			bestLap = Mathf.Min(bestLap, timer.CurrentTime);
+			BestLap = Mathf.Min(BestLap, timer.CurrentTime);
 			Debug.Log(timer.CurrentTime);
 		}
 	}
