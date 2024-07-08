@@ -35,8 +35,6 @@ namespace Soap.Prototype
 				carRigidbody.angularVelocity = Vector3.zero;
 
 				mguk.Reset();
-
-				timeDisplay.Reset();
 			}
 		}
 

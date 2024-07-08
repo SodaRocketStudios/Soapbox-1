@@ -42,6 +42,7 @@ namespace SRS.Utils.Timing
 
 		public void Reset()
 		{
+			IsRunning = false;
 			Time.SetValue(0);
 		}
 
