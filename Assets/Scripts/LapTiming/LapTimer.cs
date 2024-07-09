@@ -7,6 +7,7 @@ namespace Soap.LapTiming
 	public class LapTimer : MonoBehaviour
 	{
 		public Action<float> OnTimeChanged;
+		public Action<int> OnSectorLogged;
 
 		public TimedSegment Lap {get; private set;}
 		public TimedSegment[] Sectors {get; private set;} = new TimedSegment[3];
@@ -18,11 +19,19 @@ namespace Soap.LapTiming
 		private void Awake()
 		{
 			timer = new();
+
+			for(int i = 0; i < Sectors.Length; i++)
+			{
+				Sectors[i] = new();
+			}
+
+			Lap = new();
 		}
 
 		private void Start()
 		{
 			timer.Time.OnChange = OnTimeChanged;
+
 			StartTimer();
 		}
 
@@ -39,10 +48,12 @@ namespace Soap.LapTiming
 			Lap.LogTime(timer.Time);
 		}
 
-		public void LogSectorTime(int sectorIndex)
+		public void LogSectorTime(int sector)
 		{
-			Sectors[sectorIndex - 1].LogTime(timer.Time - sectorStartTime);
-			sectorStartTime = Sectors[sectorIndex - 1].LastTime;
+			int sectorIndex = sector - 1;
+			Sectors[sectorIndex].LogTime(timer.Time.Value - sectorStartTime);
+			sectorStartTime += Sectors[sectorIndex].LastTime;
+			OnSectorLogged?.Invoke(sectorIndex);
 		}
 
 		public void UpdateDelta()

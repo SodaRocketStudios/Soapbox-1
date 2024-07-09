@@ -39,5 +39,10 @@ namespace SRS.Utils.Observables
 		{
 			return observableValue.Value;
 		}
+
+		public static implicit operator ObservableValue<T>(T value)
+		{
+			return new ObservableValue<T>{Value = value};
+		}
 	}
 }

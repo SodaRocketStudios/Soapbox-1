@@ -10,13 +10,12 @@ namespace Soap.UI
 		[SerializeField] private TMP_Text lapTimeTextBox;
 		[SerializeField] private TMP_Text BestLapTextBox;
 		[SerializeField] private TMP_Text DeltaTextBox;
-		[SerializeField] private TMP_Text Sector1TextBox;
-		[SerializeField] private TMP_Text Sector2TextBox;
-		[SerializeField] private TMP_Text Sector3TextBox;
+		[SerializeField] private TMP_Text[] SectorTimeTextBoxes = new TMP_Text[3];
 
 		private void Start()
 		{
 			lapTimer.OnTimeChanged += UpdateCurrentTime;
+			lapTimer.OnSectorLogged += UpdateSectorTime;
 		}
 
 		private void UpdateCurrentTime(float time)
@@ -24,6 +23,11 @@ namespace Soap.UI
 			int minutes = (int)time/60;
 			float seconds = time - minutes*60;
 			lapTimeTextBox.text = $"{minutes}:{seconds:00.000}";
+		}
+
+		private void UpdateSectorTime(int sectorIndex)
+		{
+			SectorTimeTextBoxes[sectorIndex].text = $"{lapTimer.Sectors[sectorIndex].LastTime:00.000}";
 		}
 	}
 }
