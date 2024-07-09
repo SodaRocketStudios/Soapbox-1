@@ -42,6 +42,11 @@ namespace Soap.LapTiming
 			sectorStartTime = 0;
 		}
 
+		public void ResetTimer()
+		{
+			timer.Reset();
+		}
+
 		public void LogLapTime()
 		{
 			timer.Pause();

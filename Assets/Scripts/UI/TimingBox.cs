@@ -16,6 +16,7 @@ namespace Soap.UI
 		{
 			lapTimer.OnTimeChanged += UpdateCurrentTime;
 			lapTimer.OnSectorLogged += UpdateSectorTime;
+			lapTimer.Lap.OnNewBest += UpdateBestLap;
 		}
 
 		private void UpdateCurrentTime(float time)
@@ -28,6 +29,13 @@ namespace Soap.UI
 		private void UpdateSectorTime(int sectorIndex)
 		{
 			SectorTimeTextBoxes[sectorIndex].text = $"{lapTimer.Sectors[sectorIndex].LastTime:00.000}";
+		}
+
+		private void UpdateBestLap(float time)
+		{
+			int minutes = (int)time/60;
+			float seconds = time - minutes*60;
+			BestLapTextBox.text = $"{minutes}:{seconds:00.000}";
 		}
 	}
 }
