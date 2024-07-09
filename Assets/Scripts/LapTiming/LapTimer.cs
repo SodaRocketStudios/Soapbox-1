@@ -23,6 +23,7 @@ namespace Soap.LapTiming
 		private void Start()
 		{
 			timer.Time.OnChange = OnTimeChanged;
+			StartTimer();
 		}
 
 		public void StartTimer()

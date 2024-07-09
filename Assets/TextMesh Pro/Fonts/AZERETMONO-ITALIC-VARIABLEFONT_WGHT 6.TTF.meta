@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: b87efd56461f5f948af1405c7811ddeb
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Azeret Mono
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 10e9653ee8e06e64c86e0a5df4c6e649, type: 3}
+  - {fileID: 12800000, guid: 27451b87a1c634d4ca217fef840132f3, type: 3}
+  - {fileID: 12800000, guid: f1f4e0947f798054c87c93a9f71c06e8, type: 3}
+  - {fileID: 12800000, guid: 380f9d2bda1d27b4bad3bf862b5bf883, type: 3}
+  - {fileID: 12800000, guid: c7aaf7291d4af6f499a8b200e9a6a37f, type: 3}
+  - {fileID: 12800000, guid: 6564cbe902fc71f46bd9528ab774b2ed, type: 3}
+  - {fileID: 12800000, guid: c541331893c289e4abffbed52175c013, type: 3}
+  - {fileID: 12800000, guid: 42c8b71b015e30e40ae114b301ce44c7, type: 3}
+  - {fileID: 12800000, guid: 9396f5e0e2501bf4b9d0411a24ebefdf, type: 3}
+  - {fileID: 12800000, guid: c450715e33bd115449fc57c3a436592c, type: 3}
+  - {fileID: 12800000, guid: 744721c54a4e6ed4eb2e5e3560818ed1, type: 3}
+  - {fileID: 12800000, guid: 911916274337935409c358a4353dd026, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

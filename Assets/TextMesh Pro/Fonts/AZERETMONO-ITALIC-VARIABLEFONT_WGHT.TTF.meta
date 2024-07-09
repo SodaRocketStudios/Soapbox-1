@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 42c8b71b015e30e40ae114b301ce44c7
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Azeret Mono
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 10e9653ee8e06e64c86e0a5df4c6e649, type: 3}
+  - {fileID: 12800000, guid: f1f4e0947f798054c87c93a9f71c06e8, type: 3}
+  - {fileID: 12800000, guid: 911916274337935409c358a4353dd026, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
