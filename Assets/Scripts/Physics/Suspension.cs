@@ -9,7 +9,7 @@ namespace Soap.Physics
 		[SerializeField, Min(0)] private float damperStrength; 
 
 		[SerializeField, Min(0)] private float restLength;
-		public float RestLength
+		public float GroundedLength
 		{
 			get
 			{

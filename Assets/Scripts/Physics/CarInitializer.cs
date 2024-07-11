@@ -61,7 +61,7 @@ namespace Soap.Physics
 
 			if(UnityEngine.Physics.Raycast(transform.position, Vector3.down, out hit))
 			{
-				float distance = hit.distance - suspensions[0].RestLength;
+				float distance = hit.distance - suspensions[0].GroundedLength;
 				carRigidbody.MovePosition(carRigidbody.position - transform.up*distance);
 			}
 		}
