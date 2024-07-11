@@ -9,6 +9,17 @@ namespace Soap.Physics
 		[SerializeField, Min(0)] private float damperStrength; 
 
 		[SerializeField, Min(0)] private float restLength;
+		public float RestLength
+		{
+			get
+			{
+				if(wheel == null)
+				{
+					wheel = GetComponentInChildren<Wheel>();
+				}
+				return restLength + wheel.Radius;
+			}
+		}
 
 		[SerializeField, Min(0)] private float maxLength;
 
@@ -16,7 +27,7 @@ namespace Soap.Physics
 
 		private Wheel wheel;
 
-		private void Start()
+		private void Awake()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
 			wheel = GetComponentInChildren<Wheel>();
@@ -28,6 +39,11 @@ namespace Soap.Physics
 
 			if(UnityEngine.Physics.Raycast(transform.position, -transform.up, out hit, maxLength + wheel.Radius))
 			{
+				if(hit.collider.transform == transform.parent)
+				{
+					return;
+				}
+
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				float verticalVelocity = Vector3.Dot(velocity, transform.up);
 				float length = hit.distance - wheel.Radius;

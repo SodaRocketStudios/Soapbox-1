@@ -22,6 +22,7 @@ namespace Soap.Physics
 
 		public void GroundCar()
 		{
+			RaycastHit hit;
 
 			List<int> frontIndices = new();
 			List<int> rearIndices = new();
@@ -32,8 +33,6 @@ namespace Soap.Physics
 
 			foreach(Suspension suspension in suspensions)
 			{
-				RaycastHit hit;
-
 				float zPosition = suspension.transform.localPosition.z;
 
 				if(UnityEngine.Physics.Raycast(suspension.transform.position, Vector3.down, out hit))
@@ -59,6 +58,12 @@ namespace Soap.Physics
 			float angle = Mathf.Atan2(heightDelta, wheelBase)*180/Mathf.PI;
 
 			carRigidbody.MoveRotation(Quaternion.AngleAxis(angle, transform.right)*transform.rotation);
+
+			if(UnityEngine.Physics.Raycast(transform.position, Vector3.down, out hit))
+			{
+				float distance = hit.distance - suspensions[0].RestLength;
+				carRigidbody.MovePosition(carRigidbody.position - transform.up*distance);
+			}
 		}
 	}
 }
