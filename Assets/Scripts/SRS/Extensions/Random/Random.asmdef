@@ -1,11 +1,7 @@
 {
-    "name": "LapTiming",
-    "rootNamespace": "Soap.LapTiming",
-    "references": [
-        "GUID:450ba53b77015c247b55536092919b68",
-        "GUID:2c0cf0499af9d4f4d8be37ce10a4d9c3",
-        "GUID:a49059e9087001f4a9c62b42420121b0"
-    ],
+    "name": "Random",
+    "rootNamespace": "SRS.Extensions.Random",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

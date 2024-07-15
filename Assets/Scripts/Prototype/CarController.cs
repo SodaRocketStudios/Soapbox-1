@@ -23,11 +23,11 @@ namespace Soap.Prototype
 
 		private MGUK mguk;
 
-		private bool isPhysicsEnabled = false;
+		private bool isPhysicsEnabled;
 
 		private float accelerationInput;
 
-		private void Start()
+		private void Awake()
 		{
 			carRigidBody = GetComponent<Rigidbody>();
 			wheels = GetComponentsInChildren<Wheel>();
@@ -35,14 +35,20 @@ namespace Soap.Prototype
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
 			mguk = GetComponent<MGUK>();
 			diff = new(driveWheels, preloadTorque, torqueBiasRatio);
+
+			PhysicsEnabled(false);
 		}
 
 		private void FixedUpdate()
 		{
 			if (isPhysicsEnabled == false)
 			{
+				if(accelerationInput > 0)
+				{
+					PhysicsEnabled(true);
+					return;
+				}
 				carRigidBody.Sleep();
-				carRigidBody.useGravity = false;
 				return;
 			}
 
@@ -63,6 +69,7 @@ namespace Soap.Prototype
 		public void PhysicsEnabled(bool enabled)
 		{
 			isPhysicsEnabled = enabled;
+			carRigidBody.useGravity = enabled;
 		}
 
 		public void Steer(InputAction.CallbackContext context)

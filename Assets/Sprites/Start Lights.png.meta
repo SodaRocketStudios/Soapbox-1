@@ -52,7 +52,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -127,9 +127,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2000
-        width: 1500
-        height: 1000
+        y: 1280
+        width: 1536
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: Start Lights_1
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 2000
-        width: 1500
-        height: 1000
+        x: 0
+        y: 1024
+        width: 1536
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,9 +169,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1000
-        width: 1500
-        height: 1000
+        y: 768
+        width: 1536
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,10 +189,10 @@ TextureImporter:
       name: Start Lights_3
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 1000
-        width: 1500
-        height: 1000
+        x: 0
+        y: 512
+        width: 1536
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,9 +211,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1500
-        height: 1000
+        y: 256
+        width: 1536
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,10 +231,10 @@ TextureImporter:
       name: Start Lights_5
       rect:
         serializedVersion: 2
-        x: 1500
+        x: 0
         y: 0
-        width: 1500
-        height: 1000
+        width: 1536
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

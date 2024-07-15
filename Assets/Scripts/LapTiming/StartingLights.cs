@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using SRS.Extensions.Random;
 
 namespace Soap.LapTiming
 {
@@ -24,7 +25,7 @@ namespace Soap.LapTiming
 		public void StartCountdown()
 		{
 			animator.SetTrigger("StartCountdown");
-			randomDelay = random.Next();
+			randomDelay = random.NextFloat(minDelay, maxDelay);
 		}
 
 		public void Enable()
@@ -39,11 +40,11 @@ namespace Soap.LapTiming
 
 		public void LightsOff()
 		{
-			animator.SetTrigger("Off");
+			animator.SetTrigger("Disable");
 			LightsOut?.Invoke();
 		}
 
-		private void TriggerLightsOut()
+		public void TriggerLightsOut()
 		{
 			Invoke("LightsOff", randomDelay);
 		}
