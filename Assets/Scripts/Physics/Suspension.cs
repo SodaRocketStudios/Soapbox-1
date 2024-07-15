@@ -35,6 +35,11 @@ namespace Soap.Physics
 
 		private void FixedUpdate()
 		{
+			if(carRigidBody.IsSleeping())
+			{
+				return;
+			}
+			
 			RaycastHit hit;
 
 			if(UnityEngine.Physics.Raycast(transform.position, -transform.up, out hit, maxLength + wheel.Radius))

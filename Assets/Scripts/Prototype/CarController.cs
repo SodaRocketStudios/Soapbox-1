@@ -60,6 +60,11 @@ namespace Soap.Prototype
 			diff.Accelerate(torque);
 		}
 
+		public void PhysicsEnabled(bool enabled)
+		{
+			isPhysicsEnabled = enabled;
+		}
+
 		public void Steer(InputAction.CallbackContext context)
 		{
 			float steerInput = context.ReadValue<float>();
