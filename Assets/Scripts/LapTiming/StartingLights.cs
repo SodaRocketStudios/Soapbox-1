@@ -1,10 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Soap.LapTiming
 {
 	public class StartingLights : MonoBehaviour
 	{
+		public UnityEvent LightsOut;
+
 		[SerializeField, Min(0.2f)] private float minDelay = 0.2f;
 		[SerializeField, Min(0.2f)] private float maxDelay = 3;
 
@@ -37,6 +40,7 @@ namespace Soap.LapTiming
 		public void LightsOff()
 		{
 			animator.SetTrigger("Off");
+			LightsOut?.Invoke();
 		}
 
 		private void TriggerLightsOut()
