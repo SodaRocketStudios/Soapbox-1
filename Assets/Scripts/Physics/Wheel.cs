@@ -53,13 +53,17 @@ namespace Soap.Physics
 
 		private void FixedUpdate()
         {
+			if(carRigidBody.IsSleeping())
+			{
+				return;
+			}
+			
 			if(isGrounded)
 			{
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				Vector3 planarVelocity = velocity.XZPlane();
 				Vector3 planarHeading = transform.forward.XZPlane();
 				float longitudinalVelocity = Vector3.Dot(velocity, transform.forward);
-				float lateralVelocity = Vector3.Dot(velocity, transform.right);
 
 				WheelSpeed = longitudinalVelocity;
 

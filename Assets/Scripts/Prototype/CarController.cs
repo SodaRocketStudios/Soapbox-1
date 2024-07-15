@@ -12,6 +12,8 @@ namespace Soap.Prototype
 		[SerializeField] private float preloadTorque;
 		[SerializeField, Range(1, 5)] float torqueBiasRatio;
 
+		private Rigidbody carRigidBody;
+
 		private DifferentialV1 diff;
 
 		private Wheel[] wheels;
@@ -21,11 +23,13 @@ namespace Soap.Prototype
 
 		private MGUK mguk;
 
+		private bool isPhysicsEnabled = false;
 
 		private float accelerationInput;
 
 		private void Start()
 		{
+			carRigidBody = GetComponent<Rigidbody>();
 			wheels = GetComponentsInChildren<Wheel>();
 			driveWheels = wheels.Where(wheel => wheel.IsDriveWheel).ToArray();
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
@@ -35,6 +39,13 @@ namespace Soap.Prototype
 
 		private void FixedUpdate()
 		{
+			if (isPhysicsEnabled == false)
+			{
+				carRigidBody.Sleep();
+				carRigidBody.useGravity = false;
+				return;
+			}
+
 			float torque;
 			
 			if(accelerationInput > 0)
