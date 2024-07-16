@@ -18,6 +18,8 @@ namespace Soap.Physics
 
 		private Rigidbody carRigidBody;
 
+		private bool inDRSZone = false;
+
 		private void Start()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
@@ -45,7 +47,24 @@ namespace Soap.Physics
 
 		public void ToggleDRS()
 		{
-			DRSEnabled = !DRSEnabled;
+			if(inDRSZone)
+			{
+				DRSEnabled = !DRSEnabled;
+			}
+			else
+			{
+				DRSEnabled = false;
+			}
+		}
+
+		public void SetInDRSZone(bool inZone)
+		{
+			inDRSZone = inZone;
+
+			if(inZone == false)
+			{
+				DRSEnabled = false;
+			}
 		}
 	}
 }
