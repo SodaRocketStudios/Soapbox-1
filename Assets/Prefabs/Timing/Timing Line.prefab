@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2242745003579129822}
-  - component: {fileID: 1075390389932481213}
+  - component: {fileID: 2585629960385692398}
   - component: {fileID: 2081028419558153781}
   m_Layer: 0
   m_Name: Timing Line
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1075390389932481213
+--- !u!114 &2585629960385692398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2749432869532595318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e4dd4966b841294da1db9cdd2de25d5, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ba904490aeaef4f8c99b5ef13452e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnEnter:
