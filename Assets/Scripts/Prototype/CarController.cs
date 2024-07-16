@@ -85,6 +85,15 @@ namespace Soap.Prototype
 		public void Brake(InputAction.CallbackContext context)
 		{
 			float brakeInput = context.ReadValue<float>();
+
+			if(brakeInput > 0)
+			{
+				foreach(AeroSurface surface in aeroSurfaces)
+				{
+					surface.ToggleDRS();
+				}
+			}
+
 			foreach(Wheel wheel in wheels)
 			{
 				wheel.Brake(brakeInput, brakeBias);
