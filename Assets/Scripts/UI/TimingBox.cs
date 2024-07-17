@@ -12,11 +12,21 @@ namespace Soap.UI
 		[SerializeField] private TMP_Text DeltaTextBox;
 		[SerializeField] private TMP_Text[] SectorTimeTextBoxes = new TMP_Text[3];
 
+		private int sectorIndex;
+
 		private void Start()
 		{
 			lapTimer.OnTimeChanged += UpdateCurrentTime;
 			lapTimer.OnSectorLogged += UpdateSectorTime;
 			lapTimer.onLapLogged += UpdateBestLap;
+			lapTimer.OnDeltaUpdate += UpdateDelta;
+
+			Initialize();
+		}
+
+		private void Initialize()
+		{
+			sectorIndex = 0;
 		}
 
 		private void UpdateCurrentTime(float time)
@@ -26,21 +36,22 @@ namespace Soap.UI
 			lapTimeTextBox.text = $"{minutes}:{seconds:00.000}";
 		}
 
-		private void UpdateSectorTime(int sectorIndex)
+		private void UpdateSectorTime(float time)
 		{
-			SectorTimeTextBoxes[sectorIndex].text = $"{lapTimer.Sectors[sectorIndex].LastTime:00.000}";
+			SectorTimeTextBoxes[sectorIndex].text = $"{time:00.000}";
+			sectorIndex++;
 		}
 
-		private void UpdateBestLap(float time)
+		private void UpdateBestLap(TimedSegment time)
 		{
-			int minutes = (int)time/60;
-			float seconds = time - minutes*60;
+			int minutes = (int)time.BestTime/60;
+			float seconds = time.BestTime - minutes*60;
 			BestLapTextBox.text = $"{minutes}:{seconds:00.000}";
 		}
 
 		private void UpdateDelta(float time)
 		{
-
+			DeltaTextBox.text = $"{time:00.000}";
 		}
 	}
 }
