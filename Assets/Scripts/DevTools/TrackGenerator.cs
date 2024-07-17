@@ -27,10 +27,6 @@ namespace Soap.DevTools
 
 		[SerializeField] private float width = 1;
 
-		[SerializeField, Min(1)] private int numberOfCheckpoints;
-
-		[SerializeField] private GameObject timingCheckpointPrefab;
-
 		private SplineContainer splineContainer;
 
 		private Mesh mesh;
@@ -111,11 +107,6 @@ namespace Soap.DevTools
 				Vector3 rightPosition = position + right * width / 2;
 
 				int inside = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
-
-				// if(t >= 1/numberOfCheckpoints) // TODO -- this belongs somewhere besides the generate mesh function.
-				// {
-				// 	Instantiate(timingCheckpointPrefab, position, Quaternion.LookRotation(direction, Vector3.up));
-				// }
 
 				if(1/curvature <= width / 2)
 				{
