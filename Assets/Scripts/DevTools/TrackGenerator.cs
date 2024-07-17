@@ -21,8 +21,6 @@ namespace Soap.DevTools
 		[Tooltip("The slope of the track in degrees")]
 		[SerializeField] private float slope;
 
-		[SerializeField] private float maxRoll = 0;
-
 		[SerializeField, Min(0.1f)] private float resolution;
 
 		[SerializeField] private float width = 1;
@@ -30,6 +28,11 @@ namespace Soap.DevTools
 		private SplineContainer splineContainer;
 
 		private Mesh mesh;
+
+		private void Awake()
+		{
+			GenerateMesh();
+		}
 
 		private void OnValidate()
 		{
@@ -95,7 +98,6 @@ namespace Soap.DevTools
 			{
 				float t = stepSize * i;
 
-
 				spline.Evaluate(t, out float3 pos, out float3 direction, out float3 normal);
 				Vector3 position = pos;
 				Vector3 right = math.normalizesafe(math.cross(normal, direction));
@@ -108,7 +110,7 @@ namespace Soap.DevTools
 
 				int inside = (int)Mathf.Sign(Vector3.Dot(right, curveCenter - position));
 
-				if(1/curvature <= width / 2)
+				if(1/curvature <= width)
 				{
 					// On fold start
 					if(foldCatch == false)

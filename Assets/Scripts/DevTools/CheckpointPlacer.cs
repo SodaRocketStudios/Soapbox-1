@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEditor;
 using Unity.Mathematics;
-using UnityEditor.Splines;
 using UnityEngine.Splines;
 
 namespace Soap.Tools
@@ -21,23 +19,11 @@ namespace Soap.Tools
 			{
 				trackSplineContainer = GetComponent<SplineContainer>();
 			}
-			trackSplineContainer = GetComponent<SplineContainer>();
 		}
 
-		private void OnEnable()
+		private void Start()
 		{
-#if UNITY_EDITOR
-			EditorSplineUtility.AfterSplineWasModified += PlaceCheckpoints;
-			Undo.undoRedoPerformed += UpdateCheckpoints;
-#endif
-		}
-
-		private void OnDisable()
-		{
-#if UNITY_EDITOR
-			EditorSplineUtility.AfterSplineWasModified -= PlaceCheckpoints;
-			Undo.undoRedoPerformed -= UpdateCheckpoints;
-#endif
+			UpdateCheckpoints();
 		}
 
 		public void PlaceCheckpoints(Spline spline)
@@ -58,6 +44,13 @@ namespace Soap.Tools
 				float t = i*1.0f/numberOfCheckpoints;
 
 				spline.Evaluate(t, out float3 position, out float3 tangent, out float3 up);
+
+				RaycastHit hit;
+
+				if(Physics.Raycast(position, Vector3.down, out hit))
+				{
+					position.y = hit.point.y;
+				}
 
 				Instantiate(checkpointPrefab, position, Quaternion.LookRotation(tangent, up), parent.transform);
 			}
