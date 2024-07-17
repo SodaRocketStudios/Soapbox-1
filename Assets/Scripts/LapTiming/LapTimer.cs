@@ -8,9 +8,8 @@ namespace Soap.LapTiming
 	{
 		public Action<float> OnTimeChanged;
 		public Action<int> OnSectorLogged;
-
-		public TimedSegment Lap {get; private set;}
-		public TimedSegment[] Sectors {get; private set;} = new TimedSegment[3];
+		public Action<TimedSegment> onLapLogged;
+		public Action<float> OnDeltaUpdate;
 
 		private Timer timer;
 
@@ -18,14 +17,6 @@ namespace Soap.LapTiming
 
 		private void Awake()
 		{
-			timer = new();
-
-			for(int i = 0; i < Sectors.Length; i++)
-			{
-				Sectors[i] = new();
-			}
-
-			Lap = new();
 		}
 
 		private void Start()
@@ -45,23 +36,22 @@ namespace Soap.LapTiming
 			timer.Reset();
 		}
 
-		public void LogLapTime()
+		private void LogLapTime(TimingLine line)
 		{
 			timer.Pause();
-			Lap.LogTime(timer.Time);
+			line.Time.LogTime(timer.CurrentTime);
+			onLapLogged?.Invoke(line.Time);
 		}
 
-		public void LogSectorTime(int sector)
+		private void LogSectorTime(TimingLine line)
 		{
-			int sectorIndex = sector - 1;
-			Sectors[sectorIndex].LogTime(timer.Time.Value - sectorStartTime);
-			sectorStartTime += Sectors[sectorIndex].LastTime;
-			OnSectorLogged?.Invoke(sectorIndex);
+			line.Time.LogTime(timer.CurrentTime);
+			// OnSectorLogged?.Invoke(sectorIndex);
 		}
 
-		public void UpdateDelta()
+		private void UpdateDelta(TimingLine line)
 		{
-			
+			OnDeltaUpdate?.Invoke(line.Time.LastTime - line.Time.BestTime);
 		}
 	}
 }

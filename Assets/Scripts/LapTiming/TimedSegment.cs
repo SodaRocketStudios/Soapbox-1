@@ -1,12 +1,10 @@
 using System;
-using UnityEngine;
 
 namespace Soap.LapTiming
 {
-	public class TimedSegment : MonoBehaviour
+	public class TimedSegment
 	{
-		public Action<float> OnNewBest;
-		public Action<int> OnTimeLogged; // Passes 1 if a new best was set and -1 otherwise.
+		public Action<TimedSegment> OnTimeLogged;
 
 		public float BestTime {get; private set;} = -1;
 		public float LastTime {get; private set;} = -1;
@@ -15,15 +13,13 @@ namespace Soap.LapTiming
 		{
 			LastTime = time;
 
+			OnTimeLogged?.Invoke(this);
+
 			if(time < BestTime || BestTime <= 0)
 			{
 				BestTime = time;
-				OnNewBest?.Invoke(BestTime);
-				OnTimeLogged?.Invoke(1);
 				return;
 			}
-
-			OnTimeLogged?.Invoke(-1);
 		}
 	}
 }

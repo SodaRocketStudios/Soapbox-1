@@ -5,11 +5,13 @@ namespace Soap.LapTiming
 {
 	public class TimingLine : MonoBehaviour
 	{
-		public UnityEvent OnEnter;
+		public UnityEvent<TimingLine> OnTrigger;
+
+		public TimedSegment Time = new();
 
 		private void OnTriggerEnter(Collider other)
 		{
-			OnEnter.Invoke();
+			OnTrigger.Invoke(this);
 		}
 	}
 }

@@ -16,7 +16,7 @@ namespace Soap.UI
 		{
 			lapTimer.OnTimeChanged += UpdateCurrentTime;
 			lapTimer.OnSectorLogged += UpdateSectorTime;
-			lapTimer.Lap.OnNewBest += UpdateBestLap;
+			lapTimer.onLapLogged += UpdateBestLap;
 		}
 
 		private void UpdateCurrentTime(float time)
@@ -36,6 +36,11 @@ namespace Soap.UI
 			int minutes = (int)time/60;
 			float seconds = time - minutes*60;
 			BestLapTextBox.text = $"{minutes}:{seconds:00.000}";
+		}
+
+		private void UpdateDelta(float time)
+		{
+
 		}
 	}
 }
