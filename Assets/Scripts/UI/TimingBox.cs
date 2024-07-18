@@ -20,12 +20,17 @@ namespace Soap.UI
 			lapTimer.OnSectorLogged += UpdateSectorTime;
 			lapTimer.onLapLogged += UpdateBestLap;
 			lapTimer.OnDeltaUpdate += UpdateDelta;
+			lapTimer.OnReset += Initialize;
 
 			Initialize();
 		}
 
 		private void Initialize()
 		{
+			foreach(TMP_Text textBox in SectorTimeTextBoxes)
+			{
+				textBox.text = "-";
+			}
 			sectorIndex = 0;
 		}
 

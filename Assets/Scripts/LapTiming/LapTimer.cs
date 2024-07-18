@@ -10,6 +10,7 @@ namespace Soap.LapTiming
 		public Action<float> OnSectorLogged;
 		public Action<TimedSegment> onLapLogged;
 		public Action<float> OnDeltaUpdate;
+		public Action OnReset;
 
 		private Timer timer;
 
@@ -40,6 +41,7 @@ namespace Soap.LapTiming
 		public void Reset()
 		{
 			timer.Reset();
+			OnReset?.Invoke();
 		}
 
 		public void LogLapTime(TimingLine line)
@@ -58,9 +60,18 @@ namespace Soap.LapTiming
 
 		public void UpdateDelta(TimingLine checkpoint)
 		{
+			bool firstTime = checkpoint.Time.BestTime < 0 ? true:false;
+
+			float delta = timer.CurrentTime - checkpoint.Time.BestTime;
+
 			checkpoint.Time.LogTime(timer.CurrentTime);
 
-			OnDeltaUpdate?.Invoke(checkpoint.Time.LastTime - checkpoint.Time.BestTime);
+			if(firstTime)
+			{
+				return;
+			}
+
+			OnDeltaUpdate?.Invoke(delta);
 		}
 	}
 }
