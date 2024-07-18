@@ -23,6 +23,11 @@ namespace Soap.LapTiming
 		private void Start()
 		{
 			timer.Time.OnChange = OnTimeChanged;
+
+			foreach(DeltaCheckpoint checkpoint in FindObjectsByType<DeltaCheckpoint>(FindObjectsSortMode.None))
+			{
+				checkpoint.OnDeltaLogged += UpdateDelta;
+			}
 		}
 
 		public void StartTimer()
@@ -51,10 +56,16 @@ namespace Soap.LapTiming
 			sectorStartTime = timer.CurrentTime;
 		}
 
-		public void UpdateDelta(TimingLine line)
+		public void UpdateDelta(TimingLine checkpoint)
 		{
-			line.Time.LogTime(timer.CurrentTime);
-			OnDeltaUpdate?.Invoke(line.Time.LastTime - line.Time.BestTime);
+			checkpoint.Time.LogTime(timer.CurrentTime);
+
+			if(checkpoint.Time.BestTime < 0)
+			{
+				return;
+			}
+
+			OnDeltaUpdate?.Invoke(checkpoint.Time.LastTime - checkpoint.Time.BestTime);
 		}
 	}
 }
