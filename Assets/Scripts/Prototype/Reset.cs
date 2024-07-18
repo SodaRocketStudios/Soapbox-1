@@ -1,16 +1,17 @@
 using Soap.Physics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Soap.LapTiming;
 
 namespace Soap.Prototype
 {
 	public class Reset : MonoBehaviour
 	{
-		[SerializeField] private ProtoTimeDisplay timeDisplay;
-
 		private Rigidbody carRigidbody;
 
 		private MGUK mguk;
+
+		[SerializeField] private LapTimer timer;
 
 		private Vector3 startLocation;
 		private Quaternion startRotation;
@@ -20,7 +21,7 @@ namespace Soap.Prototype
 			startLocation = transform.position;
 			startRotation = transform.rotation;
 
-			carRigidbody = transform.GetComponent<Rigidbody>();
+			carRigidbody = GetComponent<Rigidbody>();
 
 			mguk = GetComponent<MGUK>();
 		}
@@ -35,14 +36,10 @@ namespace Soap.Prototype
 				carRigidbody.angularVelocity = Vector3.zero;
 
 				mguk.Reset();
-			}
-		}
 
-		public void ResetTimeScale(InputAction.CallbackContext context)
-		{
-			if(context.performed)
-			{
-				Time.timeScale = 1;
+				timer.Reset();
+
+				GetComponent<CarInitializer>().GroundCar();
 			}
 		}
 	}

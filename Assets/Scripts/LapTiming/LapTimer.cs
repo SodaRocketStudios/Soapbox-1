@@ -37,7 +37,7 @@ namespace Soap.LapTiming
 			sectorStartTime = 0;
 		}
 
-		public void ResetTimer()
+		public void Reset()
 		{
 			timer.Reset();
 		}
