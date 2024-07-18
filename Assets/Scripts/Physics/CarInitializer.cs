@@ -9,6 +9,9 @@ namespace Soap.Physics
 
 		private Rigidbody carRigidbody;
 
+		public Vector3 initializedPosition {get; private set;}
+		public Quaternion initializedRotation {get; private set;}
+
 		private void Awake()
 		{
 			suspensions = GetComponentsInChildren<Suspension>();
@@ -66,8 +69,11 @@ namespace Soap.Physics
 				transform.Translate(-transform.up*distance);
 			}
 
-			carRigidbody.angularVelocity = Vector3.zero;
-			carRigidbody.velocity = Vector3.zero;
+			initializedPosition = transform.position;
+			initializedRotation = transform.rotation;
+
+			// carRigidbody.angularVelocity = Vector3.zero;
+			// carRigidbody.velocity = Vector3.zero;
 		}
 	}
 }

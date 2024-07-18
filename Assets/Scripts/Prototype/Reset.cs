@@ -11,35 +11,37 @@ namespace Soap.Prototype
 
 		private MGUK mguk;
 
+		private CarController controller;
+
 		[SerializeField] private LapTimer timer;
 
-		private Vector3 startLocation;
-		private Quaternion startRotation;
+		private CarInitializer initializer;
 
 		private void Start()
 		{
-			startLocation = transform.position;
-			startRotation = transform.rotation;
-
 			carRigidbody = GetComponent<Rigidbody>();
 
 			mguk = GetComponent<MGUK>();
+
+			controller = GetComponent<CarController>();
+
+			initializer = GetComponent<CarInitializer>();
 		}
 
 		public void ResetToStart(InputAction.CallbackContext context)
 		{
 			if(context.performed)
 			{
-				transform.position = startLocation;
-				transform.rotation = startRotation;
+				controller.PhysicsEnabled(false);
+				
+				transform.position = initializer.initializedPosition;
+				transform.rotation = initializer.initializedRotation;
 				carRigidbody.velocity = Vector3.zero;
 				carRigidbody.angularVelocity = Vector3.zero;
 
 				mguk.Reset();
 
 				timer.Reset();
-
-				GetComponent<CarInitializer>().GroundCar();
 			}
 		}
 	}
