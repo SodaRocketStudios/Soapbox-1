@@ -60,11 +60,6 @@ namespace Soap.LapTiming
 		{
 			checkpoint.Time.LogTime(timer.CurrentTime);
 
-			if(checkpoint.Time.BestTime < 0)
-			{
-				return;
-			}
-
 			OnDeltaUpdate?.Invoke(checkpoint.Time.LastTime - checkpoint.Time.BestTime);
 		}
 	}

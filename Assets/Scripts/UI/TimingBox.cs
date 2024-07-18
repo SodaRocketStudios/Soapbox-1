@@ -49,9 +49,9 @@ namespace Soap.UI
 			BestLapTextBox.text = $"{minutes}:{seconds:00.000}";
 		}
 
-		private void UpdateDelta(float time)
+		private void UpdateDelta(float delta)
 		{
-			DeltaTextBox.text = $"{time:00.000}";
+			DeltaTextBox.text = $"{delta:F3}";
 		}
 	}
 }
