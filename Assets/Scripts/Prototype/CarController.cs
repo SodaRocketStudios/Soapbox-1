@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Soap.Physics;
 using Soap.GameManagement;
+using UnityEngine.Events;
 
 namespace Soap.Prototype
 {
@@ -12,6 +13,8 @@ namespace Soap.Prototype
 
 		[SerializeField] private float preloadTorque;
 		[SerializeField, Range(1, 5)] float torqueBiasRatio;
+
+		public UnityEvent OnfalseStart;
 
 		private Rigidbody carRigidBody;
 
@@ -76,6 +79,12 @@ namespace Soap.Prototype
 
 		public void PhysicsEnabled(bool enabled)
 		{
+			if(GameState.Instance.State == State.Countdown)
+			{
+				OnfalseStart?.Invoke();
+				Debug.Log("False Start");
+			}
+
 			isPhysicsEnabled = enabled;
 			carRigidBody.useGravity = enabled;
 		}

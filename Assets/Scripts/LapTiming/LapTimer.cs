@@ -33,7 +33,7 @@ namespace Soap.LapTiming
 
 		public void StartTimer()
 		{
-			timer.Reset();
+			// timer.Reset();
 			timer.Start();
 			sectorStartTime = 0;
 		}
@@ -72,6 +72,11 @@ namespace Soap.LapTiming
 			}
 
 			OnDeltaUpdate?.Invoke(delta);
+		}
+
+		public void AddPenalty(float penaltyTime)
+		{
+			timer.SetTime(timer.CurrentTime + penaltyTime);
 		}
 	}
 }

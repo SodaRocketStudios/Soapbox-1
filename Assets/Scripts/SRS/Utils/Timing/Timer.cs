@@ -53,6 +53,11 @@ namespace SRS.Utils.Timing
 			Time.SetValue(0);
 		}
 
+		public void SetTime(float time)
+		{
+			Time.SetValue(time);
+		}
+
 		private void Update(float deltaTime)
 		{
 			if(IsRunning)
