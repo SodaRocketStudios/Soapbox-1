@@ -2,6 +2,7 @@ using Soap.Physics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Soap.LapTiming;
+using Soap.GameManagement;
 
 namespace Soap.Prototype
 {
@@ -14,6 +15,8 @@ namespace Soap.Prototype
 		private CarController controller;
 
 		[SerializeField] private LapTimer timer;
+
+		[SerializeField] private StartingLights startLights;
 
 		private CarInitializer initializer;
 
@@ -32,6 +35,8 @@ namespace Soap.Prototype
 		{
 			if(context.performed)
 			{
+				GameState.Instance.State = State.PreStart;
+
 				controller.PhysicsEnabled(false);
 				
 				transform.position = initializer.initializedPosition;
@@ -42,6 +47,8 @@ namespace Soap.Prototype
 				mguk.Reset();
 
 				timer.Reset();
+
+				startLights.Disable();
 			}
 		}
 	}

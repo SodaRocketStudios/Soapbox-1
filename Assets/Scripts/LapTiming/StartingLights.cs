@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using SRS.Extensions.Random;
+using Soap.GameManagement;
 
 namespace Soap.LapTiming
 {
@@ -24,8 +25,14 @@ namespace Soap.LapTiming
 
 		public void StartCountdown()
 		{
+			if(GameState.Instance.State != State.PreStart)
+			{
+				return;
+			}
+
 			animator.SetTrigger("StartCountdown");
 			randomDelay = random.NextFloat(minDelay, maxDelay);
+			GameState.Instance.State = State.Countdown;
 		}
 
 		public void Enable()
@@ -41,6 +48,7 @@ namespace Soap.LapTiming
 		public void LightsOff()
 		{
 			animator.SetTrigger("Disable");
+			GameState.Instance.State = State.Running;
 			LightsOut?.Invoke();
 		}
 

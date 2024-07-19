@@ -1,7 +1,8 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Soap.Physics;
-using System.Linq;
+using Soap.GameManagement;
 
 namespace Soap.Prototype
 {
@@ -41,6 +42,12 @@ namespace Soap.Prototype
 
 		private void FixedUpdate()
 		{
+			if(GameState.Instance.State == State.PreStart)
+			{
+				carRigidBody.Sleep();
+				return;
+			}
+
 			if (isPhysicsEnabled == false)
 			{
 				if(accelerationInput > 0)
@@ -48,6 +55,7 @@ namespace Soap.Prototype
 					PhysicsEnabled(true);
 					return;
 				}
+				
 				carRigidBody.Sleep();
 				return;
 			}
