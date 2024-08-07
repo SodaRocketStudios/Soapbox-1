@@ -45,10 +45,22 @@ namespace Soap.Physics
 
 		private Rigidbody carRigidBody;
 
+		private Transform wheelMesh; // TODO -- This should probably be in an animator script rather than with physics.
+
+		private void Awake()
+		{
+			wheelMesh = transform.GetChild(0);
+		}
+
 		private void Start()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
 			overrideSpeedSquared = overrideSpeed * overrideSpeed;
+		}
+
+		private void Update()
+		{
+			wheelMesh.transform.Rotate(Vector3.right, WheelSpeed/Radius);
 		}
 
 		private void FixedUpdate()
@@ -137,6 +149,11 @@ namespace Soap.Physics
 		public void SetPosition(Vector3 position)
 		{
 			transform.position = position;
+		}
+
+		public void SetLocalPosition(Vector3 position)
+		{
+			transform.localPosition = position;
 		}
 
 		public void SetGrounded(bool grounded)

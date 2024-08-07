@@ -27,10 +27,14 @@ namespace Soap.Physics
 
 		private Wheel wheel;
 
+		private Vector3 wheelOffset;
+
 		private void Awake()
 		{
 			carRigidBody = transform.root.GetComponent<Rigidbody>();
 			wheel = GetComponentInChildren<Wheel>();
+			wheelOffset = wheel.transform.localPosition;
+			wheelOffset.y = 0;
 		}
 
 		private void FixedUpdate()
@@ -70,7 +74,7 @@ namespace Soap.Physics
 
 				wheel.SetGrounded(true);
 				wheel.SetLoad(suspensionForce);
-				wheel.SetPosition(transform.position - transform.up*length);
+				wheel.SetLocalPosition(wheelOffset - transform.up*length);
 				if(carRigidBody.useGravity)
 				{
 					carRigidBody.AddForceAtPosition(suspensionForce*transform.up, transform.position);

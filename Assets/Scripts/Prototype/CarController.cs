@@ -39,7 +39,10 @@ namespace Soap.Prototype
 			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
 			mguk = GetComponent<MGUK>();
 			diff = new(driveWheels, preloadTorque, torqueBiasRatio);
+		}
 
+		private void Start()
+		{
 			PhysicsEnabled(false);
 		}
 
@@ -82,7 +85,6 @@ namespace Soap.Prototype
 			if(GameState.Instance.State == State.Countdown)
 			{
 				OnfalseStart?.Invoke();
-				Debug.Log("False Start");
 			}
 
 			isPhysicsEnabled = enabled;
