@@ -1,0 +1,472 @@
+fileFormatVersion: 2
+guid: 0d155ee903b68ae4c88fcfba2b123fb0
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Speed Indicator Lights_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5eabe0fe87dfbf4ca80181cdfa27886
+      internalID: -1361263290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 540
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6633cab57e2a62f47bfac84d0c571009
+      internalID: -1327162918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77043e1e62693e143abe6cf1336bae62
+      internalID: -573953583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 420
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bf0162116a84914cab51551acd99ec1
+      internalID: -719480590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d18192d2dec1c014cb97545ebebaa372
+      internalID: -525748045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9258c0818deb50643ba4985948fc80d5
+      internalID: 232288918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2792dbbec4e1ed540a5fb1e65e84fb90
+      internalID: -255934093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe9658d213748fc458557e4019664b9f
+      internalID: -887661774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a39637d6e983c6e498e0b891228422d4
+      internalID: 2024342227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbbda0e453e5a3448b4bfead35fd3ca6
+      internalID: -1643057107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Speed Indicator Lights_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 940
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15cdebc88f0282748af4be0bae549b89
+      internalID: 1517655583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 903ff0b7cfa6d5c4e94f82bad555b973
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Speed Indicator Lights_0: -1361263290
+      Speed Indicator Lights_1: -1327162918
+      Speed Indicator Lights_10: 1517655583
+      Speed Indicator Lights_101: 1775075104
+      Speed Indicator Lights_102: -650459468
+      Speed Indicator Lights_103: 2021738674
+      Speed Indicator Lights_104: -1253855873
+      Speed Indicator Lights_105: 464672664
+      Speed Indicator Lights_106: 1471567348
+      Speed Indicator Lights_107: 854589482
+      Speed Indicator Lights_108: 264120351
+      Speed Indicator Lights_109: -907899208
+      Speed Indicator Lights_11: 163269608
+      Speed Indicator Lights_12: 1285038197
+      Speed Indicator Lights_13: -803554143
+      Speed Indicator Lights_14: 2084063199
+      Speed Indicator Lights_15: 52305803
+      Speed Indicator Lights_16: 655691099
+      Speed Indicator Lights_17: 1974691134
+      Speed Indicator Lights_18: 637615803
+      Speed Indicator Lights_19: -218431078
+      Speed Indicator Lights_2: -573953583
+      Speed Indicator Lights_21: -1304559858
+      Speed Indicator Lights_22: -1049790342
+      Speed Indicator Lights_23: 304522105
+      Speed Indicator Lights_24: -433708512
+      Speed Indicator Lights_25: 1537378338
+      Speed Indicator Lights_26: -1361682687
+      Speed Indicator Lights_27: -1889296855
+      Speed Indicator Lights_28: -1300345841
+      Speed Indicator Lights_29: -268368884
+      Speed Indicator Lights_3: -719480590
+      Speed Indicator Lights_31: -759835356
+      Speed Indicator Lights_32: -292433617
+      Speed Indicator Lights_33: -2054148141
+      Speed Indicator Lights_34: 1860109345
+      Speed Indicator Lights_35: 1955801995
+      Speed Indicator Lights_36: 1862063996
+      Speed Indicator Lights_37: -1451979265
+      Speed Indicator Lights_38: 1634670124
+      Speed Indicator Lights_39: -921435497
+      Speed Indicator Lights_4: -525748045
+      Speed Indicator Lights_41: -1500088188
+      Speed Indicator Lights_42: 671563355
+      Speed Indicator Lights_43: -1895610503
+      Speed Indicator Lights_44: 74550061
+      Speed Indicator Lights_45: -561719210
+      Speed Indicator Lights_46: 813178760
+      Speed Indicator Lights_47: -96435820
+      Speed Indicator Lights_48: -264737933
+      Speed Indicator Lights_49: -1317080956
+      Speed Indicator Lights_5: 232288918
+      Speed Indicator Lights_51: 355852846
+      Speed Indicator Lights_52: -968323289
+      Speed Indicator Lights_53: -224714551
+      Speed Indicator Lights_54: -462382987
+      Speed Indicator Lights_55: -842182107
+      Speed Indicator Lights_56: -416955348
+      Speed Indicator Lights_57: 1597408764
+      Speed Indicator Lights_58: 792456866
+      Speed Indicator Lights_59: 700154411
+      Speed Indicator Lights_6: -255934093
+      Speed Indicator Lights_61: 893385762
+      Speed Indicator Lights_62: -1289672982
+      Speed Indicator Lights_63: 1241449722
+      Speed Indicator Lights_64: 684216921
+      Speed Indicator Lights_65: 1332488503
+      Speed Indicator Lights_66: -1798225877
+      Speed Indicator Lights_67: -947981996
+      Speed Indicator Lights_68: 1722308915
+      Speed Indicator Lights_69: -1088798477
+      Speed Indicator Lights_7: -887661774
+      Speed Indicator Lights_71: 341947640
+      Speed Indicator Lights_72: -1653573376
+      Speed Indicator Lights_73: -461079289
+      Speed Indicator Lights_74: 1467555902
+      Speed Indicator Lights_75: 377026856
+      Speed Indicator Lights_76: 1556658937
+      Speed Indicator Lights_77: 1302300710
+      Speed Indicator Lights_78: 1143995658
+      Speed Indicator Lights_79: 1505946340
+      Speed Indicator Lights_8: 2024342227
+      Speed Indicator Lights_81: 93893669
+      Speed Indicator Lights_82: -1699697035
+      Speed Indicator Lights_83: -1769527260
+      Speed Indicator Lights_84: 243652791
+      Speed Indicator Lights_85: 461554769
+      Speed Indicator Lights_86: 501973169
+      Speed Indicator Lights_87: 469956694
+      Speed Indicator Lights_88: -236572830
+      Speed Indicator Lights_89: -374773044
+      Speed Indicator Lights_9: -1643057107
+      Speed Indicator Lights_91: 836379931
+      Speed Indicator Lights_92: -1497171541
+      Speed Indicator Lights_93: -1261092748
+      Speed Indicator Lights_94: 297160645
+      Speed Indicator Lights_95: -764159065
+      Speed Indicator Lights_96: -377134374
+      Speed Indicator Lights_97: -872816289
+      Speed Indicator Lights_98: -1654223461
+      Speed Indicator Lights_99: -166615237
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
