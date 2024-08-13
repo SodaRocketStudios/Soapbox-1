@@ -11,6 +11,8 @@ namespace Soap.Prototype
 {
 	public class CarController : MonoBehaviour
 	{
+		private const float TOP_SPEED = 300;
+
 		[Header("Physics Settings")]
 		[SerializeField, Range(0.5f, 1f)] private float brakeBias;
 
@@ -21,6 +23,9 @@ namespace Soap.Prototype
 		[SerializeField] private ProgressBar throttleBar;
 		[SerializeField] private ProgressBar brakeBar;
 		[SerializeField] private NumberDisplay speedDisplay;
+		[SerializeField] private ProgressBar speedBar;
+		[SerializeField] private NumberDisplay ERSPercent;
+		[SerializeField] private ProgressBar ERSBar;
 
 		public UnityEvent OnfalseStart;
 
@@ -56,7 +61,11 @@ namespace Soap.Prototype
 
 		private void Update()
 		{
-			speedDisplay.SetValue(Vector3.Dot(carRigidBody.velocity*3.6f, transform.forward));
+			float speed = Vector3.Dot(carRigidBody.velocity*3.6f, transform.forward);
+			speedDisplay.SetValue(speed);
+			speedBar.SetPercentage(speed/TOP_SPEED);
+			ERSPercent.SetValue(mguk.ChargeAmount*100);
+			ERSBar.SetPercentage(mguk.ChargeAmount);
 		}
 
 		private void FixedUpdate()

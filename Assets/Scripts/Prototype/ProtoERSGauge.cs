@@ -16,7 +16,7 @@ namespace Soap.Prototype
 
 		private void Update()
 		{
-			slider.value = mguk.chargeAmount;
+			slider.value = mguk.ChargeAmount;
 		}
 	}
 }

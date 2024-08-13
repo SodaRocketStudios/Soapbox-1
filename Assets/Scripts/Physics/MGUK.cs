@@ -28,7 +28,7 @@ namespace Soap.Physics
 		private const float MAX_CHARGE = 100;
 
 		private float charge = MAX_CHARGE;
-		public float chargeAmount
+		public float ChargeAmount
 		{
 			get => charge/MAX_CHARGE;
 		}

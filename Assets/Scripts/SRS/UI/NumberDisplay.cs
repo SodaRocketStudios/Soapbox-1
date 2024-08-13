@@ -19,7 +19,7 @@ namespace SRS.UI
 		public void SetValue(float value)
 		{
 			string valueString = value.ToString($"F{decimalPlaces}");
-			textBox.text = $"{preText} {valueString} {postText}";
+			textBox.text = $"{preText}{valueString}{postText}";
 		}
 	}
 }

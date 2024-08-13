@@ -14,7 +14,7 @@ namespace SRS.UI
 
 		public void SetPercentage(float percentage)
 		{
-			slider.value = percentage;
+			slider.value = percentage*slider.maxValue;
 		}
 	}
 }
