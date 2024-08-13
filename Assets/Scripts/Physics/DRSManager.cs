@@ -1,13 +1,30 @@
 using UnityEngine;
+using SRS.UI;
 
 namespace Soap.Physics
 {
 	public class DRSManager : MonoBehaviour
 	{
+		[SerializeField] private ImageSwapper imageSwapper;
+
+		[SerializeField] private Sprite activeImage;
+		[SerializeField] private Sprite availableImage;
+		[SerializeField] private Sprite inactiveImage;
+
 		private bool isActive;
 		private bool isAvailable;
 
 		private AeroSurface[] aeroSurfaces;
+
+		private void Awake()
+		{
+			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
+		}
+
+		public void ToggleDRS()
+		{
+			SetActive(!isActive);
+		}
 
 		public void SetActive(bool active)
 		{
@@ -20,18 +37,17 @@ namespace Soap.Physics
 
 					if(isActive)
 					{
-						// Set active sprite
+						imageSwapper.SetImage(activeImage);
 					}
 					else
 					{
-						// Set available sprite
+						imageSwapper.SetImage(availableImage);
 					}
 				}
-				// Set UI
 			}
 			else
 			{
-				// set inactive sprite.
+				imageSwapper.SetImage(inactiveImage);
 			}
 		}
 
@@ -40,12 +56,12 @@ namespace Soap.Physics
 			isAvailable = available;
 			if(isAvailable)
 			{
-				// Set available sprite
+				imageSwapper.SetImage(availableImage);
 			}
 			else
 			{
 				SetActive(false);
-				// Set inactive sprite
+				imageSwapper.SetImage(inactiveImage);
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Soap.UI
+namespace SRS.UI
 {
 	public class ImageSwapper : MonoBehaviour
 	{

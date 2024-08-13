@@ -1,8 +1,7 @@
 using UnityEngine;
 using TMPro;
-using Soap.LapTiming;
 
-namespace Soap.UI
+namespace Soap.LapTiming
 {
 	public class TimingBox : MonoBehaviour
 	{

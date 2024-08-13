@@ -120,7 +120,7 @@ namespace Soap.Prototype
 		{
 			if(context.performed)
 			{
-				drsManager.SetActive(true);
+				drsManager.ToggleDRS();
 			}
 		}
 

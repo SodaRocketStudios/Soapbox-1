@@ -3,7 +3,8 @@
     "rootNamespace": "Soap.Physics",
     "references": [
         "GUID:1271bda3985b5974aaed383a4ef7b696",
-        "GUID:42709827411ac4c4e975f1a390587e0b"
+        "GUID:42709827411ac4c4e975f1a390587e0b",
+        "GUID:2edce31eaf2007e4987e9c24f7aff81b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

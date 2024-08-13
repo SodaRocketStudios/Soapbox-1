@@ -1,10 +1,7 @@
 {
     "name": "UI",
-    "rootNamespace": "Soap.UI",
-    "references": [
-        "GUID:7071ddce9432f704e85e5e4413cf4ec6",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
-    ],
+    "rootNamespace": "SRS.UI",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
