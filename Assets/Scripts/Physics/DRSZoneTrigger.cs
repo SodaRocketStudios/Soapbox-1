@@ -8,10 +8,7 @@ namespace Soap.Physics
 		
 		private void OnTriggerEnter(Collider other)
 		{
-			foreach (AeroSurface aeroSurface in other.GetComponentsInChildren<AeroSurface>())
-			{
-				aeroSurface.SetInDRSZone(inZone);
-			}
+			other.GetComponent<DRSManager>().SetAvailable(inZone);
 		}
 	}
 }
