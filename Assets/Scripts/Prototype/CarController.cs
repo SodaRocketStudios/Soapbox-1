@@ -4,15 +4,23 @@ using UnityEngine.InputSystem;
 using Soap.Physics;
 using Soap.GameManagement;
 using UnityEngine.Events;
+using System;
+using SRS.UI;
 
 namespace Soap.Prototype
 {
 	public class CarController : MonoBehaviour
 	{
+		[Header("Physics Settings")]
 		[SerializeField, Range(0.5f, 1f)] private float brakeBias;
 
 		[SerializeField] private float preloadTorque;
 		[SerializeField, Range(1, 5)] float torqueBiasRatio;
+
+		[Header("UI")]
+		[SerializeField] private ProgressBar throttleBar;
+		[SerializeField] private ProgressBar brakeBar;
+		[SerializeField] private NumberDisplay speedDisplay;
 
 		public UnityEvent OnfalseStart;
 
@@ -44,6 +52,11 @@ namespace Soap.Prototype
 		private void Start()
 		{
 			PhysicsEnabled(false);
+		}
+
+		private void Update()
+		{
+			speedDisplay.SetValue(Vector3.Dot(carRigidBody.velocity*3.6f, transform.forward));
 		}
 
 		private void FixedUpdate()
@@ -105,6 +118,8 @@ namespace Soap.Prototype
 		{
 			float brakeInput = context.ReadValue<float>();
 
+			brakeBar.SetPercentage(brakeInput);
+
 			if(brakeInput > 0)
 			{
 				drsManager.SetActive(false);
@@ -127,6 +142,8 @@ namespace Soap.Prototype
 		public void Accelerate(InputAction.CallbackContext context)
 		{
 			accelerationInput = context.ReadValue<float>();
+
+			throttleBar.SetPercentage(accelerationInput);
 		}
 	}
 }
