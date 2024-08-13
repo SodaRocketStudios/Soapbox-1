@@ -23,7 +23,7 @@ namespace Soap.Prototype
 		private Wheel[] wheels;
 		private Wheel[] driveWheels = new Wheel[2];
 
-		private AeroSurface[] aeroSurfaces;
+		private DRSManager drsManager;
 
 		private MGUK mguk;
 
@@ -36,7 +36,7 @@ namespace Soap.Prototype
 			carRigidBody = GetComponent<Rigidbody>();
 			wheels = GetComponentsInChildren<Wheel>();
 			driveWheels = wheels.Where(wheel => wheel.IsDriveWheel).ToArray();
-			aeroSurfaces = GetComponentsInChildren<AeroSurface>();
+			drsManager = GetComponent<DRSManager>();
 			mguk = GetComponent<MGUK>();
 			diff = new(driveWheels, preloadTorque, torqueBiasRatio);
 		}
@@ -107,10 +107,7 @@ namespace Soap.Prototype
 
 			if(brakeInput > 0)
 			{
-				foreach(AeroSurface surface in aeroSurfaces)
-				{
-					surface.ToggleDRS();
-				}
+				drsManager.SetActive(false);
 			}
 
 			foreach(Wheel wheel in wheels)
@@ -123,10 +120,7 @@ namespace Soap.Prototype
 		{
 			if(context.performed)
 			{
-				foreach(AeroSurface surface in aeroSurfaces)
-				{
-					surface.ToggleDRS();
-				}
+				drsManager.SetActive(true);
 			}
 		}
 

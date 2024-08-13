@@ -26,8 +26,8 @@
      showgrid="false"
      units="in"
      inkscape:zoom="0.957227"
-     inkscape:cx="302.4361"
-     inkscape:cy="764.18655"
+     inkscape:cx="381.8321"
+     inkscape:cy="444.51316"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
@@ -298,7 +298,7 @@
            cx="107.95"
            cy="87.364906"
            r="3.175"
-           inkscape:export-filename="..\HUD\Instrument Panel\Speed Indicator Lights Background.svg"
+           inkscape:export-filename="..\HUD\Instrument Panel\Speed Indicator Lights Background.png"
            inkscape:export-xdpi="200"
            inkscape:export-ydpi="200" />
         <circle
@@ -420,7 +420,10 @@
            id="circle41"
            cx="95.25"
            cy="180.34"
-           r="2.54" />
+           r="2.54"
+           inkscape:export-filename="..\HUD\Instrument Panel\Speed Indicator Lights.png"
+           inkscape:export-xdpi="200"
+           inkscape:export-ydpi="200" />
         <circle
            style="fill:#1a1a1a;stroke-width:16.421;stroke-linecap:round"
            id="circle42"

@@ -4,23 +4,49 @@ namespace Soap.Physics
 {
 	public class DRSManager : MonoBehaviour
 	{
-		public DRSState state {get; private set;}
+		private bool isActive;
+		private bool isAvailable;
 
-		public void OnZoneEnter()
+		private AeroSurface[] aeroSurfaces;
+
+		public void SetActive(bool active)
 		{
-			state = DRSState.Available;
+			isActive = active;
+			if(isAvailable)
+			{
+				foreach(AeroSurface surface in aeroSurfaces)
+				{
+					surface.SetDRS(true);
+
+					if(isActive)
+					{
+						// Set active sprite
+					}
+					else
+					{
+						// Set available sprite
+					}
+				}
+				// Set UI
+			}
+			else
+			{
+				// set inactive sprite.
+			}
 		}
 
-		public void OnZoneExit()
+		public void SetAvailable(bool available)
 		{
-			state = DRSState.Disabled;
+			isAvailable = available;
+			if(isAvailable)
+			{
+				// Set available sprite
+			}
+			else
+			{
+				SetActive(false);
+				// Set inactive sprite
+			}
 		}
-	}
-
-	public enum DRSState
-	{
-		Disabled,
-		Available,
-		Enabled
 	}
 }
