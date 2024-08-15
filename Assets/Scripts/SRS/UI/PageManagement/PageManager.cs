@@ -11,5 +11,10 @@ namespace SRS.UI.PageManagement
 			transition.Transition(currentPage, nextPage);
 			currentPage = nextPage;
 		}
+
+		public void SetCurrentPage(GameObject currentPage)
+		{
+			this.currentPage = currentPage;
+		}
 	}
 }

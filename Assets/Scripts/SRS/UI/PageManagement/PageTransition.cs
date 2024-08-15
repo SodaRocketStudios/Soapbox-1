@@ -4,6 +4,13 @@ namespace SRS.UI.PageManagement
 {
 	public abstract class PageTransition
 	{
-		public abstract void Transition(GameObject currentPage, GameObject nextPage);
+		public void Transition(GameObject currentPage, GameObject nextPage)
+		{
+			nextPage.SetActive(true);
+			Animate(currentPage, nextPage);
+			currentPage.SetActive(false);
+		}
+
+		protected abstract void Animate(GameObject currentPage, GameObject nextPage);
 	}
 }
