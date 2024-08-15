@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SRS.UI.PageManagement
 {
-	public abstract class PageTransition
+	public abstract class PageTransition : ScriptableObject
 	{
 		public void Transition(GameObject currentPage, GameObject nextPage)
 		{
