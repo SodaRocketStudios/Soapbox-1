@@ -4,17 +4,20 @@ namespace SRS.UI.PageManagement
 {
 	public class PageManager : MonoBehaviour
 	{
-		private GameObject currentPage;
+		[SerializeField] private Page initialPage;
 
-		public void SwapPage(PageTransition transition, GameObject nextPage)
+		private Page currentPage;
+
+		public void SwapPage(Page nextPage)
 		{
-			transition.Transition(currentPage, nextPage);
+			if(currentPage != null)
+			{
+				StartCoroutine(currentPage.Exit());
+			}
+
 			currentPage = nextPage;
-		}
 
-		public void SetCurrentPage(GameObject currentPage)
-		{
-			this.currentPage = currentPage;
+			StartCoroutine(currentPage.Enter());
 		}
 	}
 }

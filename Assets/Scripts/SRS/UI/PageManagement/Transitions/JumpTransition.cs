@@ -1,10 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 namespace SRS.UI.PageManagement
 {
-	[CreateAssetMenu(fileName = "New Jump Transition", menuName = "Page Transitions/JumpTransition")]
+	[CreateAssetMenu(menuName = "Page Transitions/Jump Transition", fileName = "New Jump Transition")]
     public class JumpTransition : PageTransition
     {
-        protected override void Animate(GameObject currentPage, GameObject nextPage){}
+        public override IEnumerator Animate(GameObject page)
+        {
+			yield break;
+        }
     }
 }
