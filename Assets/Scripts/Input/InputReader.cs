@@ -24,6 +24,7 @@ namespace SRS.Input
 
 		private void OnEnable()
 		{
+			// This only gets called when the SO is loaded. Would probably work fine in builds, but causes problems in the editor.
 			Debug.Log("Input Reader Enabled.");
 			if(inputActions == null)
 			{
