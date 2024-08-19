@@ -1,10 +1,11 @@
 using UnityEngine;
 using SRS.Input;
 using SRS.UI.PageManagement;
+using System.Linq;
 
 namespace Soap.GameManagement
 {
-	public class MenuManager : MonoBehaviour
+	public class MainMenu : MonoBehaviour
 	{
 		[SerializeField] private InputReader input;
 
@@ -28,6 +29,11 @@ namespace Soap.GameManagement
 
 		public void OnTabLeft()
 		{
+			if(!pages.Contains(pageManager.CurrentPage))
+			{
+				return;
+			}
+
 			pageIndex--;
 
 			if(pageIndex < 0)
@@ -41,6 +47,11 @@ namespace Soap.GameManagement
 
 		public void OnTabRight()
 		{
+			if(!pages.Contains(pageManager.CurrentPage))
+			{
+				return;
+			}
+			
 			pageIndex++;
 
 			if(pageIndex >= pages.Length)

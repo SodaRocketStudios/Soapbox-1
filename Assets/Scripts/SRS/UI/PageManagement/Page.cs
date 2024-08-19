@@ -7,8 +7,25 @@ namespace SRS.UI.PageManagement
 	public class Page : MonoBehaviour
 	{
 		[SerializeField] private PageTransition entryTransition;
+		public PageTransition EntryTransition
+		{
+			get { return entryTransition; }
+
+			set { entryTransition = value; }
+		}
+
 		[SerializeField] private PageTransition exitTransition;
+		public PageTransition ExitTransition
+		{
+			get { return exitTransition; }
+			set { exitTransition = value; }
+		}
 		[SerializeField] private GameObject firstSelected;
+
+		private void OnEnable()
+		{
+			EventSystem.current.SetSelectedGameObject(firstSelected);
+		}
 
 		public IEnumerator Enter()
 		{
@@ -17,8 +34,6 @@ namespace SRS.UI.PageManagement
 			{
 				yield return StartCoroutine(entryTransition.Animate(gameObject));
 			}
-
-			EventSystem.current.SetSelectedGameObject(firstSelected);
 		}
 
 		public IEnumerator Exit()

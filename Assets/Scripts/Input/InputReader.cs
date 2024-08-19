@@ -7,7 +7,7 @@ namespace SRS.Input
 	[CreateAssetMenu(menuName = "Input Reader")]
 	public class InputReader : ScriptableObject, InputActions.IGameplayActions, InputActions.IUIActions
 	{
-		[SerializeField] private InputActions inputActions;
+		private InputActions inputActions;
 
 		// Gameplay Actions
 		public Action<float> OnSteerInput;
@@ -20,16 +20,18 @@ namespace SRS.Input
 		// UI Actions
 		public Action OnTabRightInput;
 		public Action OnTabLeftInput;
+		public Action OnResumeInput;
 
 		private void OnEnable()
 		{
+			Debug.Log("Input Reader Enabled.");
 			if(inputActions == null)
 			{
 				inputActions = new();
-
-				inputActions.Gameplay.SetCallbacks(this);
-				inputActions.UI.SetCallbacks(this);
 			}
+
+			inputActions.Gameplay.SetCallbacks(this);
+			inputActions.UI.SetCallbacks(this);
 
 			SetUIInput();
 		}
@@ -135,6 +137,14 @@ namespace SRS.Input
 			if(context.performed)
 			{
 				OnTabRightInput?.Invoke();
+			}
+        }
+
+        public void OnReturn(InputAction.CallbackContext context)
+        {
+            if(context.performed)
+			{
+				OnResumeInput?.Invoke();
 			}
         }
     }

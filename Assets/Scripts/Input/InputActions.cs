@@ -350,6 +350,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Value"",
+                    ""id"": ""57698149-247f-4db2-8eb9-46f6d2c9d718"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -814,6 +823,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Tab Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdb9a236-2433-4eb0-aa29-e4cdccb9acd0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d869f2d-5fdb-4a86-a570-7259d94d44a1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB+M"",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -870,6 +901,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_TabLeft = m_UI.FindAction("Tab Left", throwIfNotFound: true);
         m_UI_TabRight = m_UI.FindAction("Tab Right", throwIfNotFound: true);
+        m_UI_Return = m_UI.FindAction("Return", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1029,6 +1061,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_TabLeft;
     private readonly InputAction m_UI_TabRight;
+    private readonly InputAction m_UI_Return;
     public struct UIActions
     {
         private @InputActions m_Wrapper;
@@ -1045,6 +1078,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @TabLeft => m_Wrapper.m_UI_TabLeft;
         public InputAction @TabRight => m_Wrapper.m_UI_TabRight;
+        public InputAction @Return => m_Wrapper.m_UI_Return;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1090,6 +1124,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TabRight.started += instance.OnTabRight;
             @TabRight.performed += instance.OnTabRight;
             @TabRight.canceled += instance.OnTabRight;
+            @Return.started += instance.OnReturn;
+            @Return.performed += instance.OnReturn;
+            @Return.canceled += instance.OnReturn;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1130,6 +1167,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @TabRight.started -= instance.OnTabRight;
             @TabRight.performed -= instance.OnTabRight;
             @TabRight.canceled -= instance.OnTabRight;
+            @Return.started -= instance.OnReturn;
+            @Return.performed -= instance.OnReturn;
+            @Return.canceled -= instance.OnReturn;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1188,5 +1228,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTabLeft(InputAction.CallbackContext context);
         void OnTabRight(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
 }

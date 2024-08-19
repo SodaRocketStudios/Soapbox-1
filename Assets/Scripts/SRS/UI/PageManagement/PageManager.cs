@@ -8,6 +8,16 @@ namespace SRS.UI.PageManagement
 
 		private Page currentPage;
 
+		public Page CurrentPage
+		{
+			get { return currentPage; }
+		}
+
+		private void Start()
+		{
+			SetPageWithoutTransition(initialPage);
+		}
+
 		public void SwapPage(Page nextPage)
 		{
 			if(currentPage != null)
@@ -18,6 +28,16 @@ namespace SRS.UI.PageManagement
 			currentPage = nextPage;
 
 			StartCoroutine(currentPage.Enter());
+		}
+
+		public void SetPageWithoutTransition(Page page)
+		{
+			if(currentPage != null)
+			{
+				currentPage.gameObject.SetActive(false);
+			}
+			currentPage = page;
+			currentPage.gameObject.SetActive(true);
 		}
 	}
 }
