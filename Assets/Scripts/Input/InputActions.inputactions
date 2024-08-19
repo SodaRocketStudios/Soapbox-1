@@ -2,7 +2,7 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "Car",
+            "name": "Gameplay",
             "id": "e156fde8-5702-49f6-88bb-9f41faf3d7ee",
             "actions": [
                 {

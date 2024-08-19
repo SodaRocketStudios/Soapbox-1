@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 namespace SRS.Input
 {
 	[CreateAssetMenu(menuName = "Input Reader")]
-	public class InputReader : ScriptableObject, InputActions.ICarActions, InputActions.IUIActions
+	public class InputReader : ScriptableObject, InputActions.IGameplayActions, InputActions.IUIActions
 	{
 		[SerializeField] private InputActions inputActions;
 
@@ -27,7 +27,7 @@ namespace SRS.Input
 			{
 				inputActions = new();
 
-				inputActions.Car.SetCallbacks(this);
+				inputActions.Gameplay.SetCallbacks(this);
 				inputActions.UI.SetCallbacks(this);
 			}
 
@@ -36,14 +36,14 @@ namespace SRS.Input
 
 		public void SetGameplayInput()
 		{
-			inputActions.Car.Enable();
+			inputActions.Gameplay.Enable();
 			inputActions.UI.Disable();
 		}
 
 		public void SetUIInput()
 		{
 			inputActions.UI.Enable();
-			inputActions.Car.Disable();
+			inputActions.Gameplay.Disable();
 		}
 
         public void OnSteering(InputAction.CallbackContext context)

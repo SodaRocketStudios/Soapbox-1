@@ -24,7 +24,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     ""name"": ""InputActions"",
     ""maps"": [
         {
-            ""name"": ""Car"",
+            ""name"": ""Gameplay"",
             ""id"": ""e156fde8-5702-49f6-88bb-9f41faf3d7ee"",
             ""actions"": [
                 {
@@ -848,14 +848,14 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Car
-        m_Car = asset.FindActionMap("Car", throwIfNotFound: true);
-        m_Car_Steering = m_Car.FindAction("Steering", throwIfNotFound: true);
-        m_Car_Brake = m_Car.FindAction("Brake", throwIfNotFound: true);
-        m_Car_Accelerate = m_Car.FindAction("Accelerate", throwIfNotFound: true);
-        m_Car_Reset = m_Car.FindAction("Reset", throwIfNotFound: true);
-        m_Car_DRSToggle = m_Car.FindAction("DRSToggle", throwIfNotFound: true);
-        m_Car_Pause = m_Car.FindAction("Pause", throwIfNotFound: true);
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_Steering = m_Gameplay.FindAction("Steering", throwIfNotFound: true);
+        m_Gameplay_Brake = m_Gameplay.FindAction("Brake", throwIfNotFound: true);
+        m_Gameplay_Accelerate = m_Gameplay.FindAction("Accelerate", throwIfNotFound: true);
+        m_Gameplay_Reset = m_Gameplay.FindAction("Reset", throwIfNotFound: true);
+        m_Gameplay_DRSToggle = m_Gameplay.FindAction("DRSToggle", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -928,34 +928,34 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Car
-    private readonly InputActionMap m_Car;
-    private List<ICarActions> m_CarActionsCallbackInterfaces = new List<ICarActions>();
-    private readonly InputAction m_Car_Steering;
-    private readonly InputAction m_Car_Brake;
-    private readonly InputAction m_Car_Accelerate;
-    private readonly InputAction m_Car_Reset;
-    private readonly InputAction m_Car_DRSToggle;
-    private readonly InputAction m_Car_Pause;
-    public struct CarActions
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    private readonly InputAction m_Gameplay_Steering;
+    private readonly InputAction m_Gameplay_Brake;
+    private readonly InputAction m_Gameplay_Accelerate;
+    private readonly InputAction m_Gameplay_Reset;
+    private readonly InputAction m_Gameplay_DRSToggle;
+    private readonly InputAction m_Gameplay_Pause;
+    public struct GameplayActions
     {
         private @InputActions m_Wrapper;
-        public CarActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Steering => m_Wrapper.m_Car_Steering;
-        public InputAction @Brake => m_Wrapper.m_Car_Brake;
-        public InputAction @Accelerate => m_Wrapper.m_Car_Accelerate;
-        public InputAction @Reset => m_Wrapper.m_Car_Reset;
-        public InputAction @DRSToggle => m_Wrapper.m_Car_DRSToggle;
-        public InputAction @Pause => m_Wrapper.m_Car_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_Car; }
+        public GameplayActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Steering => m_Wrapper.m_Gameplay_Steering;
+        public InputAction @Brake => m_Wrapper.m_Gameplay_Brake;
+        public InputAction @Accelerate => m_Wrapper.m_Gameplay_Accelerate;
+        public InputAction @Reset => m_Wrapper.m_Gameplay_Reset;
+        public InputAction @DRSToggle => m_Wrapper.m_Gameplay_DRSToggle;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CarActions set) { return set.Get(); }
-        public void AddCallbacks(ICarActions instance)
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplayActions instance)
         {
-            if (instance == null || m_Wrapper.m_CarActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_CarActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
             @Steering.started += instance.OnSteering;
             @Steering.performed += instance.OnSteering;
             @Steering.canceled += instance.OnSteering;
@@ -976,7 +976,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.canceled += instance.OnPause;
         }
 
-        private void UnregisterCallbacks(ICarActions instance)
+        private void UnregisterCallbacks(IGameplayActions instance)
         {
             @Steering.started -= instance.OnSteering;
             @Steering.performed -= instance.OnSteering;
@@ -998,21 +998,21 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.canceled -= instance.OnPause;
         }
 
-        public void RemoveCallbacks(ICarActions instance)
+        public void RemoveCallbacks(IGameplayActions instance)
         {
-            if (m_Wrapper.m_CarActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ICarActions instance)
+        public void SetCallbacks(IGameplayActions instance)
         {
-            foreach (var item in m_Wrapper.m_CarActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_CarActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public CarActions @Car => new CarActions(this);
+    public GameplayActions @Gameplay => new GameplayActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1165,7 +1165,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface ICarActions
+    public interface IGameplayActions
     {
         void OnSteering(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
