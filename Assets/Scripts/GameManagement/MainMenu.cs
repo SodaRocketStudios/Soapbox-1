@@ -19,6 +19,8 @@ namespace Soap.GameManagement
 		{
 			input.OnTabLeftInput += OnTabLeft;
 			input.OnTabRightInput += OnTabRight;
+
+			input.Initialize();
 		}
 
 		private void OnDisable()

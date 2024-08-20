@@ -23,21 +23,26 @@ namespace SRS.Input
 		public Action OnResumeInput;
 
 		private void OnEnable()
-		{
-			// This only gets called when the SO is loaded. Would probably work fine in builds, but causes problems in the editor.
-			Debug.Log("Input Reader Enabled.");
-			if(inputActions == null)
-			{
-				inputActions = new();
-			}
+        {
+            // This only gets called when the SO is loaded. Would probably work fine in builds, but causes problems in the editor.
+            Debug.Log("Input Reader Enabled.");
+            Initialize();
+        }
 
-			inputActions.Gameplay.SetCallbacks(this);
-			inputActions.UI.SetCallbacks(this);
+        public void Initialize()
+        {
+            if (inputActions == null)
+            {
+                inputActions = new();
+            }
 
-			SetUIInput();
-		}
+            inputActions.Gameplay.SetCallbacks(this);
+            inputActions.UI.SetCallbacks(this);
 
-		public void SetGameplayInput()
+            SetUIInput();
+        }
+
+        public void SetGameplayInput()
 		{
 			inputActions.Gameplay.Enable();
 			inputActions.UI.Disable();

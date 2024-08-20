@@ -34,10 +34,10 @@ namespace SRS.UI.PageManagement
 		{
 			if(currentPage != null)
 			{
-				currentPage.gameObject.SetActive(false);
+				currentPage.ExitWithoutTransition();
 			}
 			currentPage = page;
-			currentPage.gameObject.SetActive(true);
+			currentPage.EnterWithoutTransition();
 		}
 	}
 }
