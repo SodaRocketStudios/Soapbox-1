@@ -7,7 +7,6 @@ namespace SRS.UI.PageManagement
 		[SerializeField] private Page initialPage;
 
 		private Page currentPage;
-
 		public Page CurrentPage
 		{
 			get { return currentPage; }
@@ -15,7 +14,7 @@ namespace SRS.UI.PageManagement
 
 		private void Start()
 		{
-			SetPageWithoutTransition(initialPage);
+			SwapPageWithoutTransition(initialPage);
 		}
 
 		public void SwapPage(Page nextPage)
@@ -30,14 +29,23 @@ namespace SRS.UI.PageManagement
 			StartCoroutine(currentPage.Enter());
 		}
 
-		public void SetPageWithoutTransition(Page page)
+		public void SwapPageWithoutTransition(Page page)
 		{
 			if(currentPage != null)
 			{
 				currentPage.ExitWithoutTransition();
 			}
+
 			currentPage = page;
+
+			currentPage.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
 			currentPage.EnterWithoutTransition();
+		}
+		
+		public void Back()
+		{
+			currentPage.Return();
 		}
 	}
 }

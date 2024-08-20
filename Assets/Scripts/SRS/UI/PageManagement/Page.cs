@@ -7,10 +7,6 @@ namespace SRS.UI.PageManagement
 {
 	public class Page : MonoBehaviour
 	{
-		public UnityEvent OnBeforeEntry;
-		public UnityEvent OnBeforeExit;
-		public UnityEvent OnAfterEntry;
-		public UnityEvent OnAfterExit;
 
 		[SerializeField] private PageTransition entryTransition;
 		public PageTransition EntryTransition
@@ -27,6 +23,13 @@ namespace SRS.UI.PageManagement
 			set { exitTransition = value; }
 		}
 		[SerializeField] private GameObject firstSelected;
+
+		public UnityEvent returnAction;
+
+		public UnityEvent OnBeforeEntry;
+		public UnityEvent OnBeforeExit;
+		public UnityEvent OnAfterEntry;
+		public UnityEvent OnAfterExit;
 
 		private void OnEnable()
 		{
@@ -73,6 +76,11 @@ namespace SRS.UI.PageManagement
 			OnAfterExit?.Invoke();
 
 			gameObject.SetActive(false);
+		}
+
+		public void Return()
+		{
+			returnAction?.Invoke();
 		}
 	}
 }

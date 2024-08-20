@@ -19,6 +19,7 @@ namespace Soap.GameManagement
 		{
 			input.OnTabLeftInput += OnTabLeft;
 			input.OnTabRightInput += OnTabRight;
+			input.OnResumeInput += OnReturn;
 
 			input.Initialize();
 		}
@@ -27,6 +28,7 @@ namespace Soap.GameManagement
 		{
 			input.OnTabLeftInput -= OnTabLeft;
 			input.OnTabRightInput -= OnTabRight;
+			input.OnResumeInput -= OnReturn;
 		}
 
 		public void OnTabLeft()
@@ -63,6 +65,16 @@ namespace Soap.GameManagement
 			}
 
 			pageManager.SwapPage(pages[pageIndex]);
+		}
+
+		public void OnReturn()
+		{
+			pageManager.Back();
+		}
+
+		public void QuitGame()
+		{
+			Application.Quit();
 		}
 	}
 }
