@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6a0d78c59a3774896eaa9f11071d2f, type: 3}
   m_Name: Slide Enter Left Transition
   m_EditorClassIdentifier: 
-  slideTime: 0.5
+  slideTime: 0.25
   startPosition: {x: -2000, y: 0}
   endPosition: {x: 0, y: 0}

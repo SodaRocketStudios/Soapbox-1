@@ -16,13 +16,12 @@ namespace SRS.UI.PageManagement
         {
 			float t = 0;
 			RectTransform transform = page.GetComponent<RectTransform>();
-			Vector2 initialPosition = transform.anchoredPosition;
 
-			t = initialPosition.InverseLerp(startPosition, endPosition);
+			t = transform.anchoredPosition.InverseLerp(startPosition, endPosition);
 
-            while( t <= 1)
+            while(t <= 1)
 			{
-				transform.anchoredPosition = Vector2.Lerp(initialPosition, endPosition, t/slideTime);
+				transform.anchoredPosition = Vector2.Lerp(startPosition, endPosition, t);
 				t += Time.deltaTime/slideTime;
 				yield return null;
 			}
