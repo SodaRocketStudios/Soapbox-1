@@ -52,6 +52,7 @@ namespace SRS.UI.PageManagement
 
 		public IEnumerator Enter()
 		{
+			StopAllCoroutines();
 			gameObject.SetActive(true);
 
 			OnBeforeEntry?.Invoke();
@@ -66,6 +67,7 @@ namespace SRS.UI.PageManagement
 
 		public IEnumerator Exit()
 		{
+			StopAllCoroutines();
 			OnBeforeExit?.Invoke();
 
 			if(exitTransition != null)

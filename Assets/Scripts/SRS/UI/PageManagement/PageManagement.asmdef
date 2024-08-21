@@ -1,7 +1,9 @@
 {
     "name": "PageManagement",
     "rootNamespace": "SRS.UI.PageManagement",
-    "references": [],
+    "references": [
+        "GUID:42709827411ac4c4e975f1a390587e0b"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

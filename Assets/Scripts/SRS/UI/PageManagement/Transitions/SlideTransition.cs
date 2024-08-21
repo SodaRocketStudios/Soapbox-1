@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using SRS.Extensions.Vector;
 
 namespace SRS.UI.PageManagement
 {
@@ -15,10 +16,14 @@ namespace SRS.UI.PageManagement
         {
 			float t = 0;
 			RectTransform transform = page.GetComponent<RectTransform>();
-            while( t <= slideTime)
+			Vector2 initialPosition = transform.anchoredPosition;
+
+			t = initialPosition.InverseLerp(startPosition, endPosition);
+
+            while( t <= 1)
 			{
-				transform.anchoredPosition = Vector2.Lerp(startPosition, endPosition, t/slideTime);
-				t += Time.deltaTime;
+				transform.anchoredPosition = Vector2.Lerp(initialPosition, endPosition, t/slideTime);
+				t += Time.deltaTime/slideTime;
 				yield return null;
 			}
         }
