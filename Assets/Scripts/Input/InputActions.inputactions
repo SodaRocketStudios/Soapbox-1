@@ -33,15 +33,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Reset",
-                    "type": "Value",
-                    "id": "89733370-906d-4a08-a3a1-5841bb8cb1c0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "DRSToggle",
                     "type": "Button",
                     "id": "34c13706-de19-407e-8312-72591de417de",
@@ -58,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Clutch",
+                    "type": "Button",
+                    "id": "bfabdf59-3d2b-4ebb-821e-636ffc9d1880",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -129,28 +129,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e37b835c-550f-4a47-860e-638dc511f6a6",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KB+M",
-                    "action": "Reset",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "da1735e4-e8f4-4ead-b68f-e6d469cf5e3e",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Reset",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "09c28119-50ef-4ee8-8cae-1ced9eeb66ed",
                     "path": "<Keyboard>/f",
                     "interactions": "",
@@ -212,6 +190,28 @@
                     "processors": "",
                     "groups": "KB+M",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3316d541-3a8c-4a02-964e-312b98ab4874",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KB+M",
+                    "action": "Clutch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e2a1980-4f8b-4ad0-a76b-2ce7233d8d0e",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Clutch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

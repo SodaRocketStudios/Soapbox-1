@@ -55,15 +55,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Reset"",
-                    ""type"": ""Value"",
-                    ""id"": ""89733370-906d-4a08-a3a1-5841bb8cb1c0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""DRSToggle"",
                     ""type"": ""Button"",
                     ""id"": ""34c13706-de19-407e-8312-72591de417de"",
@@ -80,6 +71,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Clutch"",
+                    ""type"": ""Button"",
+                    ""id"": ""bfabdf59-3d2b-4ebb-821e-636ffc9d1880"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -151,28 +151,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e37b835c-550f-4a47-860e-638dc511f6a6"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KB+M"",
-                    ""action"": ""Reset"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""da1735e4-e8f4-4ead-b68f-e6d469cf5e3e"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Reset"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""09c28119-50ef-4ee8-8cae-1ced9eeb66ed"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -234,6 +212,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""KB+M"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3316d541-3a8c-4a02-964e-312b98ab4874"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB+M"",
+                    ""action"": ""Clutch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e2a1980-4f8b-4ad0-a76b-2ce7233d8d0e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Clutch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -884,9 +884,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Gameplay_Steering = m_Gameplay.FindAction("Steering", throwIfNotFound: true);
         m_Gameplay_Brake = m_Gameplay.FindAction("Brake", throwIfNotFound: true);
         m_Gameplay_Accelerate = m_Gameplay.FindAction("Accelerate", throwIfNotFound: true);
-        m_Gameplay_Reset = m_Gameplay.FindAction("Reset", throwIfNotFound: true);
         m_Gameplay_DRSToggle = m_Gameplay.FindAction("DRSToggle", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_Clutch = m_Gameplay.FindAction("Clutch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -966,9 +966,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Steering;
     private readonly InputAction m_Gameplay_Brake;
     private readonly InputAction m_Gameplay_Accelerate;
-    private readonly InputAction m_Gameplay_Reset;
     private readonly InputAction m_Gameplay_DRSToggle;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_Clutch;
     public struct GameplayActions
     {
         private @InputActions m_Wrapper;
@@ -976,9 +976,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Steering => m_Wrapper.m_Gameplay_Steering;
         public InputAction @Brake => m_Wrapper.m_Gameplay_Brake;
         public InputAction @Accelerate => m_Wrapper.m_Gameplay_Accelerate;
-        public InputAction @Reset => m_Wrapper.m_Gameplay_Reset;
         public InputAction @DRSToggle => m_Wrapper.m_Gameplay_DRSToggle;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @Clutch => m_Wrapper.m_Gameplay_Clutch;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -997,15 +997,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Accelerate.started += instance.OnAccelerate;
             @Accelerate.performed += instance.OnAccelerate;
             @Accelerate.canceled += instance.OnAccelerate;
-            @Reset.started += instance.OnReset;
-            @Reset.performed += instance.OnReset;
-            @Reset.canceled += instance.OnReset;
             @DRSToggle.started += instance.OnDRSToggle;
             @DRSToggle.performed += instance.OnDRSToggle;
             @DRSToggle.canceled += instance.OnDRSToggle;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Clutch.started += instance.OnClutch;
+            @Clutch.performed += instance.OnClutch;
+            @Clutch.canceled += instance.OnClutch;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1019,15 +1019,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Accelerate.started -= instance.OnAccelerate;
             @Accelerate.performed -= instance.OnAccelerate;
             @Accelerate.canceled -= instance.OnAccelerate;
-            @Reset.started -= instance.OnReset;
-            @Reset.performed -= instance.OnReset;
-            @Reset.canceled -= instance.OnReset;
             @DRSToggle.started -= instance.OnDRSToggle;
             @DRSToggle.performed -= instance.OnDRSToggle;
             @DRSToggle.canceled -= instance.OnDRSToggle;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Clutch.started -= instance.OnClutch;
+            @Clutch.performed -= instance.OnClutch;
+            @Clutch.canceled -= instance.OnClutch;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1210,9 +1210,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnSteering(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnAccelerate(InputAction.CallbackContext context);
-        void OnReset(InputAction.CallbackContext context);
         void OnDRSToggle(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnClutch(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

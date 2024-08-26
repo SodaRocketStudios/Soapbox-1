@@ -153,5 +153,10 @@ namespace SRS.Input
 				OnResumeInput?.Invoke();
 			}
         }
+
+        public void OnClutch(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
