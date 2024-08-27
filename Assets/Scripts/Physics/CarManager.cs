@@ -16,23 +16,24 @@ namespace Soap.Physics
 
 		private void Start()
 		{
-			IsPhysicsEnabled = false;
+			DisablePhysics();
+		}
+
+		public void EnablePhysics()
+		{
+			IsPhysicsEnabled = true;
+			carRigidBody.useGravity = true;
 		}
 
 		public void DisablePhysics()
 		{
 			IsPhysicsEnabled = false;
+			carRigidBody.useGravity = false;
 		}
 
 		private void FixedUpdate()
 		{
-			if(GameState.Instance.State == State.PreStart)
-			{
-				carRigidBody.Sleep();
-				return;
-			}
-
-			if (IsPhysicsEnabled == false)
+			if(GameState.Instance.State == State.PreStart || IsPhysicsEnabled == false)
 			{
 				carRigidBody.Sleep();
 				return;

@@ -17,6 +17,7 @@ namespace Soap.Physics
 				{
 					wheel = GetComponentInChildren<Wheel>();
 				}
+				
 				return restLength + wheel.Radius;
 			}
 		}

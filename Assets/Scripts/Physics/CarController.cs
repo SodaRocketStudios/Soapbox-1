@@ -42,7 +42,7 @@ namespace Soap.Physics
 
 		private float accelerationInput;
 
-		private bool clutchInput;
+		private bool clutchInput = true;
 
 		private void Awake()
 		{
@@ -62,6 +62,8 @@ namespace Soap.Physics
 			InputHandler.OnSteerInput += Steer;
 			InputHandler.OnDRSToggleInput += DRS;
 			InputHandler.OnClutchInput += Clutch;
+
+			clutchInput = true;
 		}
 
 		private void OnDisable()
@@ -86,9 +88,14 @@ namespace Soap.Physics
 		{
 			float torque;
 
-			if(clutchInput)
+			if(clutchInput == true)
 			{
 				return;
+			}
+			
+			if(carManager.IsPhysicsEnabled == false)
+			{
+				carManager.EnablePhysics();
 			}
 			
 			if(accelerationInput > 0)

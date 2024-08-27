@@ -60,20 +60,17 @@ namespace Soap.Physics
 
 			float angle = Mathf.Atan2(heightDelta, wheelBase)*180/Mathf.PI;
 
-			// transform.rotation *= Quaternion.AngleAxis(angle, transform.right);
 			transform.Rotate(Vector3.right*angle);
 
-			if(UnityEngine.Physics.Raycast(transform.position, Vector3.down, out hit))
+
+			if(UnityEngine.Physics.Raycast(transform.position, -transform.up, out hit))
 			{
-				float distance = hit.distance - suspensions[0].GroundedLength;
-				transform.Translate(-transform.up*distance);
+				float distance = hit.distance;
+				transform.position -= transform.up*distance;
 			}
 
 			initializedPosition = transform.position;
 			initializedRotation = transform.rotation;
-
-			// carRigidbody.angularVelocity = Vector3.zero;
-			// carRigidbody.velocity = Vector3.zero;
 		}
 	}
 }
