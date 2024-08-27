@@ -14,6 +14,11 @@ namespace SRS.UI.PageManagement
 
 		private void Start()
 		{
+			if(initialPage == null)
+			{
+				return;
+			}
+			
 			SwapPageWithoutTransition(initialPage);
 		}
 
