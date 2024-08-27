@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace SRS.Input
+namespace Soap.Input
 {
     public class InputHandler : MonoBehaviour, InputActions.IGameplayActions, InputActions.IUIActions
     {
@@ -10,18 +10,18 @@ namespace SRS.Input
 
 
 		// Gameplay Actions
-		public Action<float> OnSteerInput;
-		public Action<float> OnAccelerateInput;
-		public Action<float> OnBrakeInput;
-		public Action<int> OnClutchInput;
-		public Action OnDRSToggleInput;
-		public Action OnPauseInput;
+		public static Action<float> OnSteerInput;
+		public static Action<float> OnAccelerateInput;
+		public static Action<float> OnBrakeInput;
+		public static Action<int> OnClutchInput;
+		public static Action OnDRSToggleInput;
+		public static Action OnPauseInput;
 
 		// UI Actions
-		public Action OnTabRightInput;
-		public Action OnTabLeftInput;
-		public Action OnReturnInput;
-		public Action OnCancelInput;
+		public static Action OnTabRightInput;
+		public static Action OnTabLeftInput;
+		public static Action OnReturnInput;
+		public static Action OnCancelInput;
 
 		private InputActions inputActions;
 		

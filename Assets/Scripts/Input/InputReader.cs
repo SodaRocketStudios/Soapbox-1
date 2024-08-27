@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace SRS.Input
+namespace Soap.Input
 {
 	[CreateAssetMenu(menuName = "Input Reader")]
 	public class InputReader : ScriptableObject, InputActions.IGameplayActions, InputActions.IUIActions
