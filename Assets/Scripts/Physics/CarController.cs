@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using SRS.UI;
 using Soap.Input;
+using Soap.GameManagement;
 
 namespace Soap.Physics
 {
@@ -25,7 +26,9 @@ namespace Soap.Physics
 		[SerializeField] private NumberDisplay ERSPercent;
 		[SerializeField] private ProgressBar ERSBar;
 
-		public UnityEvent OnfalseStart;
+		public UnityEvent OnClutchPress;
+
+		public UnityEvent OnFalseStart;
 
 		private CarManager carManager;
 
@@ -95,6 +98,11 @@ namespace Soap.Physics
 			
 			if(carManager.IsPhysicsEnabled == false)
 			{
+				if(GameState.Instance.State == State.Countdown)
+				{
+					OnFalseStart?.Invoke();
+				}
+
 				carManager.EnablePhysics();
 			}
 			
@@ -152,6 +160,11 @@ namespace Soap.Physics
 		public void Clutch(bool input)
 		{
 			clutchInput = input;
+
+			if(GameState.Instance.State == State.PreStart && input == true)
+			{
+				OnClutchPress?.Invoke();
+			}
 		}
 	}
 }
