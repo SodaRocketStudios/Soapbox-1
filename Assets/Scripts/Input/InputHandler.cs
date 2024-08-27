@@ -13,7 +13,7 @@ namespace Soap.Input
 		public static Action<float> OnSteerInput;
 		public static Action<float> OnAccelerateInput;
 		public static Action<float> OnBrakeInput;
-		public static Action<int> OnClutchInput;
+		public static Action<bool> OnClutchInput;
 		public static Action OnDRSToggleInput;
 		public static Action OnPauseInput;
 
@@ -82,11 +82,11 @@ namespace Soap.Input
         {
 			if(context.performed)
 			{
-				OnClutchInput?.Invoke(1);
+				OnClutchInput?.Invoke(true);
 			}
 			else if(context.canceled)
 			{
-				OnClutchInput?.Invoke(0);
+				OnClutchInput?.Invoke(false);
 			}
         }
 

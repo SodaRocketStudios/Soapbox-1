@@ -12,7 +12,9 @@ namespace Soap.Prototype
 
 		private MGUK mguk;
 
-		private CarController controller;
+		private CarManager manager;
+
+
 
 		[SerializeField] private LapTimer timer;
 
@@ -26,7 +28,7 @@ namespace Soap.Prototype
 
 			mguk = GetComponent<MGUK>();
 
-			controller = GetComponent<CarController>();
+			manager = GetComponent<CarManager>();
 
 			initializer = GetComponent<CarInitializer>();
 		}
@@ -37,7 +39,7 @@ namespace Soap.Prototype
 			{
 				GameState.Instance.State = State.PreStart;
 
-				controller.PhysicsEnabled(false);
+				manager.DisablePhysics();
 				
 				transform.position = initializer.initializedPosition;
 				transform.rotation = initializer.initializedRotation;

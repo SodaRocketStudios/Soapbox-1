@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using Soap.GameManagement;
 using UnityEngine.Events;
 using SRS.UI;
 using Soap.Input;
@@ -28,6 +27,8 @@ namespace Soap.Physics
 
 		public UnityEvent OnfalseStart;
 
+		private CarManager carManager;
+
 		private Rigidbody carRigidBody;
 
 		private Differential diff;
@@ -39,12 +40,13 @@ namespace Soap.Physics
 
 		private MGUK mguk;
 
-		private bool isPhysicsEnabled;
-
 		private float accelerationInput;
+
+		private bool clutchInput;
 
 		private void Awake()
 		{
+			carManager = GetComponent<CarManager>();
 			carRigidBody = GetComponent<Rigidbody>();
 			wheels = GetComponentsInChildren<Wheel>();
 			driveWheels = wheels.Where(wheel => wheel.IsDriveWheel).ToArray();
@@ -62,9 +64,13 @@ namespace Soap.Physics
 			InputHandler.OnClutchInput += Clutch;
 		}
 
-		private void Start()
+		private void OnDisable()
 		{
-			PhysicsEnabled(false);
+			InputHandler.OnAccelerateInput -= Accelerate;
+			InputHandler.OnBrakeInput -= Brake;
+			InputHandler.OnSteerInput -= Steer;
+			InputHandler.OnDRSToggleInput -= DRS;
+			InputHandler.OnClutchInput -= Clutch;
 		}
 
 		private void Update()
@@ -78,25 +84,12 @@ namespace Soap.Physics
 
 		private void FixedUpdate()
 		{
-			if(GameState.Instance.State == State.PreStart)
-			{
-				carRigidBody.Sleep();
-				return;
-			}
-
-			if (isPhysicsEnabled == false)
-			{
-				if(accelerationInput > 0)
-				{
-					PhysicsEnabled(true);
-					return;
-				}
-				
-				carRigidBody.Sleep();
-				return;
-			}
-
 			float torque;
+
+			if(clutchInput)
+			{
+				return;
+			}
 			
 			if(accelerationInput > 0)
 			{
@@ -108,17 +101,6 @@ namespace Soap.Physics
 			}
 
 			diff.Accelerate(torque);
-		}
-
-		public void PhysicsEnabled(bool enabled)
-		{
-			if(GameState.Instance.State == State.Countdown)
-			{
-				OnfalseStart?.Invoke();
-			}
-
-			isPhysicsEnabled = enabled;
-			carRigidBody.useGravity = enabled;
 		}
 
 		public void Steer(float steer)
@@ -160,16 +142,9 @@ namespace Soap.Physics
 			throttleBar.SetPercentage(accelerationInput);
 		}
 
-		public void Clutch(int clutch)
+		public void Clutch(bool input)
 		{
-			if(clutch == 0)
-			{
-				// clutch released
-			}
-			else
-			{
-				// clutch pressed
-			}
+			clutchInput = input;
 		}
 	}
 }
