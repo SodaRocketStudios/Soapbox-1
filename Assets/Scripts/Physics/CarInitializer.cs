@@ -62,10 +62,9 @@ namespace Soap.Physics
 
 			transform.Rotate(Vector3.right*angle);
 
-
-			if(UnityEngine.Physics.Raycast(transform.position, -transform.up, out hit))
+			if(UnityEngine.Physics.Raycast(suspensions[0].transform.position, -transform.up, out hit))
 			{
-				float distance = hit.distance;
+				float distance = hit.distance - suspensions[0].GroundedLength;
 				transform.position -= transform.up*distance;
 			}
 
