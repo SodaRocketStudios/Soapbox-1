@@ -1,10 +1,7 @@
 {
-    "name": "PageManagement",
-    "rootNamespace": "SRS.UI.PageManagement",
-    "references": [
-        "GUID:42709827411ac4c4e975f1a390587e0b",
-        "GUID:f990f83fa5906b846aee044f5b2bed57"
-    ],
+    "name": "Curves",
+    "rootNamespace": "SRS.Utils.Curves",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

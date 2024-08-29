@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using SRS.Extensions.Vector;
+using SRS.Utils.Curves;
 
 namespace SRS.UI.PageManagement
 {
@@ -12,16 +13,23 @@ namespace SRS.UI.PageManagement
 		[SerializeField] private Vector2 startPosition;
 		[SerializeField] private Vector2 endPosition;
 
+		private SigmoidCurve animationCurve = new SigmoidCurve(1, 0.5f, 0, 10);
+
         public override IEnumerator Animate(GameObject page)
         {
-			float t = 0;
 			RectTransform transform = page.GetComponent<RectTransform>();
 
-			t = transform.anchoredPosition.InverseLerp(startPosition, endPosition);
+			float t = transform.anchoredPosition.InverseLerp(startPosition, endPosition);
+
+			if(t >= 1)
+			{
+				t = 0;
+			}
 
             while(t <= 1)
 			{
-				transform.anchoredPosition = Vector2.Lerp(startPosition, endPosition, t);
+				float step = animationCurve.Evaluate(t);
+				transform.anchoredPosition = Vector2.Lerp(startPosition, endPosition, step);
 				t += Time.deltaTime/slideTime;
 				yield return null;
 			}

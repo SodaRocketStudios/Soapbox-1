@@ -28,19 +28,38 @@
      inkscape:document-units="in"
      showgrid="false"
      units="in"
-     inkscape:zoom="0.61114808"
-     inkscape:cx="907.30875"
-     inkscape:cy="638.96135"
+     inkscape:zoom="0.43214695"
+     inkscape:cx="659.49789"
+     inkscape:cy="313.55075"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer8"
+     inkscape:current-layer="layer14"
      inkscape:showpageshadow="0"
      inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs2">
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="0.5"
+       markerHeight="0.5"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path74" />
+    </marker>
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect24"
@@ -315,8 +334,8 @@
        lpesatellites=""
        num_rows="4"
        num_cols="4"
-       gapx="0.0032552083"
-       gapy="0.0027126736"
+       gapx="3.390842e-05"
+       gapy="2.8257017e-05"
        offset="0"
        offset_type="false"
        scale="0"
@@ -348,8 +367,8 @@
        lpesatellites=""
        num_rows="4"
        num_cols="5"
-       gapx="0.0032552083"
-       gapy="0.0027126736"
+       gapx="3.390842e-05"
+       gapy="2.8257017e-05"
        offset="0"
        offset_type="false"
        scale="0"
@@ -492,9 +511,337 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <g
+       id="g7"
+       inkscape:label="Right Chevrons"
+       transform="translate(63.414036)">
+      <path
+         id="path9"
+         style="display:inline;fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.64316;stroke-linecap:round;stroke-linejoin:round"
+         d="m 276.46527,26.239517 -2.0593,2.0593 5.78931,5.78931 -5.78931,5.789316 2.0593,2.059307 7.84862,-7.848616 z" />
+      <path
+         id="rect8"
+         style="display:inline;fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.64316;stroke-linecap:round;stroke-linejoin:round"
+         d="m 284.80721,26.239517 -2.0593,2.0593 5.78931,5.78931 -5.78931,5.789316 2.0593,2.059307 7.84862,-7.848616 z" />
+    </g>
+    <g
+       id="g11"
+       inkscape:export-filename="..\Soapbox 1\Assets\Sprites\Menus\Chevrons.png"
+       inkscape:export-xdpi="384"
+       inkscape:export-ydpi="384"
+       style="display:inline"
+       inkscape:label="Left Chevrons">
+      <path
+         id="path10"
+         style="fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.69083;stroke-linecap:round;stroke-linejoin:round"
+         d="m 53.067969,26.239517 2.089876,2.082621 -5.87527,5.854873 5.87527,5.854878 -2.089876,2.082628 -7.965157,-7.937499 z"
+         inkscape:export-filename="..\Soapbox 1\Assets\Sprites\Menus\Chevrons.png"
+         inkscape:export-xdpi="192"
+         inkscape:export-ydpi="192" />
+      <path
+         id="path11"
+         style="fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.69083;stroke-linecap:round;stroke-linejoin:round"
+         d="m 61.533769,26.239517 2.089877,2.082621 -5.875269,5.854873 5.875269,5.854878 -2.089877,2.082628 -7.965156,-7.937499 z" />
+    </g>
+    <g
        inkscape:groupmode="layer"
        id="layer13"
-       inkscape:label="Gameplay" />
+       inkscape:label="Gameplay"
+       style="display:none" />
+    <g
+       inkscape:groupmode="layer"
+       id="layer14"
+       inkscape:label="Help"
+       style="display:inline">
+      <g
+         inkscape:groupmode="layer"
+         id="g27"
+         inkscape:label="DRS"
+         style="display:inline">
+        <path
+           style="fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:1.90497;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="M 357.73716,68.092906 312.42358,237.20426 H 462.5499 V 68.092906 Z"
+           id="path25"
+           sodipodi:nodetypes="ccccc"
+           inkscape:label="DRS Background " />
+        <path
+           style="display:inline;fill:#ed4d6e;stroke-width:7.82578;stroke-linecap:round"
+           d="m 320.65613,207.65505 -8.22639,30.11805 h 150.20051 l 0.007,-30.11805 z"
+           id="path27"
+           inkscape:label="DRS Selected Background"
+           sodipodi:nodetypes="ccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+           x="387.89948"
+           y="229.15688"
+           id="text27"
+           inkscape:label="DRS"
+           inkscape:export-filename="..\Menus\DRS.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan27"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+             x="387.89948"
+             y="229.15688">DRS</tspan></text>
+      </g>
+      <g
+         inkscape:groupmode="layer"
+         id="g31"
+         inkscape:label="ERS"
+         style="display:inline">
+        <path
+           style="display:inline;fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:1.90497;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="M 235.45572,68.092906 190.15933,237.1401 H 305.55666 L 350.85228,68.092906 Z"
+           id="path29"
+           sodipodi:nodetypes="ccccc"
+           inkscape:label="ERS Background" />
+        <path
+           style="display:inline;fill:#ed4d6e;stroke-width:7.82578;stroke-linecap:round"
+           d="m 198.13094,206.89169 -7.98556,30.11805 H 305.6042 l 8.16272,-30.11805 z"
+           id="path47"
+           inkscape:label="ERS Selected Background"
+           sodipodi:nodetypes="ccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+           x="250.68396"
+           y="229.1013"
+           id="text31"
+           inkscape:label="ERS"
+           inkscape:export-filename="..\Menus\ERS.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan31"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+             x="250.68396"
+             y="229.1013">ERS</tspan></text>
+      </g>
+      <g
+         inkscape:groupmode="layer"
+         id="g34"
+         inkscape:label="Race Start"
+         style="display:inline">
+        <path
+           style="display:inline;fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:1.90497;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="M 46.055297,68.092906 V 236.67285 H 184.01923 L 229.18965,68.092906 Z"
+           id="path32"
+           inkscape:label="Race Start Background" />
+        <path
+           style="display:inline;fill:#ed4d6e;stroke-width:7.82715;stroke-linecap:round"
+           d="m 45.827574,207.19412 v 30.12331 H 183.7103 l 8.20371,-30.12331 z"
+           id="path34"
+           inkscape:label="Race Start Selected Background"
+           sodipodi:nodetypes="ccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+           x="116.16544"
+           y="229.1013"
+           id="text34"
+           inkscape:label="Race Start"
+           inkscape:export-filename="..\Menus\Race Start.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan34"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+             x="116.16544"
+             y="229.1013">RACE START</tspan></text>
+        <g
+           id="g61"
+           inkscape:label="Starting Lights"
+           inkscape:export-filename="../Menus/Starting Lights.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96">
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="path48"
+             cx="76.35778"
+             cy="150.36459"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:#e0e0e2;fill-opacity:1;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle48"
+             cx="76.32856"
+             cy="150.36459"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle51"
+             cx="177.92856"
+             cy="150.36459"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle52"
+             cx="152.52856"
+             cy="150.36459"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle53"
+             cx="127.12856"
+             cy="150.36459"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:#e0e0e2;fill-opacity:1;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle54"
+             cx="101.72856"
+             cy="150.36459"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle55"
+             cx="76.35778"
+             cy="122.8132"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:#e0e0e2;fill-opacity:1;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle56"
+             cx="76.32856"
+             cy="122.8132"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle57"
+             cx="177.92856"
+             cy="122.8132"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle58"
+             cx="152.52856"
+             cy="122.8132"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:none;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle59"
+             cx="127.12856"
+             cy="122.8132"
+             r="9.3939142" />
+          <circle
+             style="display:inline;fill:#e0e0e2;fill-opacity:1;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+             id="circle60"
+             cx="101.72856"
+             cy="122.8132"
+             r="9.3939142" />
+        </g>
+        <rect
+           style="fill:none;fill-opacity:1;stroke:#e0e0e2;stroke-width:5.08;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect60"
+           width="41.561127"
+           height="71.216713"
+           x="250.66553"
+           y="110.39674" />
+        <rect
+           style="fill:none;fill-opacity:1;stroke:#e0e0e2;stroke-width:5.08;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+           id="rect61"
+           width="18.182991"
+           height="9.7408886"
+           x="262.35458"
+           y="100.6602"
+           inkscape:export-filename="..\Menus\Battery.png"
+           inkscape:export-xdpi="200"
+           inkscape:export-ydpi="200" />
+        <path
+           style="display:inline;fill:none;fill-opacity:1;stroke:#e0e0e2;stroke-width:2.54;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 268.31876,128.29388 h 8.51728 l -4.98497,13.70223 h 6.9221 l -11.40304,21.72112 4.43388,-16.95792 h -7.68494 z"
+           id="path1-6"
+           sodipodi:nodetypes="cccccccc"
+           inkscape:label="Lightning"
+           inkscape:export-filename="..\Menus\Battery.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="149.33084"
+         y="41.627708"
+         id="text67"
+         inkscape:label="Settings"
+         inkscape:export-filename="..\Menus\Settings.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan67"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="149.33084"
+           y="41.627708">SETTINGS</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="74.785751"
+         y="41.627708"
+         id="text68"
+         inkscape:label="Race"
+         inkscape:export-filename="..\Menus\Race.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan68"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="74.785751"
+           y="41.627708">RACE</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:21.1667px;line-height:1.25;font-family:Audiowide;-inkscape-font-specification:Audiowide;display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="447.02396"
+         y="41.492199"
+         id="text69"
+         inkscape:label="X"
+         inkscape:export-filename="..\Menus\X.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan69"
+           style="font-size:21.1667px;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="447.02396"
+           y="41.492199">X</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="271.37784"
+         y="41.630623"
+         id="text70"
+         inkscape:label="Help"
+         inkscape:export-filename="..\Menus\Help.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan70"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="271.37784"
+           y="41.630623">HELP</tspan></text>
+      <rect
+         style="display:inline;fill:#ed4d6e;fill-opacity:1;stroke-width:18.008;stroke-linecap:round"
+         id="rect34"
+         width="52.451"
+         height="1.9050001"
+         x="271.01801"
+         y="44.336349"
+         inkscape:label="Help Underline"
+         inkscape:export-filename="..\Menus\Underline Help.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="fill:none;stroke:#e0e0e2;stroke-width:3.81000007;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 372.13551,163.76538 c -0.077,-11.18976 22.02345,0.34145 45.07122,-15.792 0,0 -10.81087,14.52485 -25.90742,18.69431 -6.22762,1.71998 -19.11981,3.49313 -19.1638,-2.90231 z"
+         id="path71"
+         sodipodi:nodetypes="scss"
+         inkscape:export-filename="..\Menus\Rear Wing.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="fill:none;stroke:#e0e0e2;stroke-width:3.81000007;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 398.79366,123.67625 c -0.44743,-6.4861 12.55003,0.40507 35.2845,-16.16694 0,0 -8.95354,12.85566 -19.43839,16.92435 -6.02316,2.33731 -15.40596,5.62304 -15.84611,-0.75741 z"
+         id="path72"
+         sodipodi:nodetypes="scss"
+         inkscape:transform-center-x="17.313262"
+         inkscape:transform-center-y="9.5460226" />
+    </g>
     <g
        inkscape:groupmode="layer"
        id="layer9"
@@ -522,7 +869,7 @@
            style="display:inline;fill:#ed4d6e;stroke-width:7.82578;stroke-linecap:round"
            d="m 320.65613,207.65505 -8.22639,30.11805 h 150.20051 l 0.007,-30.11805 z"
            id="path1"
-           inkscape:label="Time Trial Selected Background"
+           inkscape:label="Audio Selected Background"
            sodipodi:nodetypes="ccccc" />
         <text
            xml:space="preserve"
@@ -563,7 +910,7 @@
            style="display:inline;fill:#ed4d6e;stroke-width:7.82578;stroke-linecap:round"
            d="m 198.13094,206.89169 -7.98556,30.11805 H 305.6042 l 8.16272,-30.11805 z"
            id="path2"
-           inkscape:label="Grand Prix Selected Background"
+           inkscape:label="Video Selected Background"
            sodipodi:nodetypes="ccccc" />
         <text
            xml:space="preserve"
@@ -580,31 +927,6 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
              x="250.68396"
              y="229.1013">VIDEO</tspan></text>
-        <path
-           id="rect8"
-           style="fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.64316;stroke-linecap:round;stroke-linejoin:round"
-           d="m 284.80721,26.239517 -2.0593,2.0593 5.78931,5.78931 -5.78931,5.789316 2.0593,2.059307 7.84862,-7.848616 z" />
-        <path
-           id="path9"
-           style="fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.64316;stroke-linecap:round;stroke-linejoin:round"
-           d="m 276.46527,26.239517 -2.0593,2.0593 5.78931,5.78931 -5.78931,5.789316 2.0593,2.059307 7.84862,-7.848616 z" />
-        <g
-           id="g11"
-           inkscape:export-filename="..\Soapbox 1\Assets\Sprites\Menus\Chevrons.png"
-           inkscape:export-xdpi="384"
-           inkscape:export-ydpi="384">
-          <path
-             id="path10"
-             style="fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.69083;stroke-linecap:round;stroke-linejoin:round"
-             d="m 53.067969,26.239517 2.089876,2.082621 -5.87527,5.854873 5.87527,5.854878 -2.089876,2.082628 -7.965157,-7.937499 z"
-             inkscape:export-filename="..\Soapbox 1\Assets\Sprites\Menus\Chevrons.png"
-             inkscape:export-xdpi="192"
-             inkscape:export-ydpi="192" />
-          <path
-             id="path11"
-             style="fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:3.69083;stroke-linecap:round;stroke-linejoin:round"
-             d="m 61.533769,26.239517 2.089877,2.082621 -5.875269,5.854873 5.875269,5.854878 -2.089877,2.082628 -7.965156,-7.937499 z" />
-        </g>
       </g>
       <g
          inkscape:groupmode="layer"
@@ -625,7 +947,7 @@
            style="display:inline;fill:#ed4d6e;stroke-width:7.82715;stroke-linecap:round"
            d="m 45.827574,207.19412 v 30.12331 H 183.7103 l 8.20371,-30.12331 z"
            id="path3"
-           inkscape:label="Championship Selected Background"
+           inkscape:label="Gameplay Background"
            sodipodi:nodetypes="ccccc" />
         <text
            xml:space="preserve"
@@ -648,39 +970,156 @@
          id="rect59"
          width="104.775"
          height="1.9050001"
-         x="157.35284"
+         x="149.09801"
          y="44.336349"
-         inkscape:label="Settings Underline" />
+         inkscape:label="Settings Underline"
+         inkscape:export-filename="../Menus/Underline Settings.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <g
+         inkscape:groupmode="layer"
+         id="g18"
+         inkscape:label="Video"
+         style="display:inline">
+        <path
+           style="fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:1.90497;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="M 235.45572,68.092906 190.15933,237.1401 H 305.55666 L 350.85228,68.092906 Z"
+           id="path8"
+           sodipodi:nodetypes="ccccc"
+           inkscape:label="Video Background" />
+        <path
+           id="path12"
+           style="color:#000000;display:inline;fill:#e0e0e2;stroke-width:0.40453;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none"
+           d="m 238.14962,105.71396 a 2.5690215,2.5690215 0 0 0 -2.56856,2.56856 v 44.65716 a 2.5690215,2.5690215 0 0 0 2.56856,2.56855 h 34.3913 v 7.79912 h -14.4539 c -0.48514,0 -0.8757,0.39056 -0.8757,0.8757 v 4.1552 c 0,0.48514 0.39056,0.87571 0.8757,0.87571 h 35.88265 c 0.48512,0 0.87568,-0.39057 0.87568,-0.87571 v -4.1552 c 0,-0.48514 -0.39056,-0.8757 -0.87568,-0.8757 h -14.4537 v -7.79912 h 34.3913 a 2.5690215,2.5690215 0 0 0 2.56876,-2.56855 v -44.65716 a 2.5690215,2.5690215 0 0 0 -2.56876,-2.56856 z m 2.56855,5.13711 h 70.62054 v 39.52005 h -70.62054 z m 23.83027,16.98064 c -0.56924,0 -1.02746,0.45823 -1.02746,1.02748 v 3.50403 c 0,0.56924 0.45822,1.02747 1.02746,1.02747 h 3.50383 c 0.56924,0 1.02746,-0.45823 1.02746,-1.02747 v -3.50403 c 0,-0.56925 -0.45822,-1.02748 -1.02746,-1.02748 z m 9.72799,0 c -0.56924,0 -1.02747,0.45823 -1.02747,1.02748 v 3.50403 c 0,0.56924 0.45823,1.02747 1.02747,1.02747 h 3.50383 c 0.56923,0 1.02746,-0.45823 1.02746,-1.02747 v -3.50403 c 0,-0.56925 -0.45823,-1.02748 -1.02746,-1.02748 z m 9.72799,0 c -0.56925,0 -1.02748,0.45823 -1.02748,1.02748 v 3.50403 c 0,0.56924 0.45823,1.02747 1.02748,1.02747 h 3.50403 c 0.56924,0 1.02746,-0.45823 1.02746,-1.02747 v -3.50403 c 0,-0.56925 -0.45822,-1.02748 -1.02746,-1.02748 z"
+           inkscape:label="Monitor"
+           inkscape:export-filename="..\Soapbox 1\Assets\Sprites\Menus\Monitor.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96" />
+        <path
+           style="display:inline;fill:#ed4d6e;stroke-width:7.82578;stroke-linecap:round"
+           d="m 198.13094,206.89169 -7.98556,30.11805 H 305.6042 l 8.16272,-30.11805 z"
+           id="path18"
+           inkscape:label="Grand Prix Selected Background"
+           sodipodi:nodetypes="ccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+           x="250.68396"
+           y="229.1013"
+           id="text18"
+           inkscape:label="Video"
+           inkscape:export-filename="..\Menus\Video.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan18"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+             x="250.68396"
+             y="229.1013">VIDEO</tspan></text>
+      </g>
+      <g
+         inkscape:groupmode="layer"
+         id="g21"
+         inkscape:label="Gameplay"
+         style="display:inline">
+        <path
+           style="fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:1.90497;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="M 46.055297,68.092906 V 236.67285 H 184.01923 L 229.18965,68.092906 Z"
+           id="path19"
+           inkscape:label="Gameplay Background" />
+        <path
+           id="path20"
+           style="fill:#e0e0e2;fill-opacity:1;stroke:none;stroke-width:2.01991;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="m 88.665308,99.364597 c -0.181,0 -0.35642,0.0211 -0.53595,0.0269 -7.432912,-0.40365 -14.205393,5.189113 -15.960549,13.765523 l -8.139611,39.7741 c -2.001723,9.78123 3.302858,19.62827 11.893593,22.07832 8.590744,2.45007 17.118417,-3.45202 19.120137,-13.23327 l 3.0408,-14.8588 h 51.285602 l 3.0408,14.8588 c 2.00172,9.78125 10.52921,15.68334 19.11995,13.23327 8.59071,-2.45005 13.89547,-12.29709 11.89379,-22.07832 L 175.28424,113.157 c -1.76378,-8.61873 -8.59499,-14.221843 -16.07102,-13.756673 -0.23749,-0.0102 -0.47086,-0.0359 -0.71096,-0.0359 z m 64.469612,13.293943 a 3.3765621,3.3765621 0 0 1 3.37665,3.37665 3.3765621,3.3765621 0 0 1 -3.37665,3.37647 3.3765621,3.3765621 0 0 1 -3.37645,-3.37647 3.3765621,3.3765621 0 0 1 3.37645,-3.37665 z m -61.416632,0.70358 h 4.70782 a 0.09293884,0.07074042 0 0 1 0.093,0.0706 v 6.12311 a 0.26504478,0.20173888 0 0 1 -0.058,0.12596 l -2.33094,2.21864 a 0.0743164,0.05656594 0 0 1 -0.11602,0 l -2.33076,-2.21864 a 0.26504478,0.20173888 0 0 1 -0.0581,-0.12596 v -6.12311 a 0.09293884,0.07074042 0 0 1 0.093,-0.0706 z m 55.062622,5.65044 a 3.3765621,3.3765621 0 0 1 3.37665,3.37664 3.3765621,3.3765621 0 0 1 -3.37665,3.37647 3.3765621,3.3765621 0 0 1 -3.37645,-3.37647 3.3765621,3.3765621 0 0 1 3.37645,-3.37664 z m 12.70803,0 a 3.3765621,3.3765621 0 0 1 3.37664,3.37664 3.3765621,3.3765621 0 0 1 -3.37664,3.37647 3.3765621,3.3765621 0 0 1 -3.37647,-3.37647 3.3765621,3.3765621 0 0 1 3.37647,-3.37664 z m -74.723318,1.28046 h 6.122926 a 0.20173888,0.26504478 0 0 1 0.12615,0.0581 l 2.21864,2.33077 a 0.05656594,0.0743164 0 0 1 0,0.116 l -2.21864,2.33095 a 0.20173888,0.26504478 0 0 1 -0.12615,0.0579 h -6.122926 a 0.07074042,0.09293884 0 0 1 -0.07087,-0.093 v -4.70783 a 0.07074042,0.09293884 0 0 1 0.07087,-0.093 z m 12.492986,0 h 6.123112 a 0.07074042,0.09293884 0 0 1 0.0709,0.093 v 4.70783 a 0.07074042,0.09293884 0 0 1 -0.0709,0.093 h -6.123112 a 0.20173888,0.26504478 0 0 1 -0.12597,-0.0579 l -2.21863,-2.33095 a 0.05656594,0.0743164 0 0 1 0,-0.116 l 2.21863,-2.33077 a 0.20173888,0.26504478 0 0 1 0.12597,-0.0581 z m -3.18632,3.2671 a 0.0743164,0.05656594 0 0 1 0.058,0.021 l 2.33095,2.21864 a 0.26504478,0.20173888 0 0 1 0.058,0.12614 v 6.12312 a 0.09293884,0.07074042 0 0 1 -0.093,0.0706 h -4.70783 a 0.09293884,0.07074042 0 0 1 -0.093,-0.0706 v -6.12312 a 0.26504478,0.20173888 0 0 1 0.0581,-0.12614 l 2.33075,-2.21864 a 0.0743164,0.05656594 0 0 1 0.0581,-0.021 z m 59.062632,1.80645 a 3.3765621,3.3765621 0 0 1 3.37665,3.37664 3.3765621,3.3765621 0 0 1 -3.37665,3.37647 3.3765621,3.3765621 0 0 1 -3.37645,-3.37647 3.3765621,3.3765621 0 0 1 3.37645,-3.37664 z"
+           inkscape:label="Controller" />
+        <path
+           style="display:inline;fill:#ed4d6e;stroke-width:7.82715;stroke-linecap:round"
+           d="m 45.827574,207.19412 v 30.12331 H 183.7103 l 8.20371,-30.12331 z"
+           id="path21"
+           inkscape:label="Championship Selected Background"
+           sodipodi:nodetypes="ccccc" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+           x="115.24706"
+           y="229.1013"
+           id="text21"
+           inkscape:label="Gameplay"
+           inkscape:export-filename="..\Menus\Gameplay.png"
+           inkscape:export-xdpi="96"
+           inkscape:export-ydpi="96"><tspan
+             sodipodi:role="line"
+             id="tspan21"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.8748px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';text-align:center;text-anchor:middle;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198435"
+             x="115.24706"
+             y="229.1013">GAMEPLAY</tspan></text>
+      </g>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
-         x="156.82368"
+         x="149.33084"
          y="41.627708"
-         id="text1"
-         inkscape:label="Settings"><tspan
+         id="text62"
+         inkscape:label="Settings"
+         inkscape:export-filename="..\Menus\Settings.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
            sodipodi:role="line"
-           id="tspan1"
+           id="tspan62"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
-           x="156.82368"
+           x="149.33084"
            y="41.627708">SETTINGS</tspan></text>
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
          x="74.785751"
          y="41.627708"
-         id="text3"
-         inkscape:label="Home"><tspan
+         id="text63"
+         inkscape:label="Race"
+         inkscape:export-filename="..\Menus\Home.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
            sodipodi:role="line"
-           id="tspan3"
+           id="tspan63"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
            x="74.785751"
-           y="41.627708">HOME </tspan></text>
+           y="41.627708">RACE</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:21.1667px;line-height:1.25;font-family:Audiowide;-inkscape-font-specification:Audiowide;display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="447.02396"
+         y="41.492199"
+         id="text64"
+         inkscape:label="X"
+         inkscape:export-filename="..\Menus\X.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan64"
+           style="font-size:21.1667px;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="447.02396"
+           y="41.492199">X</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="271.37784"
+         y="41.630623"
+         id="text66"
+         inkscape:label="Help"
+         inkscape:export-filename="..\Menus\Settings.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan66"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="271.37784"
+           y="41.630623">HELP</tspan></text>
     </g>
     <g
        inkscape:groupmode="layer"
        id="layer5"
-       inkscape:label="Home"
-       style="display:inline">
+       inkscape:label="Race"
+       style="display:none">
       <g
          inkscape:groupmode="layer"
          id="layer8"
@@ -769,7 +1208,7 @@
              y="443.48401"
              sodipodi:type="rect"
              transform="translate(-688.86914,-336.73401)"
-             d="m 61.595001,443.48401 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z m 25.40325,0 h 25.4 v 19.1008 h -25.4 z M 61.595001,462.58752 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z m 25.40325,0 h 25.4 v 19.1008 h -25.4 z M 61.595001,481.69103 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z m 25.40325,0 h 25.4 v 19.1008 h -25.4 z M 61.595001,500.79455 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z m 25.40325,0 h 25.4 v 19.1008 h -25.4 z"
+             d="m 61.595001,443.48401 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z m 25.40004,0 h 25.39999 v 19.1008 H 163.19514 Z M 61.595001,462.58484 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z m 25.40004,0 h 25.39999 v 19.1008 H 163.19514 Z M 61.595001,481.68566 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z m 25.40004,0 h 25.39999 v 19.1008 H 163.19514 Z M 61.595001,500.78649 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z m 25.40004,0 h 25.39999 v 19.1008 h -25.39999 z"
              inkscape:path-effect="#path-effect37"
              inkscape:label="Flag white" />
           <path
@@ -781,7 +1220,7 @@
              y="443.48401"
              sodipodi:type="rect"
              transform="translate(-661.50144,-315.27)"
-             d="m 61.595001,443.48401 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z m -76.209769,19.10351 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z m -76.209769,19.10351 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z m -76.209769,19.10352 h 25.4 v 19.1008 h -25.4 z m 25.403255,0 h 25.400004 v 19.1008 H 86.998256 Z m 25.403254,0 h 25.4 v 19.1008 h -25.4 z m 25.40326,0 h 25.4 v 19.1008 h -25.4 z"
+             d="m 61.595001,443.48401 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z m -76.200099,19.10083 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z m -76.200099,19.10082 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z m -76.200099,19.10083 h 25.4 v 19.1008 h -25.4 z m 25.400034,0 h 25.399995 v 19.1008 H 86.995035 Z m 25.400035,0 h 25.4 v 19.1008 h -25.4 z m 25.40003,0 h 25.4 v 19.1008 h -25.4 z"
              inkscape:path-effect="#path-effect39"
              inkscape:label="Flag white" />
           <path
@@ -870,17 +1309,20 @@
              y="229.22621">CHAMPIONSHIP</tspan></text>
       </g>
       <rect
-         style="display:inline;fill:#ed4d6e;fill-opacity:1;stroke-width:19.4138;stroke-linecap:round"
+         style="display:inline;fill:#ed4d6e;fill-opacity:1;stroke-width:18.3492;stroke-linecap:round"
          id="rect5"
-         width="60.960007"
+         width="54.4576"
          height="1.9050002"
-         x="74.828072"
+         x="74.676003"
          y="44.653851"
-         inkscape:label="Home Underline" />
+         inkscape:label="Race Underline"
+         inkscape:export-filename="..\Menus\Underline Race.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
-         x="156.82368"
+         x="149.33084"
          y="41.627708"
          id="text5"
          inkscape:label="Settings"
@@ -890,7 +1332,7 @@
            sodipodi:role="line"
            id="tspan5"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
-           x="156.82368"
+           x="149.33084"
            y="41.627708">SETTINGS</tspan></text>
       <text
          xml:space="preserve"
@@ -898,7 +1340,7 @@
          x="74.785751"
          y="41.627708"
          id="text2"
-         inkscape:label="Home"
+         inkscape:label="Race"
          inkscape:export-filename="..\Menus\Home.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96"><tspan
@@ -906,7 +1348,7 @@
            id="tspan2"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
            x="74.785751"
-           y="41.627708">HOME </tspan></text>
+           y="41.627708">RACE</tspan></text>
       <text
          xml:space="preserve"
          style="font-size:21.1667px;line-height:1.25;font-family:Audiowide;-inkscape-font-specification:Audiowide;display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
@@ -924,7 +1366,7 @@
            y="41.492199">X</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:none;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
          x="394.71982"
          y="260.25653"
          id="text6"
@@ -935,8 +1377,53 @@
            sodipodi:role="line"
            id="tspan6"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
-           x="394.71982"
-           y="260.25653">BACK </tspan></text>
+           x="0"
+           y="0">BACK </tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:inline;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="271.37784"
+         y="41.630623"
+         id="text7"
+         inkscape:label="Help"
+         inkscape:export-filename="..\Menus\Settings.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"><tspan
+           sodipodi:role="line"
+           id="tspan7"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="271.37784"
+           y="41.630623">HELP</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';display:none;fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+         x="394.71982"
+         y="260.25653"
+         id="text65"
+         inkscape:label="Back"
+         inkscape:export-filename="..\Menus\Back Button.png"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72"><tspan
+           sodipodi:role="line"
+           id="tspan65"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.6389px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.198437"
+           x="0"
+           y="0">BACK </tspan></text>
     </g>
+    <path
+       style="fill:none;stroke:#e0e0e2;stroke-width:1.90500003;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#RoundedArrow)"
+       d="m 365.61272,151.8234 c 40.37332,-0.9359 41.34239,-11.46755 64.18901,-11.14285"
+       id="path73"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#e0e0e2;stroke-width:1.90500003;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#RoundedArrow)"
+       d="m 365.28802,133.35208 h 64.51371"
+       id="path75"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#e0e0e2;stroke-width:1.905;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#RoundedArrow)"
+       d="m 365.28802,142.06317 h 25.98309"
+       id="path76"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>
