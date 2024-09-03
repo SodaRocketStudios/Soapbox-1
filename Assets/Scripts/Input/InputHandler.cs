@@ -23,6 +23,9 @@ namespace Soap.Input
 		public static Action OnReturnInput;
 		public static Action OnCancelInput;
 
+		// Other Actions
+		public static Action<InputDevice, InputDeviceChange> OnDeviceChange;
+
 		private InputActions inputActions;
 		
 		private void Awake()
