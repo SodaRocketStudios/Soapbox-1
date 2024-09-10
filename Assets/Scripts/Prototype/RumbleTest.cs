@@ -43,7 +43,7 @@ namespace Soap.Prototype
 				(Gamepad.current as IXboxOneRumble).SetMotorSpeeds(0, 0, left, right);
 				return;
 			}
-			// Gamepad.current.SetMotorSpeeds(left, right);
+			Gamepad.current.SetMotorSpeeds(left, right);
 		}
 
 		public void OnAccelerate(float throttle)

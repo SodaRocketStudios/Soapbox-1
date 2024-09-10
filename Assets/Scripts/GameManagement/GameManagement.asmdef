@@ -3,6 +3,7 @@
     "rootNamespace": "Soap.GameManagement",
     "references": [
         "GUID:402306cc4cd1aa24a9efded2923a998c",
+        "GUID:2edce31eaf2007e4987e9c24f7aff81b",
         "GUID:c4b3e8b78bcca7648a1d3b66bc75bbea"
     ],
     "includePlatforms": [],

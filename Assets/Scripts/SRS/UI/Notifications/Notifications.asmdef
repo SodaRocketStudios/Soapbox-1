@@ -1,0 +1,16 @@
+{
+    "name": "Notifications",
+    "rootNamespace": "SRS.UI.Notifications",
+    "references": [
+        "GUID:2edce31eaf2007e4987e9c24f7aff81b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using Soap.Input;
+using SRS.UI;
 using SRS.UI.PageManagement;
 
 
@@ -13,10 +14,10 @@ namespace Soap.GameManagement
 
 		[SerializeField] private Page[] pages;
 
-		[SerializeField] private PageTransition enterLeftTransition;
-		[SerializeField] private PageTransition enterRightTransition;
-		[SerializeField] private PageTransition exitLeftTransition;
-		[SerializeField] private PageTransition exitRightTransition;
+		[SerializeField] private UITransition enterLeftTransition;
+		[SerializeField] private UITransition enterRightTransition;
+		[SerializeField] private UITransition exitLeftTransition;
+		[SerializeField] private UITransition exitRightTransition;
 
 		private void OnEnable()
 		{
