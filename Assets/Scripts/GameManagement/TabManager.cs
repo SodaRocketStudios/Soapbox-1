@@ -14,10 +14,10 @@ namespace Soap.GameManagement
 
 		[SerializeField] private Page[] pages;
 
-		[SerializeField] private UITransition enterLeftTransition;
-		[SerializeField] private UITransition enterRightTransition;
-		[SerializeField] private UITransition exitLeftTransition;
-		[SerializeField] private UITransition exitRightTransition;
+		[SerializeField] private PanelTransition enterLeftTransition;
+		[SerializeField] private PanelTransition enterRightTransition;
+		[SerializeField] private PanelTransition exitLeftTransition;
+		[SerializeField] private PanelTransition exitRightTransition;
 
 		private void OnEnable()
 		{

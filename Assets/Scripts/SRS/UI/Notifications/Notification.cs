@@ -1,25 +1,40 @@
+using System.Collections;
 using UnityEngine;
 
 namespace SRS.UI.Notifications
 {
 	public class Notification : MonoBehaviour
 	{
-		[SerializeField] private UITransition entryTransition;
-		[SerializeField] private UITransition exitTransition;
+		[SerializeField] private PanelTransition entryTransition;
+		[SerializeField] private PanelTransition exitTransition;
+
+		[SerializeField, Min(0)] private float displayTime;
+
+		private void Awake()
+		{
+			entryTransition.OnTransitionEnd += StartDelay;
+		}
 
 		public void Show()
 		{
-
+			StartCoroutine(entryTransition.Animate(gameObject));	
 		}
 
 		public void Hide()
 		{
-			
+			StartCoroutine(exitTransition.Animate(gameObject));
 		}
 
-		private void StartTransition()
+		private void StartDelay()
 		{
-			// StartCoroutine()
+			StartCoroutine(Delay());
+		}
+
+		private IEnumerator Delay()
+		{
+			yield return new WaitForSeconds(displayTime);
+
+			Hide();
 		}
 	}
 }

@@ -8,16 +8,16 @@ namespace SRS.UI.PageManagement
 	public class Page : MonoBehaviour
 	{
 
-		[SerializeField] private UITransition entryTransition;
-		public UITransition EntryTransition
+		[SerializeField] private PanelTransition entryTransition;
+		public PanelTransition EntryTransition
 		{
 			get { return entryTransition; }
 
 			set { entryTransition = value; }
 		}
 
-		[SerializeField] private UITransition exitTransition;
-		public UITransition ExitTransition
+		[SerializeField] private PanelTransition exitTransition;
+		public PanelTransition ExitTransition
 		{
 			get { return exitTransition; }
 			set { exitTransition = value; }

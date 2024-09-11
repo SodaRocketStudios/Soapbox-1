@@ -6,7 +6,7 @@ using SRS.Utils.Curves;
 namespace SRS.UI.PageManagement
 {
 	[CreateAssetMenu(menuName = "UI Transitions/Slide Transition")]
-    public class SlideTransition : UITransition
+    public class SlideTransition : PanelTransition
     {
 		[SerializeField, Min(0.1f)] private float slideTime;
 
@@ -33,6 +33,8 @@ namespace SRS.UI.PageManagement
 				t += Time.deltaTime/slideTime;
 				yield return null;
 			}
+			
+			OnTransitionEnd?.Invoke();
         }
     }
 }
