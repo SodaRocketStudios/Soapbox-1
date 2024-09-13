@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using Soap.Input;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.InputSystem.DualShock;
+using SRS.Haptics;
 
 namespace Soap.Prototype
 {
@@ -37,13 +38,7 @@ namespace Soap.Prototype
 
         private void SetRumble(float left, float right)
 		{
-			if(HasTriggerRumble())
-			{
-				Debug.Log("Xbox 1");
-				(Gamepad.current as IXboxOneRumble).SetMotorSpeeds(0, 0, left, right);
-				return;
-			}
-			Gamepad.current.SetMotorSpeeds(left, right);
+			HapticsManager.SetHaptics(left, right, left, right);
 		}
 
 		public void OnAccelerate(float throttle)
