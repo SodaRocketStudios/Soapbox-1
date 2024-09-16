@@ -35,6 +35,9 @@ namespace Soap.Physics
 			get => tireProfile.Radius;
 		}
 
+		public float SlipAngle{get; private set;}
+		public float SlipRatio{get; private set;}
+
 		private float brakeInput;
 
 		public float WheelSpeed {get; private set;} = 0;
@@ -88,6 +91,9 @@ namespace Soap.Physics
 				float normalizedSlipAngle = CalculateSlipAngle(planarVelocity, planarHeading) / tireProfile.PeakSlipAngle;
 
 				float normalizedSlipRatio = CalculateSlipRatio(longitudinalVelocity) / tireProfile.PeakSlipRatio;
+
+				SlipAngle = normalizedSlipAngle;
+				SlipRatio = normalizedSlipRatio;
 
 				// Locked in braking
 				if(normalizedSlipRatio <= -1)

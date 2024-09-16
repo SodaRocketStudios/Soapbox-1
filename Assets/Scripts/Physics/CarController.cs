@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using SRS.UI;
 using Soap.Input;
 using Soap.GameManagement;
+using SRS.Haptics;
 
 namespace Soap.Physics
 {
@@ -85,6 +86,26 @@ namespace Soap.Physics
 			speedBar.SetPercentage(speed/TOP_SPEED);
 			ERSPercent.SetValue(mguk.ChargeAmount*100);
 			ERSBar.SetPercentage(mguk.ChargeAmount);
+
+			float slipAngle = 0;
+			float slipRatio = 0;
+
+			foreach(Wheel wheel in wheels)
+			{
+				if(Mathf.Abs(wheel.SlipAngle) > Mathf.Abs(slipAngle))
+				{
+					slipAngle = wheel.SlipAngle;
+				}
+
+				if(Mathf.Abs(wheel.SlipRatio) > Mathf.Abs(slipRatio))
+				{
+					slipRatio = wheel.SlipRatio;
+				}
+
+				Debug.Log($"Slip Angle: {slipAngle} \nSlip Ratio: {slipRatio}");
+			}
+
+			HapticsManager.SetHaptics(accelerationInput, Mathf.Abs(slipRatio)/25, 0, 0);
 		}
 
 		private void FixedUpdate()
