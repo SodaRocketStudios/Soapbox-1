@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using SRS.UI;
 using Soap.Input;
 using Soap.GameManagement;
-using SRS.Haptics;
 
 namespace Soap.Physics
 {
@@ -39,12 +38,16 @@ namespace Soap.Physics
 
 		private Wheel[] wheels;
 		private Wheel[] driveWheels = new Wheel[2];
+		public Wheel[] DriveWheels
+		{
+			get{ return driveWheels; }
+		}
 
 		private DRSManager drsManager;
 
 		private MGUK mguk;
 
-		private float accelerationInput;
+		public float AccelerationInput{get; private set;}
 
 		private bool clutchInput = true;
 
@@ -101,11 +104,7 @@ namespace Soap.Physics
 				{
 					slipRatio = wheel.SlipRatio;
 				}
-
-				Debug.Log($"Slip Angle: {slipAngle} \nSlip Ratio: {slipRatio}");
 			}
-
-			HapticsManager.SetHaptics(accelerationInput, Mathf.Abs(slipRatio)/25, 0, 0);
 		}
 
 		private void FixedUpdate()
@@ -127,9 +126,9 @@ namespace Soap.Physics
 				carManager.EnablePhysics();
 			}
 			
-			if(accelerationInput > 0)
+			if(AccelerationInput > 0)
 			{
-				torque = mguk.Deploy(accelerationInput);
+				torque = mguk.Deploy(AccelerationInput);
 			}
 			else
 			{
@@ -173,9 +172,9 @@ namespace Soap.Physics
 
 		public void Accelerate(float acceleration)
 		{
-			accelerationInput = acceleration;
+			AccelerationInput = acceleration;
 
-			throttleBar.SetPercentage(accelerationInput);
+			throttleBar.SetPercentage(AccelerationInput);
 		}
 
 		public void Clutch(bool input)

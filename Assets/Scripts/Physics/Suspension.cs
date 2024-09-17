@@ -63,6 +63,7 @@ namespace Soap.Physics
 				// if suspension is fully compressed
 				if(length < 0)
 				{
+					// TODO -- Handle bottomed out suspension
 					// the load from the body of the car will instantly be transfered to the wheel
 					// load on wheel = load from car instead of suspension force.
 					// length = min length

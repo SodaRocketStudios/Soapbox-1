@@ -1,8 +1,9 @@
 {
     "name": "Haptics",
-    "rootNamespace": "SRS.Haptics",
+    "rootNamespace": "Soap.Haptics",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:825a9f5b8651d6c4dbb84b6fda3a9a42"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

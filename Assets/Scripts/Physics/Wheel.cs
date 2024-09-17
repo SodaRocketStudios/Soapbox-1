@@ -37,6 +37,7 @@ namespace Soap.Physics
 
 		public float SlipAngle{get; private set;}
 		public float SlipRatio{get; private set;}
+		public float CombinedSlip{get; private set;}
 
 		private float brakeInput;
 
@@ -44,7 +45,7 @@ namespace Soap.Physics
 
 		private float load;
 
-		private bool isGrounded;
+		public bool IsGrounded {get; private set;}
 
 		private Rigidbody carRigidBody;
 
@@ -73,7 +74,7 @@ namespace Soap.Physics
 				return;
 			}
 			
-			if(isGrounded)
+			if(IsGrounded)
 			{
 				Vector3 velocity = carRigidBody.GetPointVelocity(transform.position);
 				Vector3 planarVelocity = velocity.XZPlane();
@@ -98,42 +99,43 @@ namespace Soap.Physics
 				// Locked in braking
 				if(normalizedSlipRatio <= -1)
 				{
-					// Debug.DrawRay(transform.position, Vector3.up*5, Color.red);
+
 				}
 
 				// Combined slip ------------------------------------------------------------------
 
-				float combinedSlip = Mathf.Sqrt(normalizedSlipAngle * normalizedSlipAngle + normalizedSlipRatio * normalizedSlipRatio);
+				CombinedSlip = Mathf.Sqrt(normalizedSlipAngle * normalizedSlipAngle + normalizedSlipRatio * normalizedSlipRatio);
 
 				float lateralFactor;
 				float longitudinalFactor;
 
-				if (combinedSlip == 0)
+				if (CombinedSlip == 0)
 				{
 					lateralFactor = 0;
 					longitudinalFactor = 0;
 				}
 				else
 				{
-					lateralFactor = normalizedSlipAngle / combinedSlip;
-					longitudinalFactor = normalizedSlipRatio / combinedSlip;
+					lateralFactor = normalizedSlipAngle / CombinedSlip;
+					longitudinalFactor = normalizedSlipRatio / CombinedSlip;
 				}
 
 				// Lateral ------------------------------------------------------------------------
 
-				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(combinedSlip * tireProfile.PeakSlipAngle) * load * transform.right;
+				Vector3 lateralForce = lateralFactor * tireProfile.EvaluateLateral(CombinedSlip * tireProfile.PeakSlipAngle) * load * transform.right;
 
+				// If at low speed
 				if (planarVelocity.sqrMagnitude < overrideSpeedSquared)
 				{
+					// Scale down lateral forces
 					lateralForce *= Mathf.Lerp(0.1f, 1, planarVelocity.sqrMagnitude/overrideSpeedSquared);
-					// lateralForce = -lateralVelocity * load * Vector3.right;
 				}
 
 				Debug.DrawRay(transform.position, lateralForce.normalized, Color.red);
 
 				// Longitudinal -------------------------------------------------------------------
 
-				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(combinedSlip * tireProfile.PeakSlipRatio) * load * transform.forward;
+				Vector3 longitudinalForce = longitudinalFactor * tireProfile.EvaluateLongitudinal(CombinedSlip * tireProfile.PeakSlipRatio) * load * transform.forward;
 
 				Torque = longitudinalForce.magnitude * tireProfile.Radius;
 
@@ -164,7 +166,7 @@ namespace Soap.Physics
 
 		public void SetGrounded(bool grounded)
 		{
-			isGrounded = grounded;
+			IsGrounded = grounded;
 		}
 
 		public void Steer(float inputValue)
