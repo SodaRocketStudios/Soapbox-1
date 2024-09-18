@@ -259,15 +259,11 @@ namespace Soap.Physics
                 {
                     return 0;
                 }
-                else
-                {
-                    return Mathf.Clamp(WheelSpeed, -1, 1);
-                }
+
+                return Mathf.Clamp(WheelSpeed, -1, 1);
             }
-            else
-            {
-                return (WheelSpeed - longitudinalVelocity) / Mathf.Abs(longitudinalVelocity);
-            }
+
+            return (WheelSpeed - longitudinalVelocity) / Mathf.Abs(longitudinalVelocity);
         }
 
 		private void OnDrawGizmos()

@@ -1,0 +1,16 @@
+{
+    "name": "VFX",
+    "rootNamespace": "Soap.VFX",
+    "references": [
+        "GUID:825a9f5b8651d6c4dbb84b6fda3a9a42"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
