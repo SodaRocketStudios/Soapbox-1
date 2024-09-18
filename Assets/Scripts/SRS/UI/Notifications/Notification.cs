@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,19 +11,35 @@ namespace SRS.UI.Notifications
 
 		[SerializeField, Min(0)] private float displayTime;
 
-		private void Awake()
+		public Action OnBeforeNotify;
+		public Action OnAfterNotify;
+
+		private void OnEnable()
 		{
 			entryTransition.OnTransitionEnd += StartDelay;
+			exitTransition.OnTransitionEnd += InvokeAfterNotify;
+		}
+
+		private void OnDisable()
+		{
+			entryTransition.OnTransitionEnd -= StartDelay;
+			exitTransition.OnTransitionEnd -= InvokeAfterNotify;
 		}
 
 		public void Show()
 		{
-			StartCoroutine(entryTransition.Animate(gameObject));	
+			OnBeforeNotify?.Invoke();
+			StartCoroutine(entryTransition.Animate(gameObject));
 		}
 
 		public void Hide()
 		{
 			StartCoroutine(exitTransition.Animate(gameObject));
+		}
+
+		private void InvokeAfterNotify()
+		{
+			OnAfterNotify?.Invoke();
 		}
 
 		private void StartDelay()

@@ -9,9 +9,9 @@ namespace Soap.HUD
 
 		[SerializeField] private Penalty penaltyDisplay;
 
-		private Queue<float> penaltyQueue;
+		private Queue<float> penaltyQueue = new();
 
-		private bool isShowing;
+		private bool isShowing = false;
 
 		public void ShowPenalty(float penaltyTime)
 		{
@@ -26,10 +26,11 @@ namespace Soap.HUD
 			isShowing = true;
 		}
 
-		public void Shownext()
+		public void ShowNext()
 		{
 			if(penaltyQueue.Count > 0)
 			{
+				isShowing = false;
 				ShowPenalty(penaltyQueue.Dequeue());
 				return;
 			}

@@ -14,6 +14,7 @@ namespace Soap.HUD
 		private void Awake()
 		{
 			notification = GetComponent<Notification>();
+			notification.OnAfterNotify += PenaltyManager.Instance.ShowNext;
 		}
 
 		public void Show(float penaltyTime)
