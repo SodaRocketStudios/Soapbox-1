@@ -1,5 +1,3 @@
-using System;
-
 namespace Soap.LapTiming
 {
 	public class TimedSegment
@@ -16,6 +14,11 @@ namespace Soap.LapTiming
 				BestTime = time;
 				return;
 			}
+		}
+
+		public void SetBestTime(float time)
+		{
+			BestTime = time;
 		}
 	}
 }

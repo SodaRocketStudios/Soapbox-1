@@ -16,6 +16,8 @@ namespace Soap.LapTiming
 
 		private float sectorStartTime = 0;
 
+		private float penaltyTime = 0;
+
 		private void Awake()
 		{
 			timer = new();
@@ -33,7 +35,6 @@ namespace Soap.LapTiming
 
 		public void StartTimer()
 		{
-			// timer.Reset();
 			timer.Start();
 			sectorStartTime = 0;
 		}
@@ -42,13 +43,16 @@ namespace Soap.LapTiming
 		{
 			timer.Reset();
 			OnReset?.Invoke();
+			penaltyTime = 0;
 		}
 
 		public void LogLapTime(TimingLine line)
 		{
 			timer.Pause();
-			line.Time.LogTime(timer.CurrentTime);
+			line.Time.LogTime(timer.CurrentTime + penaltyTime);
 			onLapLogged?.Invoke(line.Time);
+			LogSectorTime(line);
+			timer.Time.Value += penaltyTime;
 		}
 
 		public void LogSectorTime(TimingLine line)
@@ -76,7 +80,7 @@ namespace Soap.LapTiming
 
 		public void AddPenalty(float penaltyTime)
 		{
-			timer.SetTime(timer.CurrentTime + penaltyTime);
+			this.penaltyTime += penaltyTime;
 		}
 	}
 }

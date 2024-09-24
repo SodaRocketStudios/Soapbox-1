@@ -16,8 +16,8 @@ MonoBehaviour:
   mass: 20
   peakLongitudinalFriction: 2
   peakSlipRatio: 0.2
-  longitudinalSlipFriction: 1
-  longitudinalShapingKey: {x: 0.1, y: 0.25}
+  longitudinalSlipFriction: 0.5
+  longitudinalShapingKey: {x: 0.25, y: 0.3}
   longitudinalCurve:
     serializedVersion: 2
     m_Curve:
@@ -40,19 +40,19 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.28
-      value: 1.25
-      inSlope: -1.25
-      outSlope: -1.25
+      time: 0.4
+      value: 0.95000005
+      inSlope: -1.875
+      outSlope: -1.875
       tangentMode: 9
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
-      inSlope: -0.3472222
-      outSlope: -0.3472222
+      value: 0.5
+      inSlope: -0.75000006
+      outSlope: -0.75000006
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
