@@ -2,7 +2,7 @@ namespace SRS.DataPersistence
 {
 	public interface ISerializer
 	{
-		public void Serialize(string Data);
-		public void Deserialize();
+		public string Serialize<T>(T objectData);
+		public T Deserialize<T>(string serializedData);
 	}
 }

@@ -1,9 +1,8 @@
-using UnityEngine;
-
 namespace SRS.DataPersistence
 {
-	public class IPersist : MonoBehaviour
+	public interface IPersist
 	{
-		
+		public void Save();
+		public void Load();
 	}
 }
