@@ -19,7 +19,7 @@ namespace Soap.HUD
 
 		public void Show(float penaltyTime)
 		{
-			penaltyTimeTextBox.text = penaltyTime.ToString();
+			penaltyTimeTextBox.text = $"+ {penaltyTime}";
 			notification.Show();
 		}
 	}
