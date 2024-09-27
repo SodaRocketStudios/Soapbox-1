@@ -1,9 +1,9 @@
 using System;
-using System.Security.Cryptography;
 using System.Text;
+using System.Security.Cryptography;
 using UnityEngine;
 
-namespace SRS.DataPersistence
+namespace SRS.Utils.DataHandling
 {
 	public static class Encryptor
 	{

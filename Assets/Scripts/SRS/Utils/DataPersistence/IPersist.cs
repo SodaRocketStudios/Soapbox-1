@@ -1,4 +1,4 @@
-namespace SRS.DataPersistence
+namespace SRS.Utils.DataPersistence
 {
 	public interface IPersist
 	{

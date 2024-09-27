@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace SRS.DataPersistence
+namespace SRS.Utils.DataHandling
 {
     public class FileWriter : IDataWriter
     {

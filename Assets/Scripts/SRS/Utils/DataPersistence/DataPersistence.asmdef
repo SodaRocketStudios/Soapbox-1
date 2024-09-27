@@ -1,8 +1,8 @@
 {
     "name": "DataPersistence",
-    "rootNamespace": "SRS.DataPersistence",
+    "rootNamespace": "SRS.Utils.DataPersistence",
     "references": [
-        ""
+        "DataHandling"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

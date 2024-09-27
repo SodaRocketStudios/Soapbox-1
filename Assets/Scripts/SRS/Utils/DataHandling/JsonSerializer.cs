@@ -1,6 +1,6 @@
 using Unity.Plastic.Newtonsoft.Json;
 
-namespace SRS.DataPersistence
+namespace SRS.Utils.DataHandling
 {
     public class JsonSerializer : ISerializer
     {
