@@ -1,20 +1,18 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 using SRS.Utils.Timing;
 
 namespace Soap.LapTiming
 {
 	public class LapTimer : MonoBehaviour
 	{
-		public Action<float> OnTimeChanged;
-		public Action<float> OnSectorLogged;
-		public Action<TimedSegment> onLapLogged;
-		public Action<float> OnDeltaUpdate;
-		public Action OnReset;
+		public UnityEvent<float> OnLapLogged;
+
+		public UnityEvent<float> OnTimeChanged;
 
 		private Timer timer;
 
-		private float sectorStartTime = 0;
+		public TimedSegment lapTime;
 
 		private float penaltyTime = 0;
 
@@ -23,10 +21,18 @@ namespace Soap.LapTiming
 			timer = new();
 		}
 
+		private void OnEnable()
+		{
+			timer.Time.OnChange += UpdateTime;
+		}
+
+		private void OnDisable()
+		{
+			timer.Time.OnChange -= UpdateTime;
+		}
+
 		private void Start()
 		{
-			timer.Time.OnChange = OnTimeChanged;
-
 			foreach(DeltaCheckpoint checkpoint in FindObjectsByType<DeltaCheckpoint>(FindObjectsSortMode.None))
 			{
 				checkpoint.OnDeltaLogged += UpdateDelta;
@@ -36,30 +42,30 @@ namespace Soap.LapTiming
 		public void StartTimer()
 		{
 			timer.Start();
-			sectorStartTime = 0;
 		}
 
 		public void Reset()
 		{
 			timer.Reset();
-			OnReset?.Invoke();
 			penaltyTime = 0;
 		}
 
 		public void LogLapTime(TimingLine line)
 		{
 			timer.Pause();
-			line.TimedSegment.LogTime(timer.CurrentTime + penaltyTime);
-			onLapLogged?.Invoke(line.TimedSegment);
-			LogSectorTime(line);
 			timer.Time.Value += penaltyTime;
+			lapTime.LogSectorTime(timer.CurrentTime);
+			OnLapLogged?.Invoke(timer.CurrentTime);
 		}
 
-		public void LogSectorTime(TimingLine line)
+		public void StartSegment(TimingLine line)
 		{
-			line.TimedSegment.LogTime(timer.CurrentTime);
-			OnSectorLogged?.Invoke(timer.CurrentTime - sectorStartTime);
-			sectorStartTime = timer.CurrentTime;
+			line.TimedSegment.StartTiming(timer.CurrentTime);
+		}
+
+		public void LogSegment(TimingLine line)
+		{
+			line.TimedSegment.LogSectorTime(timer.CurrentTime);
 		}
 
 		public void UpdateDelta(TimingLine checkpoint)
@@ -68,19 +74,22 @@ namespace Soap.LapTiming
 
 			float delta = timer.CurrentTime - checkpoint.TimedSegment.BestTime;
 
-			checkpoint.TimedSegment.LogTime(timer.CurrentTime);
+			checkpoint.TimedSegment.LogSectorTime(timer.CurrentTime);
 
 			if(firstTime)
 			{
 				return;
 			}
-
-			OnDeltaUpdate?.Invoke(delta);
 		}
 
 		public void AddPenalty(float penaltyTime)
 		{
 			this.penaltyTime += penaltyTime;
+		}
+
+		private void UpdateTime(float time)
+		{
+			OnTimeChanged?.Invoke(time);
 		}
 	}
 }

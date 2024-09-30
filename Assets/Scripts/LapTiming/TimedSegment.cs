@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.Events;
 using SRS.Utils.DataPersistence;
 
 namespace Soap.LapTiming
@@ -6,18 +7,32 @@ namespace Soap.LapTiming
 	[Serializable]
 	public class TimedSegment : IPersist
 	{
-		public Action<float> OnNewBest;
+		public UnityEvent<float> OnSectorTimeLogged;
+		public UnityEvent<float> OnNewBestSector;
 
 		public float BestTime {get; private set;} = -1;
 		public float LastTime {get; private set;} = -1;
+
+		public float TotalTime {get => LastTime + startTime;}
+
+		private float startTime = 0;
 
 		private int id;
 
         public int ID => id;
 
-        public void LogTime(float time)
+		public void StartTiming(float time)
 		{
+			startTime = time;
+		}
+
+        public void LogSectorTime(float time)
+		{
+			time -= startTime;
+
 			LastTime = time;
+
+			OnSectorTimeLogged?.Invoke(time);
 
 			if(time < BestTime || BestTime <= 0)
 			{
@@ -26,11 +41,10 @@ namespace Soap.LapTiming
 			}
 		}
 
-
         private void SetBestTime(float time)
 		{
 			BestTime = time;
-			OnNewBest?.Invoke(BestTime);
+			OnNewBestSector?.Invoke(BestTime);
 		}
 
         public void Load(object data)
@@ -45,7 +59,7 @@ namespace Soap.LapTiming
 
 	}
 	
-	[System.Serializable]
+	[Serializable]
 	public class TimedSegmentData
 	{
 		public int ID;

@@ -7,9 +7,14 @@ namespace Soap.LapTiming
 	{
 		public Action<TimingLine> OnDeltaLogged;
 
-		private void Awake()
+		private void OnEnable()
 		{
-			GetComponent<TimingLine>().OnTriggerAction += LogDelta;
+			GetComponent<TimingLine>().OnTrigger.AddListener(LogDelta);
+		}
+
+		private void OnDisable()
+		{
+			GetComponent<TimingLine>().OnTrigger.RemoveListener(LogDelta);
 		}
 
 		public void LogDelta(TimingLine checkpoint)
