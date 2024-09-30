@@ -9,7 +9,7 @@ namespace Soap.LapTiming
 		public UnityEvent<TimingLine> OnTrigger;
 		public Action<TimingLine> OnTriggerAction;
 
-		public TimedSegment Time = new();
+		public TimedSegment TimedSegment = new();
 
 		private void OnTriggerEnter(Collider other)
 		{

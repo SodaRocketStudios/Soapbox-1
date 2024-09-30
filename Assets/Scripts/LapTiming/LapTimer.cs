@@ -49,26 +49,26 @@ namespace Soap.LapTiming
 		public void LogLapTime(TimingLine line)
 		{
 			timer.Pause();
-			line.Time.LogTime(timer.CurrentTime + penaltyTime);
-			onLapLogged?.Invoke(line.Time);
+			line.TimedSegment.LogTime(timer.CurrentTime + penaltyTime);
+			onLapLogged?.Invoke(line.TimedSegment);
 			LogSectorTime(line);
 			timer.Time.Value += penaltyTime;
 		}
 
 		public void LogSectorTime(TimingLine line)
 		{
-			line.Time.LogTime(timer.CurrentTime);
+			line.TimedSegment.LogTime(timer.CurrentTime);
 			OnSectorLogged?.Invoke(timer.CurrentTime - sectorStartTime);
 			sectorStartTime = timer.CurrentTime;
 		}
 
 		public void UpdateDelta(TimingLine checkpoint)
 		{
-			bool firstTime = checkpoint.Time.BestTime < 0 ? true:false;
+			bool firstTime = checkpoint.TimedSegment.BestTime < 0 ? true:false;
 
-			float delta = timer.CurrentTime - checkpoint.Time.BestTime;
+			float delta = timer.CurrentTime - checkpoint.TimedSegment.BestTime;
 
-			checkpoint.Time.LogTime(timer.CurrentTime);
+			checkpoint.TimedSegment.LogTime(timer.CurrentTime);
 
 			if(firstTime)
 			{
