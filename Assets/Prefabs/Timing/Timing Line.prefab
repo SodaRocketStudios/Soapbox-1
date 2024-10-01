@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2242745003579129822}
+  - component: {fileID: 3694762747033869553}
   - component: {fileID: 2585629960385692398}
   - component: {fileID: 2081028419558153781}
   m_Layer: 0
@@ -33,6 +34,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3694762747033869553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749432869532595318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1c5aee3e5b32a42928cf5cd2c50857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 323eee29-a1b4-4582-919c-70cfdfb05d11
 --- !u!114 &2585629960385692398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,9 +59,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ba904490aeaef4f8c99b5ef13452e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnEnter:
+  OnTrigger:
     m_PersistentCalls:
       m_Calls: []
+  TimedSegment:
+    OnSectorTimeLogged:
+      m_PersistentCalls:
+        m_Calls: []
+    OnNewBestSector:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!65 &2081028419558153781
 BoxCollider:
   m_ObjectHideFlags: 0

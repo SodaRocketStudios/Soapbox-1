@@ -6,60 +6,27 @@ using UnityEngine.Events;
 
 namespace Soap.LapTiming
 {
+	[Serializable]
 	public class TimingLine : MonoBehaviour, IPersist
 	{
 		public UnityEvent<TimingLine> OnTrigger;
 
 		public TimedSegment TimedSegment = new();
 
-        [SerializeField] private string id;
-		public string ID {get => id;}
-
-		private void OnValidate()
-		{
-			if(string.IsNullOrEmpty(id))
-			{
-				GenerateID();
-			}
-		}
-
         private void OnTriggerEnter(Collider other)
 		{
 			OnTrigger?.Invoke(this);
 		}
 
-        public object Save()
+        public object CaptureState()
         {
-			return new TimingData(this);
+			return null;
         }
 
-        public void Load(object data)
+        public int RestoreState(object data)
         {
-            TimingData timingData = data as TimingData;
-			if(timingData != null)
-			{
-				id = timingData.ID;
-				TimedSegment.SetBestTime(timingData.BestTime);
-			}
+          return -1;
         }
 
-		[ContextMenu("Generate New ID")]
-		private void GenerateID()
-		{
-			id = GUID.Generate().ToString();
-		}
-	}
-
-	[Serializable]
-	public class TimingData
-	{
-		public string ID;
-		public float BestTime;
-
-		public TimingData(TimingLine line)
-		{
-			ID = line.ID;
-			BestTime = line.TimedSegment.BestTime;
-		}
 	}
 }

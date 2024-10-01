@@ -1,6 +1,6 @@
 namespace SRS.Utils.DataHandling
 {
-	public interface IDataWriter
+	public interface IDataHandler
 	{
 		public abstract void Write(string fileName, string data);
 

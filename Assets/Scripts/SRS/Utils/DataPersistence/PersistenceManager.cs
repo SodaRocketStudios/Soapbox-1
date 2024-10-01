@@ -1,7 +1,7 @@
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using SRS.Utils.DataHandling;
+using System.Collections.Generic;
 
 namespace SRS.Utils.DataPersistence
 {
@@ -11,30 +11,68 @@ namespace SRS.Utils.DataPersistence
 
 		private ISerializer serializer = new JsonSerializer();
 
-		private IDataWriter dataWriter = new FileWriter();
+		private IDataHandler dataHandler = new FileDataHandler();
+
+		private Dictionary<string, object> GameData = new();
 
 		[ContextMenu("Save")]
 		public void Save()
 		{
-			var persistentObjects = FindObjectsOfType<MonoBehaviour>().OfType<IPersist>();
-
-			StringBuilder dataStringBuilder = new();
-
-			string dataString;
-
-			foreach (MonoBehaviour persistentObject in persistentObjects)
-			{
-				dataStringBuilder.Append(serializer.Serialize((persistentObject as IPersist).Save()));
-			}
-
-			dataString = dataStringBuilder.ToString();
+			Dictionary<string, object> state = new();
+			CaptureState(state);
+			
+			string data = serializer.Serialize(state);
 
 			if(encryptData)
 			{
-				dataString = Encryptor.Encrypt(dataString);
+				data = Encryptor.Encrypt(data);
 			}
 
-			dataWriter.Write("test.save", dataString);
+			dataHandler.Write("test.sav", data);
+		}
+
+		[ContextMenu("Load")]
+		public void Load()
+		{
+			string data = dataHandler.Read("test.sav");
+
+			if(string.IsNullOrEmpty(data))
+			{
+				return;
+			}
+
+			if(encryptData)
+			{
+				data = Encryptor.Encrypt(data);
+			}
+
+			Dictionary<string, object> state = serializer.Deserialize(data).ToDictionary();
+
+			RestoreState(state);
+		}
+
+		private void CaptureState(Dictionary<string, object> state)
+		{
+			foreach(PersistentEntity entity in FindObjectsByType<PersistentEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+			{
+				state[entity.UniqueIdentifier] = entity.CaptureState();
+			}
+		}
+
+		private void RestoreState(Dictionary<string, object> state)
+		{			
+			if(state == null)
+			{
+				return;
+			}
+
+			foreach(PersistentEntity entity in FindObjectsByType<PersistentEntity>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+			{
+				if(state.ContainsKey(entity.UniqueIdentifier))
+				{
+					entity.RestoreState(state[entity.UniqueIdentifier]);
+				}
+			}
 		}
 	}
 }

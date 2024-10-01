@@ -4,14 +4,14 @@ namespace SRS.Utils.DataHandling
 {
     public class JsonSerializer : ISerializer
     {
-        public T Deserialize<T>(string serializedObject)
+        public object Deserialize(string serializedObject)
         {
-            return JsonConvert.DeserializeObject<T>(serializedObject);
+            return JsonConvert.DeserializeObject(serializedObject);
         }
 
-        public string Serialize<T>(T objectData)
+        public string Serialize(object data)
         {
-            return JsonConvert.SerializeObject(objectData, Formatting.Indented);
+            return JsonConvert.SerializeObject(data, Formatting.Indented);
         }
     }
 }

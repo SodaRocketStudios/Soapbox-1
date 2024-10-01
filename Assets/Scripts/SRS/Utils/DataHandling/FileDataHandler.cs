@@ -3,11 +3,13 @@ using UnityEngine;
 
 namespace SRS.Utils.DataHandling
 {
-    public class FileWriter : IDataWriter
+    public class FileDataHandler : IDataHandler
     {
         public string Read(string relativePath)
         {
-            using(StreamReader reader = File.OpenText(relativePath))
+            string combinedPath = Path.Combine(Application.persistentDataPath, relativePath);
+
+            using(StreamReader reader = File.OpenText(combinedPath))
 			{
 				return reader.ReadToEnd();
 			}
