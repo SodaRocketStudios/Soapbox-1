@@ -37,11 +37,12 @@ namespace Soap.Haptics
 				return;
 			}
 
-			if(Gamepad.current is IXboxOneRumble)
-			{
-				(Gamepad.current as IXboxOneRumble).SetMotorSpeeds(lowFrequencySpeed, highFrequencySpeed, leftTriggerSpeed, rightTriggerSpeed);
-				return;
-			}
+			// This seems to cause feedback lag.
+			// if(Gamepad.current is IXboxOneRumble)
+			// {
+			// 	(Gamepad.current as IXboxOneRumble).SetMotorSpeeds(lowFrequencySpeed, highFrequencySpeed, leftTriggerSpeed, rightTriggerSpeed);
+			// 	return;
+			// }
 
 			Gamepad.current.SetMotorSpeeds(lowFrequencySpeed, highFrequencySpeed);
 		}
