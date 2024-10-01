@@ -1,4 +1,5 @@
 using System.IO;
+using UnityEngine;
 
 namespace SRS.Utils.DataHandling
 {
@@ -14,7 +15,8 @@ namespace SRS.Utils.DataHandling
 
         public void Write(string relativePath, string data)
         {
-            using(StreamWriter writer = new StreamWriter(relativePath, false))
+            string combinedPath = Path.Combine(Application.persistentDataPath, relativePath);
+            using(StreamWriter writer = new StreamWriter(combinedPath, false))
 			{
 				writer.Write(data);
 			}
