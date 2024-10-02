@@ -29,8 +29,8 @@
      showgrid="false"
      units="in"
      inkscape:zoom="0.56237086"
-     inkscape:cx="822.41103"
-     inkscape:cy="365.41723"
+     inkscape:cx="943.32768"
+     inkscape:cy="488.11206"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
@@ -379,8 +379,8 @@
        lpesatellites=""
        num_rows="4"
        num_cols="4"
-       gapx="3.5321271e-07"
-       gapy="2.9434393e-07"
+       gapx="3.6792991e-09"
+       gapy="3.0660826e-09"
        offset="0"
        offset_type="false"
        scale="0"
@@ -412,8 +412,8 @@
        lpesatellites=""
        num_rows="4"
        num_cols="5"
-       gapx="3.5321271e-07"
-       gapy="2.9434393e-07"
+       gapx="3.6792991e-09"
+       gapy="3.0660826e-09"
        offset="0"
        offset_type="false"
        scale="0"
@@ -568,33 +568,6 @@
          inkscape:label="Background" />
       <rect
          style="fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:3.264;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         id="rect10"
-         width="127"
-         height="31.75"
-         x="111.3642"
-         y="81.439323"
-         transform="matrix(1,0,-0.32356364,0.94620641,0,0)"
-         sodipodi:type="rect" />
-      <rect
-         style="fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:3.264;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         id="rect22"
-         width="127"
-         height="31.75"
-         x="112.86072"
-         y="135.12741"
-         transform="matrix(1,0,-0.32356364,0.94620641,0,0)"
-         sodipodi:type="rect" />
-      <rect
-         style="fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:3.264;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         id="rect23"
-         width="127"
-         height="31.75"
-         x="114.35725"
-         y="188.81549"
-         transform="matrix(1,0,-0.32356364,0.94620641,0,0)"
-         sodipodi:type="rect" />
-      <rect
-         style="fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:3.264;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="rect24"
          width="127"
          height="31.75"
@@ -602,17 +575,94 @@
          y="242.50357"
          transform="matrix(1,0,-0.32356364,0.94620641,0,0)"
          sodipodi:type="rect" />
+      <rect
+         style="display:inline;fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:3.264;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect23"
+         width="127"
+         height="31.75"
+         x="114.35725"
+         y="188.81549"
+         transform="matrix(1,0,-0.32356365,0.9462064,0,0)"
+         sodipodi:type="rect" />
+      <rect
+         style="display:inline;fill:#0d1321;fill-opacity:1;stroke:#ed4d6e;stroke-width:3.264;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect22"
+         width="127"
+         height="31.75"
+         x="112.86072"
+         y="135.12741"
+         transform="matrix(1,0,-0.32356365,0.9462064,0,0)"
+         sodipodi:type="rect"
+         inkscape:export-filename="..\Menus\Button Selected.png"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72" />
+      <rect
+         style="display:inline;fill:#0d1321;fill-opacity:1;stroke:#e0e0e2;stroke-width:3.264;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect10"
+         width="127"
+         height="31.75"
+         x="111.3642"
+         y="81.439323"
+         transform="matrix(1,0,-0.32356365,0.9462064,0,0)"
+         sodipodi:type="rect"
+         inkscape:export-filename="..\Menus\Button.png"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72" />
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
-         x="75.565002"
-         y="43.865799"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.75px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="169.1481"
+         y="48.48225"
          id="text24"><tspan
            sodipodi:role="line"
            id="tspan24"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
-           x="75.565002"
-           y="43.865799">SOAPBOX 1</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:31.75px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+           x="169.1481"
+           y="48.48225">SOAPBOX 1</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="115.74369"
+         y="99.625366"
+         id="text3"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+           x="115.74369"
+           y="99.625366"
+           id="tspan8">RACE</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="100.87411"
+         y="150.49947"
+         id="text9"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+           x="100.87411"
+           y="150.49947"
+           id="tspan9">HELP</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="58.805336"
+         y="201.22539"
+         id="text10"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+           x="58.805336"
+           y="201.22539"
+           id="tspan10">SETTINGS</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="69.558029"
+         y="252.0146"
+         id="text14"><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.1667px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+           x="69.558029"
+           y="252.0146"
+           id="tspan14">QUIT</tspan></text>
     </g>
     <g
        inkscape:groupmode="layer"
