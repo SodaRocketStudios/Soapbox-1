@@ -1,12 +1,12 @@
 using System;
 using SRS.Utils.DataPersistence;
-using UnityEditor;
+using Unity.Plastic.Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Soap.LapTiming
 {
-	[Serializable]
+    [Serializable]
 	public class TimingLine : MonoBehaviour, IPersist
 	{
 		public UnityEvent<TimingLine> OnTrigger;
@@ -20,13 +20,19 @@ namespace Soap.LapTiming
 
         public object CaptureState()
         {
-			return null;
+			return new TimingData(TimedSegment);
         }
 
-        public int RestoreState(object data)
+        public void RestoreState(object data)
         {
-          return -1;
-        }
+			float bestTime = (float)(data as JObject)["BestTime"];
 
+			if(bestTime < 0)
+			{
+				return;
+			}
+
+			TimedSegment.SetBestTime(bestTime);
+        }
 	}
 }

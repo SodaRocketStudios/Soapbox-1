@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Unity.Plastic.Newtonsoft.Json.Linq;
 using SRS.Utils.Timing;
+using SRS.Utils.DataPersistence;
 
 namespace Soap.LapTiming
 {
-	public class LapTimer : MonoBehaviour
+	public class LapTimer : MonoBehaviour, IPersist
 	{
 		public UnityEvent<float> OnLapLogged;
 
@@ -91,5 +93,22 @@ namespace Soap.LapTiming
 		{
 			OnTimeChanged?.Invoke(time);
 		}
-	}
+
+        public object CaptureState()
+        {
+            return new TimingData(lapTime);
+        }
+
+        public void RestoreState(object data)
+        {
+            float bestTime = (float)(data as JObject)["BestTime"];
+
+			if(bestTime < 0)
+			{
+				return;
+			}
+
+			lapTime.SetBestTime(bestTime);
+        }
+    }
 }

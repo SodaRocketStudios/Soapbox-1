@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using SRS.Utils.DataHandling;
 using System.Collections.Generic;
@@ -12,8 +11,6 @@ namespace SRS.Utils.DataPersistence
 		private ISerializer serializer = new JsonSerializer();
 
 		private IDataHandler dataHandler = new FileDataHandler();
-
-		private Dictionary<string, object> GameData = new();
 
 		[ContextMenu("Save")]
 		public void Save()
