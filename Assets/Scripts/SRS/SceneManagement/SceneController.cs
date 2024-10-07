@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace SRS
+namespace SRS.SceneManagement
 {
 	public class SceneController : MonoBehaviour
 	{
@@ -20,7 +20,7 @@ namespace SRS
 			}
 		}
 
-		private List<Scene> loadedScenes = new();
+		private Dictionary<string, Scene> loadedScenes = new();
 
 		public void LoadScene(Scene scene)
 		{
@@ -28,14 +28,24 @@ namespace SRS
 			// Add scene to loaded scenes
 			// Disable scene
 
-			// SceneManager.LoadSceneAsync(scene.name);
-			// loadedScenes.Add(scene);
+			SceneManager.LoadSceneAsync(scene.name);
+			loadedScenes.Add(scene.name, scene);
 		}
 
 		public void ChangeScene(Scene scene)
 		{
 			// Disable current scene
 			// Enable new scene
+		}
+
+		public void OpenScene(Scene scene)
+		{
+
+		}
+
+		public void CloseScene(Scene scene)
+		{
+
 		}
 
 		public void UnloadScene(Scene scene)
