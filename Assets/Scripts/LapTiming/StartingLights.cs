@@ -25,14 +25,14 @@ namespace Soap.LapTiming
 
 		public void StartCountdown()
 		{
-			if(RaceState.Instance.State != State.PreStart)
+			if(StateManager.Instance.State != RaceState.PreStart)
 			{
 				return;
 			}
 
 			animator.SetTrigger("StartCountdown");
 			randomDelay = random.NextFloat(minDelay, maxDelay);
-			RaceState.Instance.State = State.Countdown;
+			StateManager.Instance.State = RaceState.Countdown;
 		}
 
 		public void Enable()
@@ -48,7 +48,7 @@ namespace Soap.LapTiming
 		public void LightsOff()
 		{
 			animator.SetTrigger("Disable");
-			RaceState.Instance.State = State.Running;
+			StateManager.Instance.State = RaceState.Running;
 			LightsOut?.Invoke();
 		}
 

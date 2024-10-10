@@ -118,7 +118,7 @@ namespace Soap.Physics
 			
 			if(carManager.IsPhysicsEnabled == false)
 			{
-				if(RaceState.Instance.State == State.Countdown)
+				if(StateManager.Instance.State == RaceState.Countdown)
 				{
 					OnFalseStart?.Invoke();
 				}
@@ -181,7 +181,7 @@ namespace Soap.Physics
 		{
 			clutchInput = input;
 
-			if(RaceState.Instance.State == State.PreStart && input == true)
+			if(StateManager.Instance.State == RaceState.PreStart && input == true)
 			{
 				OnClutchPress?.Invoke();
 			}

@@ -33,7 +33,7 @@ namespace Soap.Physics
 
 		private void FixedUpdate()
 		{
-			if(RaceState.Instance.State == State.PreStart || IsPhysicsEnabled == false)
+			if(StateManager.Instance.State == RaceState.PreStart || IsPhysicsEnabled == false)
 			{
 				carRigidBody.Sleep();
 				return;

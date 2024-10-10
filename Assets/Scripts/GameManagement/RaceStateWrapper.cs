@@ -4,9 +4,19 @@ namespace Soap.GameManagement
 {
 	public class RaceStateWrapper : MonoBehaviour
 	{
-		public void ChangeState(State state)
+		public void SetPreStartState()
 		{
-			RaceState.Instance.State = state;
+			StateManager.Instance.State = RaceState.PreStart;
+		}
+
+		public void SetCountdownState()
+		{
+			StateManager.Instance.State = RaceState.Countdown;
+		}
+
+		public void SetRunningState()
+		{
+			StateManager.Instance.State = RaceState.Running;
 		}
 	}
 }
