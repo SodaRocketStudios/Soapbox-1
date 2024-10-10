@@ -54,11 +54,11 @@ namespace Soap.Physics
 		private void Awake()
 		{
 			wheelMesh = transform.GetChild(0);
+			carRigidBody = transform.root.GetComponent<Rigidbody>();
 		}
 
 		private void Start()
 		{
-			carRigidBody = transform.root.GetComponent<Rigidbody>();
 			overrideSpeedSquared = overrideSpeed * overrideSpeed;
 		}
 

@@ -6,7 +6,11 @@ namespace SRS.SceneManagement
 {
 	public class SceneController : MonoBehaviour
 	{
-		public SceneController Instance;
+		public static SceneController Instance;
+
+		[SerializeField] private List<string> initialScenes;
+
+		List<string> loadedScenes = new();
 
 		private void Awake()
 		{
@@ -20,39 +24,36 @@ namespace SRS.SceneManagement
 			}
 		}
 
-		private Dictionary<string, Scene> loadedScenes = new();
-
-		public void LoadScene(Scene scene)
+		private void Start()
 		{
-			// Load scene additive
-			// Add scene to loaded scenes
-			// Disable scene
-
-			SceneManager.LoadSceneAsync(scene.name);
-			loadedScenes.Add(scene.name, scene);
+			foreach(string scene in initialScenes)
+			{
+				LoadScene(scene);
+			}
 		}
 
-		public void ChangeScene(Scene scene)
+		public void LoadScene(string scene)
 		{
-			// Disable current scene
-			// Enable new scene
+			if(loadedScenes.Contains(scene))
+			{
+				Debug.Log("'Scene already loaded");
+				return;
+			}
+
+			SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+			loadedScenes.Add(scene);
 		}
 
-		public void OpenScene(Scene scene)
+		public void UnloadScene(string scene)
 		{
+			if(loadedScenes.Contains(scene) == false)
+			{
+				Debug.Log("'Scene not loaded");
+				return;
+			}
 
-		}
-
-		public void CloseScene(Scene scene)
-		{
-
-		}
-
-		public void UnloadScene(Scene scene)
-		{
-			// Remove scene from loaded scenes
-			// Unload scene
-			// SceneManager.UnloadSceneAsync(scene.name);
+			SceneManager.UnloadSceneAsync(scene);
+			loadedScenes.Remove(scene);
 		}
 	}
 }

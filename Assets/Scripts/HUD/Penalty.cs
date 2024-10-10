@@ -14,6 +14,10 @@ namespace Soap.HUD
 		private void Awake()
 		{
 			notification = GetComponent<Notification>();
+		}
+
+		private void Start()
+		{
 			notification.OnAfterNotify += PenaltyManager.Instance.ShowNext;
 		}
 

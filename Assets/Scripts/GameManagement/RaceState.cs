@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Soap.GameManagement
 {
-	public class GameState : MonoBehaviour
+	public class RaceState : MonoBehaviour
 	{
-		public static GameState Instance;
+		public static RaceState Instance;
 
 		private void Awake()
 		{

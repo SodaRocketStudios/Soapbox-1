@@ -37,7 +37,7 @@ namespace Soap.Prototype
 		{
 			if(context.performed)
 			{
-				GameState.Instance.State = State.PreStart;
+				RaceState.Instance.State = State.PreStart;
 
 				manager.DisablePhysics();
 				
