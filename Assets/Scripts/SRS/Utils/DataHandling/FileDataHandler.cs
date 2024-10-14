@@ -9,6 +9,11 @@ namespace SRS.Utils.DataHandling
         {
             string combinedPath = Path.Combine(Application.persistentDataPath, relativePath);
 
+            if(File.Exists(combinedPath) == false)
+            {
+                return "";
+            }
+
             using(StreamReader reader = File.OpenText(combinedPath))
 			{
 				return reader.ReadToEnd();

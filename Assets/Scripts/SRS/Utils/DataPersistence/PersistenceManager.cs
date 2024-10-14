@@ -6,14 +6,27 @@ namespace SRS.Utils.DataPersistence
 {
 	public class PersistenceManager : MonoBehaviour
 	{
+		public static PersistenceManager Instance;
+
 		[SerializeField] private bool encryptData;
 
 		private ISerializer serializer = new JsonSerializer();
 
 		private IDataHandler dataHandler = new FileDataHandler();
 
-		[ContextMenu("Save")]
-		public void Save()
+		private void Awake()
+		{
+			if(Instance == null)
+			{
+				Instance = this;
+			}
+			else if(Instance != this)
+			{
+				Destroy(gameObject);
+			}
+		}
+
+		public void Save(string relativePath)
 		{
 			Dictionary<string, object> state = new();
 			CaptureState(state);
@@ -25,13 +38,12 @@ namespace SRS.Utils.DataPersistence
 				data = Encryptor.Encrypt(data);
 			}
 
-			dataHandler.Write("test.sav", data);
+			dataHandler.Write(relativePath, data);
 		}
 
-		[ContextMenu("Load")]
-		public void Load()
+		public void Load(string relativePath)
 		{
-			string data = dataHandler.Read("test.sav");
+			string data = dataHandler.Read(relativePath);
 
 			if(string.IsNullOrEmpty(data))
 			{

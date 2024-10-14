@@ -14,7 +14,9 @@ namespace Soap.GameManagement
 
 		public void SetCameraTarget()
 		{
-			Camera.main.GetComponent<CinemachineVirtualCamera>().Follow = target;
+			CinemachineVirtualCamera vCam = Camera.main.GetComponent<CinemachineVirtualCamera>();
+			vCam.Follow = target;
+			vCam.LookAt = target;
 		}
 	}
 }
