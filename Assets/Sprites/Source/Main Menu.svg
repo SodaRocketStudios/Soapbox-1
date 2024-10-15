@@ -29,7 +29,7 @@
      showgrid="false"
      units="in"
      inkscape:zoom="0.39572043"
-     inkscape:cx="1051.2472"
+     inkscape:cx="1052.5107"
      inkscape:cy="577.42786"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
@@ -608,7 +608,7 @@
        inkscape:groupmode="layer"
        id="layer16"
        inkscape:label="V3"
-       style="display:inline">
+       style="display:none">
       <rect
          style="display:inline;fill:url(#linearGradient4);stroke:none;stroke-width:3.616;stroke-linecap:round;stroke-linejoin:round"
          id="rect9"

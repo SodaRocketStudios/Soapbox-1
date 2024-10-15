@@ -8,7 +8,6 @@ namespace Soap.Input
     {
 		public static InputHandler Instance;
 
-
 		// Gameplay Actions
 		public static Action<float> OnSteerInput;
 		public static Action<float> OnAccelerateInput;
@@ -22,9 +21,6 @@ namespace Soap.Input
 		public static Action OnTabLeftInput;
 		public static Action OnReturnInput;
 		public static Action OnCancelInput;
-
-		// Other Actions
-		public static Action<InputDevice, InputDeviceChange> OnDeviceChange;
 
 		private InputActions inputActions;
 		

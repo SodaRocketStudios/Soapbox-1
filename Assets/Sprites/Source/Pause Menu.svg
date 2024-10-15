@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920"
+   height="1080"
+   viewBox="0 0 508 285.75001"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="Pause Menu.svg"
+   inkscape:export-filename="..\Menus\Main Menu.png"
+   inkscape:export-xdpi="200"
+   inkscape:export-ydpi="200"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="in"
+     showgrid="false"
+     units="in"
+     inkscape:zoom="0.54047837"
+     inkscape:cx="739.16001"
+     inkscape:cy="289.5583"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';stroke-width:0.264583;fill:#e0e0e2;fill-opacity:1"
+       x="204.62238"
+       y="43.865799"
+       id="text1"
+       inkscape:export-filename="..\Menus\Pause Menu.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.4px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';stroke-width:0.264583;fill:#e0e0e2;fill-opacity:1"
+         x="204.62238"
+         y="43.865799">PAUSED</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+       x="230.94099"
+       y="117.21251"
+       id="text2"
+       inkscape:export-filename="..\Menus\Resume.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="230.94099"
+         y="117.21251">RESUME</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+       x="226.79236"
+       y="148.97099"
+       id="text3"
+       inkscape:export-filename="..\Menus\Restart.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="226.79236"
+         y="148.97099">RESTART</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;line-height:1.25;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+       x="218.14787"
+       y="180.59398"
+       id="text4"
+       inkscape:export-filename="..\Menus\Main Menu.png"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.7px;font-family:'Fugaz One';-inkscape-font-specification:'Fugaz One';fill:#e0e0e2;fill-opacity:1;stroke-width:0.264583"
+         x="218.14787"
+         y="180.59398">MAIN MENU</tspan></text>
+  </g>
+</svg>
