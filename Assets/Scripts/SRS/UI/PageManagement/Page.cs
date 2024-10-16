@@ -34,6 +34,7 @@ namespace SRS.UI.PageManagement
 		private void OnEnable()
 		{
 			EventSystem.current.SetSelectedGameObject(firstSelected);
+			OnAfterEntry?.Invoke();
 		}
 
 		public void EnterWithoutTransition()
