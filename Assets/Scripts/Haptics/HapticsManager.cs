@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XInput;
 using Soap.Physics;
 
 namespace Soap.Haptics
@@ -20,11 +19,17 @@ namespace Soap.Haptics
 
 		private void Update()
 		{
-			float slip = carController.DriveWheels[0].CombinedSlip;
+			float slip = 0;
 
-			if(carController.DriveWheels[0].IsGrounded == false)
+			foreach(Wheel wheel in carController.Wheels)
 			{
-				slip = 0;
+				if(Mathf.Abs(wheel.CombinedSlip) > slip)
+				{
+					if(wheel.IsGrounded)
+					{
+						slip = wheel.CombinedSlip;
+					}
+				}
 			}
 
 			SetHaptics(carController.AccelerationInput*EngineNoiseScale, slip*SlipFeedbackScale, 0, 0);

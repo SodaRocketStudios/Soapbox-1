@@ -16,14 +16,9 @@ namespace Soap.VFX
 
 		private void Update()
 		{
-			if(Mathf.Abs(wheel.SlipRatio) > 1f)
-			{
-				particles.Emit(1);
-			}
-
-			// TODO -- look more into slip angle and make sure the numbers make sense.
-
-			if(wheel.SlipAngle > 15)
+			if(wheel.SlipRatio > 0)
+			Debug.Log(wheel.SlipRatio, wheel);
+			if(Mathf.Abs(wheel.SlipRatio) >= 0.5)
 			{
 				particles.Emit(1);
 			}

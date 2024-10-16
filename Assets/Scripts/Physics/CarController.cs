@@ -37,6 +37,10 @@ namespace Soap.Physics
 		private Differential diff;
 
 		private Wheel[] wheels;
+		public Wheel[] Wheels
+		{
+			get {return wheels;}
+		}
 		private Wheel[] driveWheels = new Wheel[2];
 		public Wheel[] DriveWheels
 		{

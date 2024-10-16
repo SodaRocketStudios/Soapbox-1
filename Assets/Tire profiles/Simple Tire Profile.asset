@@ -15,23 +15,23 @@ MonoBehaviour:
   radius: 0.32
   mass: 20
   peakLongitudinalFriction: 2
-  peakSlipRatio: 0.2
-  longitudinalSlipFriction: 0.5
-  longitudinalShapingKey: {x: 0.25, y: 0.3}
+  peakSlipRatio: 0.3
+  longitudinalSlipFriction: 0.25
+  longitudinalShapingKey: {x: 0.25, y: 0.15}
   longitudinalCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 10
-      outSlope: 10
+      inSlope: 6.6666665
+      outSlope: 6.6666665
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2
+      time: 0.3
       value: 2
       inSlope: 0
       outSlope: 0
@@ -40,19 +40,19 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.4
-      value: 0.95000005
-      inSlope: -1.875
-      outSlope: -1.875
+      time: 0.47500002
+      value: 0.5125
+      inSlope: -1.5000004
+      outSlope: -1.5000004
       tangentMode: 9
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: -0.75000006
-      outSlope: -0.75000006
+      value: 0.25
+      inSlope: -0.5
+      outSlope: -0.5
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
