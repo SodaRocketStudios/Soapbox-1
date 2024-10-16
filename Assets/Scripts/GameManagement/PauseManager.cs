@@ -1,11 +1,15 @@
 using UnityEngine;
 using Soap.Input;
+using System;
 
 namespace Soap.GameManagement
 {
 	public class PauseManager : MonoBehaviour
 	{
 		public static PauseManager Instance;
+
+		public Action OnPause;
+		public Action OnResume;
 
 		private bool IsPaused = false;
 
@@ -35,14 +39,16 @@ namespace Soap.GameManagement
 		{
 			InputHandler.Instance.SetUIInput();
 			Time.timeScale = 0;
-			Debug.Log("Pause");
+			OnPause?.Invoke();
+			IsPaused = true;
 		}
 
 		public void Unpause()
 		{
 			InputHandler.Instance.SetGameplayInput();
 			Time.timeScale = 1;
-			Debug.Log("Unpause");
+			OnResume?.Invoke();
+			IsPaused = false;
 		}
 
 		public void TogglePause()
@@ -55,8 +61,6 @@ namespace Soap.GameManagement
 			{
 				Pause();
 			}
-
-			IsPaused = !IsPaused;
 		}
 	}
 }
