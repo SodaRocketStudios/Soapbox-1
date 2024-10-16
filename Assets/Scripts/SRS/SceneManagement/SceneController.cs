@@ -48,7 +48,7 @@ namespace SRS.SceneManagement
 		{
 			if(loadedScenes.Contains(scene) == false)
 			{
-				Debug.Log("'Scene not loaded");
+				Debug.Log($"Scene not loaded {scene}");
 				return;
 			}
 
