@@ -14,8 +14,6 @@ namespace Soap.Prototype
 
 		private CarManager manager;
 
-
-
 		[SerializeField] private LapTimer timer;
 
 		[SerializeField] private StartingLights startLights;

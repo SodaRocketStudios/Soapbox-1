@@ -583,7 +583,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44211914}
-  m_Mesh: {fileID: 1340968390}
+  m_Mesh: {fileID: 1291981266}
 --- !u!64 &44211918
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -605,7 +605,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1340968390}
+  m_Mesh: {fileID: 1291981266}
 --- !u!114 &44211919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6247,8 +6247,8 @@ GameObject:
   - component: {fileID: 107411624}
   - component: {fileID: 107411625}
   - component: {fileID: 107411620}
+  - component: {fileID: 107411626}
   - component: {fileID: 107411622}
-  - component: {fileID: 107411617}
   - component: {fileID: 107411623}
   - component: {fileID: 107411621}
   - component: {fileID: 107411616}
@@ -6360,20 +6360,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107411611}
   m_Mesh: {fileID: -8881936082286353514, guid: 0d72f4d649280ee408fb401145f64852, type: 3}
---- !u!114 &107411617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107411611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323db592450319a448da9415dc92d67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: {fileID: 703401442}
-  startLights: {fileID: 1946804412}
 --- !u!4 &107411619
 Transform:
   m_ObjectHideFlags: 0
@@ -6579,6 +6565,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EngineNoiseScale: 0.25
   SlipFeedbackScale: 0.1
+--- !u!114 &107411626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107411611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaaab2a5c6cd6cc4aaea7ec302f12ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &116582789
 GameObject:
   m_ObjectHideFlags: 0
@@ -8929,6 +8927,7 @@ GameObject:
   - component: {fileID: 703401443}
   - component: {fileID: 703401442}
   - component: {fileID: 703401444}
+  - component: {fileID: 703401445}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
@@ -9025,6 +9024,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 0b5050d0-dec4-4f49-a4a7-0d4d0cf962c9
+--- !u!114 &703401445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703401441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4b81f1e61e0204fbdd5cef235774c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 703401442}
+  startLights: {fileID: 1946804412}
 --- !u!1 &704214638
 GameObject:
   m_ObjectHideFlags: 0
@@ -9060,8 +9073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &704214640
 CanvasRenderer:
@@ -25365,129 +25378,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &1315799881
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1440725060}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 17.02
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -27.3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: e0300f80b1c569c48b73bc31ba46da2f,
-        type: 3}
-      propertyPath: m_Name
-      value: Tire Brake Marker 100
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e0300f80b1c569c48b73bc31ba46da2f, type: 3}
---- !u!4 &1315799882 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1315799881}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1327819047
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1327819048}
-  m_Layer: 5
-  m_Name: HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1327819048
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327819047}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 53048487}
-  m_Father: {fileID: 1276429745}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
-  m_Pivot: {x: 0.5, y: 0}
---- !u!4 &1339234792 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2318905173900040711, guid: f3054084f7f78a54ca47edfe13ea470c,
-    type: 3}
-  m_PrefabInstance: {fileID: 889599423}
-  m_PrefabAsset: {fileID: 0}
---- !u!43 &1340968390
+--- !u!43 &1291981266
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25652,6 +25543,128 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1315799881
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1440725060}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 17.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -27.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e0300f80b1c569c48b73bc31ba46da2f,
+        type: 3}
+      propertyPath: m_Name
+      value: Tire Brake Marker 100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0300f80b1c569c48b73bc31ba46da2f, type: 3}
+--- !u!4 &1315799882 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e0300f80b1c569c48b73bc31ba46da2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1315799881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1327819047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327819048}
+  m_Layer: 5
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1327819048
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327819047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 53048487}
+  m_Father: {fileID: 1276429745}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 300}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!4 &1339234792 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2318905173900040711, guid: f3054084f7f78a54ca47edfe13ea470c,
+    type: 3}
+  m_PrefabInstance: {fileID: 889599423}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1383571259
 GameObject:
   m_ObjectHideFlags: 0
@@ -27173,7 +27186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 750, y: 125}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1632762473
