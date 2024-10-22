@@ -1,7 +1,9 @@
 {
     "name": "DataHandling",
     "rootNamespace": "SRS.Utils.DataHandling",
-    "references": [],
+    "references": [
+        ""
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
