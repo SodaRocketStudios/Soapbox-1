@@ -36,7 +36,7 @@ namespace Soap.Physics
 
 		public void ResetToStart()
 		{
-			manager.DisablePhysics();
+			manager.Reset();
 			
 			transform.position = initializer.initializedPosition;
 			transform.rotation = initializer.initializedRotation;

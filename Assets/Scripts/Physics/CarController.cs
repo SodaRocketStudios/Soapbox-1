@@ -122,6 +122,11 @@ namespace Soap.Physics
 			
 			if(carManager.IsPhysicsEnabled == false)
 			{
+				if(StateManager.Instance.State == RaceState.PreStart)
+				{
+					return;
+				}
+
 				if(StateManager.Instance.State == RaceState.Countdown)
 				{
 					OnFalseStart?.Invoke();

@@ -2,7 +2,8 @@
     "name": "VFX",
     "rootNamespace": "Soap.VFX",
     "references": [
-        "GUID:825a9f5b8651d6c4dbb84b6fda3a9a42"
+        "GUID:825a9f5b8651d6c4dbb84b6fda3a9a42",
+        "GUID:ccdb18a7f7a81b3438a25b11d5d47f8c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Soap.Physics;
+using Soap.GameManagement;
 
 namespace Soap.VFX
 {
@@ -14,14 +15,33 @@ namespace Soap.VFX
 			particles = GetComponent<ParticleSystem>();
 		}
 
+		private void OnEnable()
+		{
+			ResetManager.OnReset += Reset;
+		}
+
+		private void OnDisable()
+		{
+			ResetManager.OnReset -= Reset;
+		}
+
 		private void Update()
 		{
-			if(wheel.SlipRatio > 0)
-			Debug.Log(wheel.SlipRatio, wheel);
 			if(Mathf.Abs(wheel.SlipRatio) >= 0.5)
 			{
 				particles.Emit(1);
 			}
+		}
+
+		public void Reset()
+		{
+			StopParticles();
+		}
+
+		private void StopParticles()
+		{
+			particles.Stop();
+			particles.Clear();
 		}
 	}
 }

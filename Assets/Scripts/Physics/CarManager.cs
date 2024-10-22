@@ -31,6 +31,16 @@ namespace Soap.Physics
 			carRigidBody.useGravity = false;
 		}
 
+		public void Reset()
+		{
+			DisablePhysics();
+
+			foreach(Wheel wheel in GetComponentsInChildren<Wheel>())
+			{
+				wheel.Reset();
+			}
+		}
+
 		private void FixedUpdate()
 		{
 			if(StateManager.Instance.State == RaceState.PreStart || IsPhysicsEnabled == false)

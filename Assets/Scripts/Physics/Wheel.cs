@@ -169,6 +169,12 @@ namespace Soap.Physics
 			IsGrounded = grounded;
 		}
 
+		public void Reset()
+		{
+			SlipAngle = 0;
+			SlipRatio = 0;
+		}
+
 		public void Steer(float inputValue)
 		{
 			previousSteerAngle = transform.localEulerAngles.y;

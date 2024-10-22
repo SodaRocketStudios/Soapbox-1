@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Soap.Physics;
+using Soap.GameManagement;
 
 namespace Soap.Haptics
 {
@@ -8,13 +9,21 @@ namespace Soap.Haptics
 	{
 		[SerializeField, Min(0)] private float EngineNoiseScale = 0.1f;
 		[SerializeField, Min(0)] private float SlipFeedbackScale = 0.1f;
-		private Rigidbody carRigibody;
 		private CarController carController;
 
 		private void Awake()
 		{
-			carRigibody = GetComponent<Rigidbody>();
 			carController = GetComponent<CarController>();
+		}
+
+		private void OnEnable()
+		{
+			ResetManager.OnReset += StopHaptics;
+		}
+
+		private void OnDisable()
+		{
+			ResetManager.OnReset -= StopHaptics;
 		}
 
 		private void Update()
@@ -54,7 +63,7 @@ namespace Soap.Haptics
 
 		public void StopHaptics()
 		{
-			Gamepad.current.ResetHaptics();
+			SetHaptics(0, 0, 0, 0);
 		}
 	}
 }
