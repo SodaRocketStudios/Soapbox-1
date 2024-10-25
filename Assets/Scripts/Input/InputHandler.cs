@@ -1,12 +1,16 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
+using UnityEngine.InputSystem.XInput;
 
 namespace Soap.Input
 {
     public class InputHandler : MonoBehaviour, InputActions.IGameplayActions, InputActions.IUIActions
     {
 		public static InputHandler Instance;
+
+		public DeviceType deviceType {get; private set;}
 
 		// Gameplay Actions
 		public static Action<float> OnSteerInput;
@@ -21,6 +25,8 @@ namespace Soap.Input
 		public static Action OnTabLeftInput;
 		public static Action OnReturnInput;
 		public static Action OnCancelInput;
+
+		public static InputControlScheme CurrentScheme;
 
 		private InputActions inputActions;
 		
@@ -47,10 +53,18 @@ namespace Soap.Input
             inputActions.Gameplay.SetCallbacks(this);
             inputActions.UI.SetCallbacks(this);
 
+			// on control scheme change
+			InputSystem.onActionChange += HandleInputAction;
+
             SetUIInput();
 		}
 
-		public void SetGameplayInput()
+        private void OnDisable()
+		{
+			InputSystem.onActionChange -= HandleInputAction;
+		}
+
+        public void SetGameplayInput()
 		{
 			inputActions.Gameplay.Enable();
 			inputActions.UI.Disable();
@@ -172,5 +186,31 @@ namespace Soap.Input
         public void OnTrackedDevicePosition(InputAction.CallbackContext context)
         {
         }
+
+		private void HandleInputAction(object obj, InputActionChange change)
+		{
+			if(change == InputActionChange.ActionPerformed)
+			{
+				InputDevice activeDevice = (obj as InputAction).activeControl.device;
+
+				if(activeDevice is Keyboard)
+				{
+					deviceType = DeviceType.Keyboard;
+					return;
+				}
+
+				if(activeDevice is XInputController)
+				{
+					deviceType = DeviceType.Xbox;
+					return;
+				}
+
+				if(activeDevice is DualShockGamepad)
+				{
+					deviceType = DeviceType.Playstation;
+					return;
+				}
+			}
+		}
     }
 }

@@ -25,15 +25,15 @@
      inkscape:document-units="in"
      showgrid="false"
      units="in"
-     inkscape:zoom="0.957227"
-     inkscape:cx="381.8321"
-     inkscape:cy="444.51316"
+     inkscape:zoom="0.6768617"
+     inkscape:cx="452.82515"
+     inkscape:cy="-52.447937"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer1"
      inkscape:showpageshadow="0"
      inkscape:deskcolor="#d1d1d1" />
   <defs
@@ -95,6 +95,16 @@
        x2="9.0971727"
        y2="239.90494"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#swatch3"
+       id="linearGradient26"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,-116.89115)"
+       x1="92.198936"
+       y1="224.32094"
+       x2="92.156281"
+       y2="283.02853" />
   </defs>
   <g
      inkscape:groupmode="layer"
@@ -106,11 +116,11 @@
        inkscape:label="V1">
       <path
          id="rect16"
-         style="fill:#000000;fill-opacity:0.5;stroke:none;stroke-width:6.70559;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         style="display:inline;fill:#000000;fill-opacity:0.5;stroke:none;stroke-width:6.70559;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          d="M 15.219265,1.0099992 H 152.39999 289.53925 L 304.8,21.589929 259.05926,67.309919 H 152.39999 45.699264 L 2.5e-6,21.589929 Z"
          sodipodi:nodetypes="ccccccccc"
          inkscape:label="Background"
-         inkscape:export-filename="..\HUD\Instrument Panel\Background.png"
+         inkscape:export-filename="..\Help images\DRS Available Hud.png"
          inkscape:export-xdpi="200"
          inkscape:export-ydpi="200" />
       <path
@@ -146,7 +156,7 @@
            inkscape:export-xdpi="200"
            inkscape:export-ydpi="200" />
         <path
-           style="fill:#b20000;fill-opacity:1;stroke-width:3.11184;stroke-linecap:square;stroke-linejoin:bevel"
+           style="display:inline;fill:#b20000;fill-opacity:1;stroke-width:3.11184;stroke-linecap:square;stroke-linejoin:bevel"
            d="m 36.841449,55.002319 9.818477,9.81905 h 60.626784 l -8.715274,-9.81905 z"
            id="path9"
            inkscape:label="Brake"
@@ -155,7 +165,7 @@
            inkscape:export-xdpi="200"
            inkscape:export-ydpi="200" />
         <path
-           style="fill:#00b20e;fill-opacity:1;stroke-width:3.11184;stroke-linecap:square;stroke-linejoin:bevel"
+           style="display:inline;fill:#00b20e;fill-opacity:1;stroke-width:3.11184;stroke-linecap:square;stroke-linejoin:bevel"
            d="m 24.737495,42.900059 9.822596,9.81862 h 62.080025 l -8.771049,-9.81862 z"
            id="path33"
            inkscape:label="Throttle"
@@ -252,7 +262,7 @@
            inkscape:export-ydpi="200" />
         <path
            id="path38"
-           style="fill:#7db281;fill-opacity:1;stroke-width:2.794;stroke-linecap:square;stroke-linejoin:round"
+           style="display:inline;fill:#7db281;fill-opacity:1;stroke-width:2.794;stroke-linecap:square;stroke-linejoin:round"
            d="m 231.9861,3.2547792 h 23.77635 32.77686 l 13.59418,18.3351498 -44.08996,43.27569 h -23.16872 -32.5051 l 18.26408,-37.01853 z"
            sodipodi:nodetypes="ccccccccc"
            inkscape:label="Available"
@@ -269,8 +279,8 @@
              sodipodi:role="line"
              id="tspan16-2"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Russo One';-inkscape-font-specification:'Russo One';fill:#e5e5e5;fill-opacity:1;stroke-width:0.383436"
-             x="232.55836"
-             y="40.409893">DRS</tspan></text>
+             x="0"
+             y="0">DRS</tspan></text>
         <path
            id="path8"
            style="display:inline;fill:#b20000;fill-opacity:1;stroke-width:2.794;stroke-linecap:square;stroke-linejoin:round"
@@ -1097,7 +1107,8 @@
         <g
            id="path32"
            inkscape:label="Lightning Background"
-           transform="translate(0,-105.66937)">
+           transform="translate(0,-105.66937)"
+           style="display:inline">
           <path
              style="color:#000000;fill:#1a1a1a;-inkscape-stroke:none"
              d="m 20.765595,234.54193 h 5.172123 l -3.027126,8.32068 h 4.203451 l -6.924506,13.19016 2.692476,-10.2977 h -4.666684 z"
@@ -1108,7 +1119,7 @@
              id="path36" />
         </g>
         <path
-           style="fill:#ccaa00;fill-opacity:1;stroke:none;stroke-width:0.114715px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           style="display:inline;fill:#ccaa00;fill-opacity:1;stroke:none;stroke-width:0.114715px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            d="m 20.765595,128.87256 h 5.172123 l -3.027126,8.32068 h 4.203451 l -6.924506,13.19016 2.692476,-10.2977 h -4.666684 z"
            id="path1"
            sodipodi:nodetypes="cccccccc"
@@ -1116,9 +1127,18 @@
            inkscape:export-filename="..\HUD\Instrument Panel\ERS Symbol.png"
            inkscape:export-xdpi="200"
            inkscape:export-ydpi="200" />
+        <path
+           id="path26"
+           style="display:inline;fill:url(#linearGradient26);fill-opacity:1;stroke-width:2.69502;stroke-linecap:square;stroke-linejoin:bevel"
+           d="M 27.7241,128.8221 H 154.41295 L 143.9672,150.2166 H 38.140465 Z"
+           sodipodi:nodetypes="ccccc"
+           inkscape:label="Background"
+           inkscape:export-filename="..\HUD\Instrument Panel\ERS Background.png"
+           inkscape:export-xdpi="200"
+           inkscape:export-ydpi="200" />
         <text
            xml:space="preserve"
-           style="font-size:17.8739px;line-height:1.25;font-family:Audiowide;-inkscape-font-specification:Audiowide;fill:#e5e5e5;fill-opacity:1;stroke-width:0.372372"
+           style="font-size:17.8739px;line-height:1.25;font-family:Audiowide;-inkscape-font-specification:Audiowide;display:inline;fill:#e5e5e5;fill-opacity:1;stroke-width:0.372372"
            x="46.840919"
            y="148.55611"
            id="text1"
@@ -1126,11 +1146,11 @@
              sodipodi:role="line"
              id="tspan1"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Russo One';-inkscape-font-specification:'Russo One';fill:#e5e5e5;fill-opacity:1;stroke-width:0.372372"
-             x="46.840919"
-             y="148.55611">ERS</tspan></text>
+             x="0"
+             y="0">ERS</tspan></text>
         <text
            xml:space="preserve"
-           style="font-size:17.6389px;line-height:1.25;font-family:Audiowide;-inkscape-font-specification:Audiowide;fill:#ccaa00;fill-opacity:1;stroke-width:0.367477"
+           style="font-size:17.6389px;line-height:1.25;font-family:Audiowide;-inkscape-font-specification:Audiowide;display:inline;fill:#ccaa00;fill-opacity:1;stroke-width:0.367477"
            x="88.568405"
            y="148.56801"
            id="text2"
@@ -1138,11 +1158,11 @@
              sodipodi:role="line"
              id="tspan2"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Russo One';-inkscape-font-specification:'Russo One';fill:#ccaa00;fill-opacity:1;stroke-width:0.367477"
-             x="88.568405"
-             y="148.56801">100%</tspan></text>
+             x="0"
+             y="0">100%</tspan></text>
         <path
            id="rect2"
-           style="fill:#ccaa00;stroke-width:2.69502;stroke-linecap:square;stroke-linejoin:bevel"
+           style="display:inline;fill:#ccaa00;stroke-width:2.69502;stroke-linecap:square;stroke-linejoin:bevel"
            d="M 29.330275,129.61195 H 152.82564 l -1.58134,3.15802 H 30.924501 Z"
            sodipodi:nodetypes="ccccc"
            inkscape:label="Charge Bar" />
@@ -1276,7 +1296,7 @@
          inkscape:label="Speed">
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.191px;line-height:1.25;font-family:'Russo One';-inkscape-font-specification:'Russo One';fill:#e5e5e5;fill-opacity:1;stroke-width:0.358145"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.191px;line-height:1.25;font-family:'Russo One';-inkscape-font-specification:'Russo One';display:inline;fill:#e5e5e5;fill-opacity:1;stroke-width:0.358145"
            x="115.7402"
            y="63.967556"
            id="text17"
@@ -1284,8 +1304,8 @@
              sodipodi:role="line"
              id="tspan17"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Russo One';-inkscape-font-specification:'Russo One';fill:#e5e5e5;fill-opacity:1;stroke-width:0.358145"
-             x="115.7402"
-             y="63.967556">183 MPH</tspan></text>
+             x="0"
+             y="0">183 MPH</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:17.191px;line-height:1.25;font-family:'Russo One';-inkscape-font-specification:'Russo One';fill:#e5e5e5;fill-opacity:1;stroke-width:0.358145"
