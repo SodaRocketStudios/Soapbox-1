@@ -10,7 +10,7 @@ namespace Soap.Input
     {
 		public static InputHandler Instance;
 
-		public DeviceType deviceType {get; private set;}
+		public static DeviceType deviceType {get; private set;}
 
 		// Gameplay Actions
 		public static Action<float> OnSteerInput;
@@ -26,7 +26,7 @@ namespace Soap.Input
 		public static Action OnReturnInput;
 		public static Action OnCancelInput;
 
-		public static InputControlScheme CurrentScheme;
+		public static Action<DeviceType> OnDeviceChange;
 
 		private InputActions inputActions;
 		
@@ -195,19 +195,31 @@ namespace Soap.Input
 
 				if(activeDevice is Keyboard)
 				{
-					deviceType = DeviceType.Keyboard;
+					if(deviceType != DeviceType.Keyboard)
+					{
+						deviceType = DeviceType.Keyboard;
+						OnDeviceChange?.Invoke(deviceType);
+					}
 					return;
 				}
 
 				if(activeDevice is XInputController)
 				{
-					deviceType = DeviceType.Xbox;
+					if(deviceType != DeviceType.Xbox)
+					{
+						deviceType = DeviceType.Xbox;
+						OnDeviceChange?.Invoke(deviceType);
+					}
 					return;
 				}
 
 				if(activeDevice is DualShockGamepad)
 				{
-					deviceType = DeviceType.Playstation;
+					if(deviceType != DeviceType.Playstation)
+					{
+						deviceType = DeviceType.Playstation;
+						OnDeviceChange?.Invoke(deviceType);
+					}
 					return;
 				}
 			}

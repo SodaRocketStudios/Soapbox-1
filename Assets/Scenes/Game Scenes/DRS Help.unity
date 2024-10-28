@@ -208,8 +208,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 187044104}
-  - component: {fileID: 187044106}
+  - component: {fileID: 187044107}
   - component: {fileID: 187044105}
+  - component: {fileID: 187044106}
   m_Layer: 5
   m_Name: Text 2
   m_TagString: Untagged
@@ -257,8 +258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: When you enter a DRS zone, the DRS indicator on your HUD will change from
-    red to light green, indicating that DRS is available but not yet active.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3f581162c49ad41bdff04fbc8ad4e9, type: 2}
   m_sharedMaterial: {fileID: -6713272033849704700, guid: 0e3f581162c49ad41bdff04fbc8ad4e9,
@@ -336,6 +336,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187044103}
   m_CullTransparentMesh: 1
+--- !u!114 &187044107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187044103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1120e3fb9e4a44a305e5df031242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: When you enter a DRS zone, the DRS indicator on your HUD will change from
+    red to light green, indicating that DRS is available but not yet active.
+  xBoxSprites: []
+  psSprites: []
+  kbSprites: []
 --- !u!1 &400694058
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,8 +399,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 557976246}
-  - component: {fileID: 557976248}
+  - component: {fileID: 557976249}
   - component: {fileID: 557976247}
+  - component: {fileID: 557976248}
   m_Layer: 5
   m_Name: Text 3
   m_TagString: Untagged
@@ -431,8 +449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: To activate DRS while in a DRS zone, press <sprite name="XB_Y">. The DRS
-    indicator will then turn green, confirming that DRS is now active.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3f581162c49ad41bdff04fbc8ad4e9, type: 2}
   m_sharedMaterial: {fileID: -6713272033849704700, guid: 0e3f581162c49ad41bdff04fbc8ad4e9,
@@ -510,6 +527,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557976245}
   m_CullTransparentMesh: 1
+--- !u!114 &557976249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557976245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1120e3fb9e4a44a305e5df031242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: To activate DRS while in a DRS zone, press <0>. The DRS indicator will then
+    turn green, confirming that DRS is now active.
+  xBoxSprites:
+  - {fileID: -1254423740, guid: f2b2780e40a86ba488afaed2e008552b, type: 3}
+  psSprites:
+  - {fileID: 204790315, guid: f2b2780e40a86ba488afaed2e008552b, type: 3}
+  kbSprites:
+  - {fileID: 0}
 --- !u!1 &714789137
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,8 +653,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 776223498}
-  - component: {fileID: 776223500}
+  - component: {fileID: 776223501}
   - component: {fileID: 776223499}
+  - component: {fileID: 776223500}
   m_Layer: 5
   m_Name: Text 1
   m_TagString: Untagged
@@ -665,14 +703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The Drag Reduction System (DRS) is an aerodynamic feature designed to
-    reduce the surface area of the rear wing, thereby increasing top speed at the
-    expense of downforce.
-
-
-    DRS can only be activated in specific sections of
-    the track, known as DRS zones. These zones are marked by signs on either side
-    of the track and a white line across the track.'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3f581162c49ad41bdff04fbc8ad4e9, type: 2}
   m_sharedMaterial: {fileID: -6713272033849704700, guid: 0e3f581162c49ad41bdff04fbc8ad4e9,
@@ -750,6 +781,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776223497}
   m_CullTransparentMesh: 1
+--- !u!114 &776223501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776223497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1120e3fb9e4a44a305e5df031242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 'The Drag Reduction System (DRS) is an aerodynamic feature designed to reduce
+    the surface area of the rear wing, thereby increasing top speed at the expense
+    of downforce.
+
+
+    DRS can only be activated in specific sections of the track,
+    known as DRS zones. These zones are marked by signs on either side of the track
+    and a white line across the track.'
+  xBoxSprites: []
+  psSprites: []
+  kbSprites: []
 --- !u!1 &842428908
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,8 +813,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842428909}
-  - component: {fileID: 842428911}
+  - component: {fileID: 842428912}
   - component: {fileID: 842428910}
+  - component: {fileID: 842428911}
   m_Layer: 5
   m_Name: Text 4
   m_TagString: Untagged
@@ -808,8 +863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DRS automatically deactivates when you apply the brakes, so there's no
-    need to manually disable it before the next corner.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3f581162c49ad41bdff04fbc8ad4e9, type: 2}
   m_sharedMaterial: {fileID: -6713272033849704700, guid: 0e3f581162c49ad41bdff04fbc8ad4e9,
@@ -887,6 +941,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842428908}
   m_CullTransparentMesh: 1
+--- !u!114 &842428912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842428908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1120e3fb9e4a44a305e5df031242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: DRS automatically deactivates when you apply the brakes, so there's no need
+    to manually disable it before the next corner.
+  xBoxSprites: []
+  psSprites: []
+  kbSprites: []
 --- !u!1 &1163613317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,7 +1710,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2060079995}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.41096872
+  m_Size: 0.63735545
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

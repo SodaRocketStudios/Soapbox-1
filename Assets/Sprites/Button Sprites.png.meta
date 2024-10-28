@@ -207,7 +207,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PS_X
+      name: PS_Cross
       rect:
         serializedVersion: 2
         x: 50
@@ -386,11 +386,11 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       PS_Circle: -1575377175
+      PS_Cross: -2146713153
       PS_L2: 30795378
       PS_R2: -503954509
       PS_Square: -1927572088
       PS_Triangle: 204790315
-      PS_X: -2146713153
       XB_A: 1388351044
       XB_B: 482519907
       XB_LT: 136578412
