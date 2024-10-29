@@ -350,6 +350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: When you enter a DRS zone, the DRS indicator on your HUD will change from
     red to light green, indicating that DRS is available but not yet active.
+  GamepadSpriteAsset: {fileID: 0}
+  KeyboardSpriteAsset: {fileID: 0}
   xBoxSprites: []
   psSprites: []
   kbSprites: []
@@ -541,12 +543,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: To activate DRS while in a DRS zone, press <0>. The DRS indicator will then
     turn green, confirming that DRS is now active.
+  GamepadSpriteAsset: {fileID: 11400000, guid: e95c8e5931966d542bdb9ff83bdad901, type: 2}
+  KeyboardSpriteAsset: {fileID: 11400000, guid: 1605bf9f46b59664e800f083c9e75536,
+    type: 2}
   xBoxSprites:
   - {fileID: -1254423740, guid: f2b2780e40a86ba488afaed2e008552b, type: 3}
   psSprites:
   - {fileID: 204790315, guid: f2b2780e40a86ba488afaed2e008552b, type: 3}
   kbSprites:
-  - {fileID: 0}
+  - {fileID: -457561150, guid: 9d1bad8be3e7d814aa76c4b5d17ee910, type: 3}
 --- !u!1 &714789137
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +806,8 @@ MonoBehaviour:
     DRS can only be activated in specific sections of the track,
     known as DRS zones. These zones are marked by signs on either side of the track
     and a white line across the track.'
+  GamepadSpriteAsset: {fileID: 0}
+  KeyboardSpriteAsset: {fileID: 0}
   xBoxSprites: []
   psSprites: []
   kbSprites: []
@@ -955,6 +962,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: DRS automatically deactivates when you apply the brakes, so there's no need
     to manually disable it before the next corner.
+  GamepadSpriteAsset: {fileID: 0}
+  KeyboardSpriteAsset: {fileID: 0}
   xBoxSprites: []
   psSprites: []
   kbSprites: []
@@ -1710,7 +1719,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2060079995}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.63735545
+  m_Size: 0.6378199
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

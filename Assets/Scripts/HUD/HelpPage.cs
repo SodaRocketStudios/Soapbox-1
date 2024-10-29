@@ -8,9 +8,13 @@ namespace Soap.HUD
 	{
 		[SerializeField, TextArea(4, 20)] string text;
 
+		[SerializeField] private TMP_SpriteAsset GamepadSpriteAsset;
+		[SerializeField] private TMP_SpriteAsset KeyboardSpriteAsset;
+
 		[SerializeField] private Sprite[] xBoxSprites;
 		[SerializeField] private Sprite[] psSprites;
 		[SerializeField] private Sprite[] kbSprites;
+
 
 		private Sprite[] activeSprites;
 
@@ -55,12 +59,15 @@ namespace Soap.HUD
 			{
 				case Input.DeviceType.Xbox:
 					activeSprites = xBoxSprites;
+					textContainer.spriteAsset = GamepadSpriteAsset;
 					break;
 				case Input.DeviceType.Playstation:
 					activeSprites = psSprites;
+					textContainer.spriteAsset = GamepadSpriteAsset;
 					break;
 				case Input.DeviceType.Keyboard:
 					activeSprites = kbSprites;
+					textContainer.spriteAsset = KeyboardSpriteAsset;
 					break;
 				default:
 					break;
