@@ -169,6 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849096591}
+  - component: {fileID: 849096594}
   - component: {fileID: 849096593}
   - component: {fileID: 849096592}
   m_Layer: 5
@@ -218,14 +219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'To start a race, press and hold <sprite name="XB_X"> to engage the clutch.
-    Once the clutch is engaged, the starting lights will appear, initiating the countdown.
-    During this time, keep the clutch held down and find the optimal throttle input
-    for a strong launch.
-
-
-    The starting sequence consists of five lights, which
-    illuminate one by one, each with a 1-second delay.'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3f581162c49ad41bdff04fbc8ad4e9, type: 2}
   m_sharedMaterial: {fileID: -6713272033849704700, guid: 0e3f581162c49ad41bdff04fbc8ad4e9,
@@ -303,6 +297,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849096590}
   m_CullTransparentMesh: 1
+--- !u!114 &849096594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849096590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1120e3fb9e4a44a305e5df031242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 'To start a race, press and hold <0> to engage the clutch. Once the clutch
+    is engaged, the starting lights will appear, initiating the countdown. During
+    this time, keep the clutch held down and find the optimal throttle input for
+    a strong launch.
+
+
+    The starting sequence consists of five lights, which illuminate
+    one by one, each with a 1-second delay.'
+  GamepadSpriteAsset: {fileID: 11400000, guid: e95c8e5931966d542bdb9ff83bdad901, type: 2}
+  KeyboardSpriteAsset: {fileID: 11400000, guid: 1605bf9f46b59664e800f083c9e75536,
+    type: 2}
+  xBoxSprites:
+  - {fileID: -1126930694, guid: f2b2780e40a86ba488afaed2e008552b, type: 3}
+  psSprites:
+  - {fileID: -1927572088, guid: f2b2780e40a86ba488afaed2e008552b, type: 3}
+  kbSprites:
+  - {fileID: 842251224, guid: 9d1bad8be3e7d814aa76c4b5d17ee910, type: 3}
 --- !u!1 &906352678
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906352679}
+  - component: {fileID: 906352682}
   - component: {fileID: 906352681}
   - component: {fileID: 906352680}
   m_Layer: 5
@@ -361,8 +385,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Releasing the clutch before the starting lights go out will result in a
-    false start penalty of 10 seconds.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3f581162c49ad41bdff04fbc8ad4e9, type: 2}
   m_sharedMaterial: {fileID: -6713272033849704700, guid: 0e3f581162c49ad41bdff04fbc8ad4e9,
@@ -440,6 +463,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906352678}
   m_CullTransparentMesh: 1
+--- !u!114 &906352682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906352678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1120e3fb9e4a44a305e5df031242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Releasing the clutch before the starting lights go out will result in a false
+    start penalty of 10 seconds.
+  GamepadSpriteAsset: {fileID: 11400000, guid: e95c8e5931966d542bdb9ff83bdad901, type: 2}
+  KeyboardSpriteAsset: {fileID: 11400000, guid: 1605bf9f46b59664e800f083c9e75536,
+    type: 2}
+  xBoxSprites: []
+  psSprites: []
+  kbSprites: []
 --- !u!1 &1456397596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,8 +1367,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2060079996}
   m_HandleRect: {fileID: 2060079995}
   m_Direction: 2
-  m_Value: 1.0000004
-  m_Size: 0.64738065
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1665,6 +1708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2082939706}
+  - component: {fileID: 2082939709}
   - component: {fileID: 2082939708}
   - component: {fileID: 2082939707}
   m_Layer: 5
@@ -1714,8 +1758,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: After all the lights are on, there will be a random delay before they go
-    out, signaling the moment when you can release the clutch.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3f581162c49ad41bdff04fbc8ad4e9, type: 2}
   m_sharedMaterial: {fileID: -6713272033849704700, guid: 0e3f581162c49ad41bdff04fbc8ad4e9,
@@ -1793,3 +1836,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082939705}
   m_CullTransparentMesh: 1
+--- !u!114 &2082939709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082939705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab1120e3fb9e4a44a305e5df031242a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: After all the lights are on, there will be a random delay before they go
+    out, signaling the moment when you can release the clutch.
+  GamepadSpriteAsset: {fileID: 11400000, guid: e95c8e5931966d542bdb9ff83bdad901, type: 2}
+  KeyboardSpriteAsset: {fileID: 11400000, guid: 1605bf9f46b59664e800f083c9e75536,
+    type: 2}
+  xBoxSprites: []
+  psSprites: []
+  kbSprites: []
